@@ -1,0 +1,241 @@
+@import compass/css3/box-shadow
+@import compass/css3/text-shadow
+@import compass/css3/border-radius
+@import compass/css3/box-sizing
+@import compass/css3/gradient
+@import compass/css3/text-shadow
+
+@mixin flexbox($direction, $align: center)
+  display: -webkit-box
+  display: -moz-box
+  -webkit-box-orient: $direction
+  -moz-box-orient: $direction
+  -webkit-box-align: $align
+  -moz-box-align: $align
+
+@mixin distribute-children($distribute)
+  -webkit-box-pack: $distribute
+  -moz-box-pack: $distribute
+
+@mixin liquid($size: 1)
+  -webkit-box-flex: $size
+  -moz-box-flex: $size
+  
+=bundler-link
+  text-decoration: none
+  color: #0e3f54
+
+#standalone
+  line-height: 150%
+
+  code
+    background-color: rgba(0, 0, 0, 0.1)
+
+  h1
+    margin-top: 40px
+    margin-bottom: 10px
+    line-height: 125%
+
+html
+  width: 100%
+  background-color: #D0E0FF
+  padding-top: 10px
+  font-family: Helvetica, sans-serif
+
+
+img
+  border: 0
+
+code
+  font-family: monospace
+  font-size: 120%
+  padding: 0 3px
+  border: 1px solid rgba(0,0,0,0.1)
+  +border-radius(3px)
+
+.intro
+  width: 100%
+
+#body
+  +flexbox(vertical, center)
+  width: 100%
+
+#contents
+  +flexbox(vertical, justify)
+  width: 725px
+
+#intro
+  background: rgba(0,0,0,0.1)
+  +border-radius(5px)
+  padding: 10px 10px
+  color: #043042
+  font-size: 18px
+  line-height: 24px
+  p
+    margin: 0
+  p + p
+    margin-top: 10px
+  strong
+    color: #041f2a
+
+#header
+  margin-bottom: 20px
+  h1
+    font-size: 22px
+    text-align: right
+    padding-right: 43px
+    color: #346B8C
+
+#footer
+  +box-sizing(border-box)
+  +flexbox(horizontal, center)
+  +distribute-children(justify)
+  padding: 8px 16px
+  background-color: rgba(0,0,0,0.1)
+  width: 100%
+  margin-top: 25px
+
+  img:first-child
+    +box-shadow(blue, 0, 0, 5px)
+
+  img:last-child
+    margin-top: -20px
+    margin-right: -20px
+
+  .spacer
+    +liquid
+
+  img
+    display: block
+
+  #navigation
+    +flexbox(vertical, center)
+
+    p
+      font-family: Helvetica, sans-serif
+      color: #366
+      font-size: 16px
+      margin: 0
+      a
+        +bundler-link
+
+.contents
+  width: 725px
+
+h2
+  font-size: 20px
+  padding: 5px
+  margin-top: 24px
+  color: #2f0e44
+  border-bottom: 3px solid #0e3f54
+  width: 100%
+  +box-sizing("border-box")
+
+ul.bullet
+  +flexbox(horizontal, center)
+  +distribute-children(justify)
+
+  a
+    margin-left: 0
+    margin-right: 10px
+    +liquid
+    &:last-child
+      margin-right: 0
+
+.bullet
+  width: 100%
+  padding: 8px 15px
+  +box-sizing("border-box")
+  +flexbox(vertical, justify)
+
+  .description
+    width: 100%
+    margin-right: 16px
+    color: #202
+    line-height: 24px
+    margin-bottom: 8px
+
+  a
+    padding-top: 8px
+    padding-bottom: 8px
+    text-decoration: none
+    display: block
+    color: #fff
+    margin: 10px 0 0 450px
+    +text-shadow(rgba(0,0,0,0.3),0, -1px, 0)
+    text-align: center
+    +linear-gradient(color_stops(#707DCF, #505DAF))
+    +border-radius(5px)
+
+  a:hover
+    +linear-gradient(color_stops(#505DAF, #303D8F))
+
+
+  .how
+    +flexbox(vertical, justify)
+    +liquid
+    line-height: 24px
+  .notes
+    font-size: 90%
+    line-height: 150%
+    margin-top: 15px
+    margin-bottom: 8px
+    padding-right: 4px
+    padding-left: 4px
+    color: #404
+    &+ a
+      margin-top: 10px
+    &+ pre
+      margin-top: 10px
+    &+ .description
+      margin-top: 20px
+
+  pre
+    +liquid
+    margin: 0
+
+  code
+    background-color: rgba(0,0,0,0.1)
+
+pre
+  +border-radius(5px)
+
+.bullet:nth-child(even)
+  background-color: rgba(0,0,0,0.1)
+  border-top: 1px solid rgba(0,0,0,0.1)
+  border-bottom: 1px solid rgba(0,0,0,0.1)
+
+.bullet:not(:nth-of-type(1))
+  padding-top: 15px
+
+.bullet
+  padding-bottom: 25px
+  //border-bottom: 1px solid rgba(0,0,0,0.1)
+
+#credits
+  p
+    text-align: center
+    font-size: 8pt
+    color: #668493
+    a
+      color: #2c596b
+
+#github
+  img
+    position: absolute
+    top: 0
+    right: 0
+    border: 0
+
+#versions
+  position: absolute
+  top: 0
+  left: 0
+  padding: 0.4em
+  background: rgba(0,0,0,0.1)
+  +border-bottom-right-radius(10px)
+  a
+    +bundler-link
+    padding: 0.1em 0.25em
+  a.current
+    font-weight: bold

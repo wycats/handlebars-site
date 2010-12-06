@@ -1,0 +1,448 @@
+#intro
+  %p
+    Handlebars provides the power necessary to let you build 
+    <strong>semantic templates</strong> effectively with no frustration.
+
+  %p
+    Mustache templates are compatible with Handlebars, so you can
+    take a Mustache template, import it into Handlebars, and start
+    taking advantage of the extra Handlebars features.
+
+%h2#getting-started
+  Getting Started
+
+.contents
+  .bullet
+    .description
+      Handlebars templates look like regular HTML, with embedded
+      handlebars expressions.
+    :html
+      <div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+          {{body}}
+        </div>
+      </div>
+    .notes
+      A handlebars expression is a <code>{{</code>, some contents,
+      followed by a <code>}}</code>
+    = link("Learn More: Expressions")
+
+  .bullet
+    .description
+      You can deliver a template to the browser by including it
+      in a <code>&lt;script&gt;</code> tag.
+    :html
+      <script id="entry-template" type="text/x-handlebars-template">
+        template content
+      </script>
+
+  .bullet
+    .description
+      Compile a template in JavaScript by using
+      <code>Handlebars.compile</code>
+    :javascript
+      var source   = $("#entry-template").html();
+      var template = Handlebars.compile(source);
+    .notes
+      You can also precompile templates before deployment to
+      improve performance on the client.
+    = link("Learn More: Precompiling")
+
+  .bullet
+    .description
+      Get the HTML result of evaluating a Handlebars template by
+      executing the template with a context.
+    :javascript
+      var context = {title: "My New Post", body: "This is my first post!"}
+      var html    = template(context)
+    .notes
+      results in
+    :html
+      <div class="entry">
+        <h1>My New Post</h1>
+        <div class="body">
+          This is my first post!
+        </div>
+      </div>
+
+  .bullet
+    .description
+      Handlebars HTML-escapes values returned by a <code>{{expression}}</code>.
+      If you don't want Handlebars to escape a value, use the "triple-stash".
+
+    :html
+      <div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+          {{{body}}}
+        </div>
+      </div>
+
+    .notes
+      with this context:
+
+    :javascript
+      {
+        title: "All about <p> Tags",
+        body: "<p>This is a post about &lt;p&gt; tags</p>"
+      }
+
+    .notes
+      results in:
+
+    :html
+      <div class="entry">
+        <h1>All About &lt;p&gt; Tags</h1>
+        <div class="body">
+          <p>This is a post about &lt;p&gt; tags</p>
+        </div>
+      </div>
+
+    = link("Learn More: Escaping")
+
+%h2#contexts
+  Contexts
+
+.content
+  .bullet
+    .description
+      By default, Handlebars templates are evaluated against the context
+      passed into the compiled method.
+    :javascript
+      var source   = "<p>{{lastName}}, {{firstName}}</p>";
+      var template = Handlebars.compile(source);
+      template({firstName: "Alan", lastName: "Johnson"});
+    .notes
+      results in
+    :html
+      <p>Johnson, Alan</p>
+
+  .bullet
+    .description
+      You can shift the context for a section of a template by using
+      a block expression.
+    :html
+      <div class="entry">
+        <h1>{{title}}</h1>
+
+        {{#author}}
+        <h2>By {{firstName}} {{lastName}}</h2>
+        {{/author}}
+      </div>
+    .notes
+      when used with this context:
+    :javascript
+      {
+        title: "My first post!", 
+        author: {
+          firstName: "Charles",
+          lastName: "Jolley"
+        }
+      }
+    .notes
+      will result in:
+    :html
+      <div class="entry">
+        <h1>My first post!</h1>
+
+        <h2>By Charles Jolley</h2>
+      </div>
+
+%h2#iteration
+  Iteration
+
+.content
+  .bullet
+    .description
+      You can iterate over a list using a block expression. Inside the
+      block, you can use <code>this</code> to reference the element
+      being iterated over.
+    :html
+      <ul class="people_list">
+        {{#people}}
+        <li>{{this}}</li>
+        {{/people}}}}
+      </ul>
+    .notes
+      when used with this context:
+    :javascript
+      {
+        people: [
+          "Yehuda Katz",
+          "Alan Johnson",
+          "Charles Jolley"
+        ]
+      }
+    .notes
+      will result in:
+    :javascript
+      <ul class="people_list">
+        <li>Yehuda Katz</li>
+        <li>Alan Johnson</li>
+        <li>Charles Jolley</li>
+      </ul>
+    .notes
+      You can use the <code>this</code> expression in any context to reference
+      the current context.
+
+%h2#conditionals
+  Conditionals
+
+.content
+  .bullet
+    .description
+      If you use a block expression and the expression returns <code>false</code>,
+      <code>undefined</code> or <code>null</code> (a "falsy" value), Handlebars
+      will not render the block.
+    :html
+      <div class="entry">
+        {{#author}}
+        <h1>{{firstName}} {{lastName}}</h1>
+        {{/author}}
+      </div>
+    .notes
+      when used with an empty (<code>{}</code>) context, will result in:
+    :html
+      <div class="entry">
+      </div>
+    = link("Learn More: Block Expressions")
+
+  .bullet
+    .description
+      When using a block expression, you can specify a template section to
+      run if the expression returns a falsy value. The section, marked by
+      <code>{{^}}</code> is called an "inverse section".
+    :html
+      <div class="entry">
+        {{#author}}
+          <h1>{{firstName}} {{lastName}}</h1>
+        {{^}}
+          <h1>Unknown Author</h1>
+        {{/author}}
+      </div>
+    = link("Learn More: Inverse Sections")
+
+  .bullet
+    .description
+      You can also specify a standalone inverse section that Handlebars should
+      only render if its expression returns a falsy value.
+    :html
+      <div class="entry">
+        {{^ license}}
+        <h3 class="warning">WARNING: This entry does not have a license!</h3>"
+        {{/license}}
+      </div>
+    .notes
+      If looking up <code>license</code> under the context returns a falsy
+      value, Handlebars will render the warning. Otherwise, it will render
+      nothing.
+
+%h2#paths
+  Handlebars Paths
+
+.content
+  .bullet
+    .description
+      Handlebars supports simple paths, just like Mustache.
+    :html
+      <p>{{name}}</p>
+
+  .bullet
+    .description
+      Handlebars also supports nested paths, making it possible
+      to look up properties nested below the current context.
+    :html
+      <div class="entry">
+        <h1>{{title}}</h1>
+        <h2>By {{author/name}}</h2>
+
+        <div class="body">
+          {{body}}
+        </div>
+    .notes
+      That template works with this context
+    :javascript
+      var context = {
+        title: "My First Blog Post!",
+        author: {
+          id: 47,
+          name: "Yehuda Katz"
+        },
+        body: "My first post. Wheeeee!"
+      }
+    .notes
+      This makes it possible to use Handlebars templates with
+      more raw JSON objects.
+    = link("Learn More: Path Expressions")
+
+  .bullet
+    .description
+      Nested handlebars paths can also include <code>..</code> segments,
+      which evaluate their paths against a parent context.
+    :html
+      <h1>Comments</h1>
+
+      <div id="comments">
+        {{#comments}}
+        <h2><a href="/posts/{{../permalink}}\#{{id}}">{{title}}</a></h2>
+        <div>{{body}}</div>
+        {{/comments}}
+      </div>
+    .notes
+      Even though the link is printed while in the context of a comment,
+      it can still go back to the main context (the post) to retrieve
+      its permalink.
+    = link("Learn More: The Stack")
+
+%h2#helpers
+  Helpers
+
+.content
+  .bullet
+    .description
+      Handlebars helpers can be accessed from any context in a template.
+      You can pass in a Hash of helpers as the second parameter to a
+      compiled template.
+    :html
+      <div class="post">
+        <h1>By {{fullName author}}</h1>
+        <div class="body">{{body}}</div>
+
+        <h1>Comments</h1>
+
+        {{#comments}}
+        <h2>By {{fullName author}}</h2>
+        <div class="body">{{body}}</h2>}}
+        {{/comments}}
+      </div>
+
+    .notes
+      when using this context and helpers:
+
+    :javascript
+      var context = {
+        author: {firstName: "Alan", lastName: "Johnson"},
+        body: "I Love Handlebars",
+        comments: [{
+          author: {firstName: "Yehuda", lastName: "Katz"},
+          body: "Me too!"
+        }]
+      }
+
+      var helpers = {
+        fullName: function(name) {
+          return name.firstName + " " + name.lastName;
+        }
+      }
+
+      template(context, helpers)
+
+    .notes
+      results in:
+
+    :html
+      <div class="post">
+        <h1>By Alan Johnson</h1>
+        <div class="body">I Love Handlebars</div>
+
+        <h1>Comments</h1>
+
+        <h2>By Yehuda Katz</h2>
+        <div class="body">Me Too!</h2>
+      </div>
+
+  .bullet
+    .description
+      Helpers receive the current context as the <code>this</code> context
+      of the function.
+
+    :html
+      <ul>
+        {{#items}}
+        <li>{{agree_button}}</li>
+        {{/items}}
+      </ul>
+
+    .notes
+      when using this context and helpers:
+
+    :javascript
+      var context = {
+        items: [
+          {name: "Handlebars", emotion: "love"},
+          {name: "Mustache", emotion: "enjoy"},
+          {name: "SproutCore", emotion: "want to learn"}
+        ]
+      };
+
+      var helpers = {
+        agree_button: function() {
+          return "<button>I agree. I " + this.emotion + " " + this.name + "</button>";
+        }
+      }
+
+    .notes
+      results in:
+
+    :html
+      <ul>
+        <li><button>I agree. I love Handlebars</button></li>
+        <li><button>I agree. I enjoy Mustache</button></li>
+        <li><button>I agree. I want to learn SproutCore</button></li>
+      </ul>
+
+    = link("Learn More: The Helper Context")
+
+%h2#block-helpers
+  Block Helpers
+
+.content
+  .bullet
+    .description
+      Block helpers allow you to invoke the template block with whatever
+      context you choose. A very common use case would be building
+      custom iterator helpers.
+    :html
+      <h1>People on this project</h1>
+      {{#list people}}
+        {{name}} is a {{title}}
+      {{/list}}
+
+    .notes
+      when using this context and helpers:
+
+    :javascript
+      var context = {
+        people: [
+          {name: "Yehuda Katz", title: "Developer"},
+          {name: "Charles Jolley", title: "CEO"},
+          {name: "Austin Bales", title: "Designer"}
+        ]
+      }
+
+      var helpers = {
+        list: function(items, block) {
+          var out = "<ul>";
+
+          for(var i=0, l=items.length; i<l; i++) {
+            out = out + "<li>" + block(items[i]) + "</li>";
+          }
+
+          return out + "</ul>"
+        }
+      }
+
+    .notes
+      results in:
+
+    :html
+      <h1>People on the project</h1>
+      <ul>
+        <li>Yehuda Katz is a Developer</li>
+        <li>Charles Jolley is a CEO</li>
+        <li>Austin Bales is a Designer</li>
+      </ul>
+
+    = link("Learn More: Block Helpers")
+    = link("Learn More: helperMissing")
