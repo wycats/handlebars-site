@@ -101,13 +101,76 @@
 
     = link("Learn More: Escaping")
 
-%h2#contexts
-  Contexts
+%h2#block-expressions
+  Block Expressions
+
+.context
+  .bullet
+    .description
+      Block expressions allow you to define helpers that will invoke
+      a section of your template with a different context than the
+      current. Let's consider a helper that will generate an HTML list:
+
+    :html
+      {{#list people}}{{firstName}} {{lastName}}{{/list}}}}
+
+    .notes
+      If we have the following context:
+
+    :javascript
+      {
+        people: [
+          {firstName: "Yehuda", lastName: "Katz"},
+          {firstName: "Carl", lastName: "Lerche"},
+          {firstName: "Alan", lastName: "Johnson"}
+        ]
+      }
+
+    .notes
+      we would create a helper named <code>list</code> to generate our
+      HTML list. The helper receives the <code>people</code> as its
+      first parameter, and <code>Function</code> as its second parameter.
+      Invoke the function with a context just as you would invoke a
+      normal Handlebars template.
+
+    :javascript
+      Handlebars.registerHelper('list', function(items, fn) {
+        var out = "<ul>";
+
+        for(var i=0, l=items.length; i<l; i++) {
+          out = out + "<li>" + fn(items[i]) + "</li>";>
+        }
+
+        return out + "</ul>";
+      });
+
+    .notes
+      When executed, the template will render:
+
+    :html
+      <ul>
+        <li>Yehuda Katz</li>
+        <li>Carl Lerche</li>
+        <li>Alan Johnson</li>
+      </ul>
+
+    .notes
+      Block helpers have more features, such as the ability to create an
+      <code>else</code> section (used, for instance, by the built-in if
+      helper).
+
+    = link("Learn More: Block Helpers")
+
+%h1#builtins
+  Built-In Block Helpers
+
+%h2#with
+  The <code>with</code> Block Helper
 
 .content
   .bullet
     .description
-      By default, Handlebars templates are evaluated against the context
+      Normally, Handlebars templates are evaluated against the context
       passed into the compiled method.
     :javascript
       var source   = "<p>{{lastName}}, {{firstName}}</p>";
@@ -121,20 +184,20 @@
   .bullet
     .description
       You can shift the context for a section of a template by using
-      a block expression.
+      the built-in <code>with</code> block helper.
     :html
       <div class="entry">
         <h1>{{title}}</h1>
 
-        {{#author}}
+        {{#with author}}
         <h2>By {{firstName}} {{lastName}}</h2>
-        {{/author}}
+        {{/with}}
       </div>
     .notes
       when used with this context:
     :javascript
       {
-        title: "My first post!", 
+        title: "My first post!",
         author: {
           firstName: "Charles",
           lastName: "Jolley"
@@ -150,19 +213,19 @@
       </div>
 
 %h2#iteration
-  Iteration
+  The <code>each</code> block helper
 
 .content
   .bullet
     .description
-      You can iterate over a list using a block expression. Inside the
-      block, you can use <code>this</code> to reference the element
-      being iterated over.
+      You can iterate over a list using the built-in <code>each</code>
+      helper. Inside the block, you can use <code>this</code> to reference
+      the element being iterated over.
     :html
       <ul class="people_list">
-        {{#people}}
+        {{#each people}}
         <li>{{this}}</li>
-        {{/people}}}}
+        {{/each}}}}
       </ul>
     .notes
       when used with this context:
@@ -187,55 +250,59 @@
       the current context.
 
 %h2#conditionals
-  Conditionals
+  The <code>if</code> block helper
 
 .content
   .bullet
     .description
-      If you use a block expression and the expression returns <code>false</code>,
-      <code>undefined</code> or <code>null</code> (a "falsy" value), Handlebars
-      will not render the block.
+      You can use the <code>if</code> helper to conditionally render a block. If
+      its argument returns <code>false</code>, <code>undefined</code>, <code>null</code>
+      or <code>[]</code> (a "falsy" value), Handlebars will not render the block.
     :html
       <div class="entry">
-        {{#author}}
+        {{#if author}}
         <h1>{{firstName}} {{lastName}}</h1>
-        {{/author}}
+        {{/if}}
       </div>
     .notes
       when used with an empty (<code>{}</code>) context, will result in:
     :html
       <div class="entry">
       </div>
-    = link("Learn More: Block Expressions")
 
   .bullet
     .description
       When using a block expression, you can specify a template section to
       run if the expression returns a falsy value. The section, marked by
-      <code>{{^}}</code> is called an "inverse section".
+      <code>{{else}}</code> is called an "else section".
     :html
       <div class="entry">
-        {{#author}}
+        {{#if author}}
           <h1>{{firstName}} {{lastName}}</h1>
-        {{^}}
+        {{else}}
           <h1>Unknown Author</h1>
-        {{/author}}
+        {{/if}}
       </div>
-    = link("Learn More: Inverse Sections")
 
+%h2#unless
+  The <code>unless</code> block helper
+
+.content
   .bullet
     .description
-      You can also specify a standalone inverse section that Handlebars should
+      You can use the <code>unless</code> helper as the inverse of the
+      <code>if</code> helper. Its block will be rendered if the expression
+      section that Handlebars should
       only render if its expression returns a falsy value.
     :html
       <div class="entry">
-        {{^ license}}
+        {{#unless license}}
         <h3 class="warning">WARNING: This entry does not have a license!</h3>"
-        {{/license}}
+        {{/unless}}
       </div>
     .notes
-      If looking up <code>license</code> under the context returns a falsy
-      value, Handlebars will render the warning. Otherwise, it will render
+      If looking up <code>license</code> under the current context returns a
+      falsy value, Handlebars will render the warning. Otherwise, it will render
       nothing.
 
 %h2#paths
@@ -284,10 +351,10 @@
       <h1>Comments</h1>
 
       <div id="comments">
-        {{#comments}}
+        {{#each comments}}
         <h2><a href="/posts/{{../permalink}}\#{{id}}">{{title}}</a></h2>
         <div>{{body}}</div>
-        {{/comments}}
+        {{/each}}
       </div>
     .notes
       Even though the link is printed while in the context of a comment,
@@ -302,8 +369,7 @@
   .bullet
     .description
       Handlebars helpers can be accessed from any context in a template.
-      You can pass in a Hash of helpers as the second parameter to a
-      compiled template.
+      You can register a helper with the Handlebars.registerHElper method.
     :html
       <div class="post">
         <h1>By {{fullName author}}</h1>
@@ -311,10 +377,10 @@
 
         <h1>Comments</h1>
 
-        {{#comments}}
+        {{#each comments}}
         <h2>By {{fullName author}}</h2>
         <div class="body">{{body}}</h2>}}
-        {{/comments}}
+        {{/each}}
       </div>
 
     .notes
@@ -330,13 +396,9 @@
         }]
       }
 
-      var helpers = {
-        fullName: function(person) {
-          return person.firstName + " " + person.lastName;
-        }
-      }
-
-      template(context, helpers)
+      Handlebars.registerHelper('fullName', function(person) {
+        return person.firstName + " " + person.lastName;
+      });
 
     .notes
       results in:
@@ -359,9 +421,9 @@
 
     :html
       <ul>
-        {{#items}}
+        {{#each items}}
         <li>{{agree_button}}</li>
-        {{/items}}
+        {{/each}}
       </ul>
 
     .notes
@@ -376,11 +438,9 @@
         ]
       };
 
-      var helpers = {
-        agree_button: function() {
-          return "<button>I agree. I " + this.emotion + " " + this.name + "</button>";
-        }
-      }
+      Handlebars.registerHelper('agree_button', function() {
+        return "<button>I agree. I " + this.emotion + " " + this.name + "</button>";
+      })
 
     .notes
       results in:
@@ -391,58 +451,3 @@
         <li><button>I agree. I enjoy Mustache</button></li>
         <li><button>I agree. I want to learn SproutCore</button></li>
       </ul>
-
-    = link("Learn More: The Helper Context")
-
-%h2#block-helpers
-  Block Helpers
-
-.content
-  .bullet
-    .description
-      Block helpers allow you to invoke the template block with whatever
-      context you choose. A very common use case would be building
-      custom iterator helpers.
-    :html
-      <h1>People on this project</h1>
-      {{#list people}}
-        {{name}} is a {{title}}
-      {{/list}}
-
-    .notes
-      when using this context and helpers:
-
-    :javascript
-      var context = {
-        people: [
-          {name: "Yehuda Katz", title: "Developer"},
-          {name: "Charles Jolley", title: "CEO"},
-          {name: "Austin Bales", title: "Designer"}
-        ]
-      }
-
-      var helpers = {
-        list: function(items, block) {
-          var out = "<ul>";
-
-          for(var i=0, l=items.length; i<l; i++) {
-            out = out + "<li>" + block(items[i]) + "</li>";
-          }
-
-          return out + "</ul>"
-        }
-      }
-
-    .notes
-      results in:
-
-    :html
-      <h1>People on the project</h1>
-      <ul>
-        <li>Yehuda Katz is a Developer</li>
-        <li>Charles Jolley is a CEO</li>
-        <li>Austin Bales is a Designer</li>
-      </ul>
-
-    = link("Learn More: Block Helpers")
-    = link("Learn More: helperMissing")

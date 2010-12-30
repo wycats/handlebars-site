@@ -7,10 +7,10 @@
     %link{:rel => "shortcut icon", :href => "/images/favicon.png", :type => "image/png" }
   %body
     #body
+      #header
+        %a{:href => "/"}
+          = img("handlebars_logo.png", :alt => "The best way to manage your application's dependencies")
       #contents
-        #header
-          %a{:href => "/"}
-            = img("handlebars-mark.png", :width => 725, :alt => "The best way to manage your application's dependencies")
         = yield
 
     #credits

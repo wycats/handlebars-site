@@ -36,6 +36,3 @@ DEPENDENCIES
   ronn
   spox-ultraviolet
   staticmatic (~> 0.11.0.alpha)!
-
-METADATA
-  version: 1.1.pre

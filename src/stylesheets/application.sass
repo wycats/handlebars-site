@@ -4,6 +4,16 @@
 @import compass/css3/box-sizing
 @import compass/css3/gradient
 @import compass/css3/text-shadow
+@import compass/css3/shared
+
+$back: #FFB572
+$headers: darken($back, 55%)
+$text: darken($headers, 5%)
+
+$gradient: #F7931E
+$gradient-top: darken($gradient, 5%)
+$gradient-bottom: darken($gradient, 15%)
+$gradient-dark: darken($gradient, 25%)
 
 @mixin flexbox($direction, $align: center)
   display: -webkit-box
@@ -20,7 +30,7 @@
 @mixin liquid($size: 1)
   -webkit-box-flex: $size
   -moz-box-flex: $size
-  
+
 =bundler-link
   text-decoration: none
   color: #0e3f54
@@ -38,10 +48,9 @@
 
 html
   width: 100%
-  background-color: #D0E0FF
+  +radial-gradient(color-stops(#F7931E, #F15A24 750px), top center,  url("/images/noise.png"))
   padding-top: 10px
   font-family: Helvetica, sans-serif
-
 
 img
   border: 0
@@ -62,13 +71,23 @@ code
 
 #contents
   +flexbox(vertical, justify)
+  background-color: rgba(#fff, 0.9)
+  +box-shadow(darken($back, 50%), 0, 0, 10px)
+  padding: 20px
+  +border-radius(10px)
   width: 725px
+  position: relative
+  top: -20px
+  z-index: 2
+  h1
+    color: darken($headers, 5%)
+    margin-bottom: 0
 
 #intro
   background: rgba(0,0,0,0.1)
   +border-radius(5px)
   padding: 10px 10px
-  color: #043042
+  color: lighten($headers, 5%)
   font-size: 18px
   line-height: 24px
   p
@@ -76,15 +95,18 @@ code
   p + p
     margin-top: 10px
   strong
-    color: #041f2a
+    color: $headers
 
 #header
+  z-index: 1
   margin-bottom: 20px
+  height: 200px
+  overflow: hidden
   h1
     font-size: 22px
     text-align: right
     padding-right: 43px
-    color: #346B8C
+    color: $headers
 
 #footer
   +box-sizing(border-box)
@@ -126,8 +148,8 @@ h2
   font-size: 20px
   padding: 5px
   margin-top: 24px
-  color: #2f0e44
-  border-bottom: 3px solid #0e3f54
+  color: $headers
+  border-bottom: 3px solid lighten($headers, 10%)
   width: 100%
   +box-sizing("border-box")
 
@@ -151,7 +173,7 @@ ul.bullet
   .description
     width: 100%
     margin-right: 16px
-    color: #202
+    color: $text
     line-height: 24px
     margin-bottom: 8px
 
@@ -164,11 +186,11 @@ ul.bullet
     margin: 10px 0 0 450px
     +text-shadow(rgba(0,0,0,0.3),0, -1px, 0)
     text-align: center
-    +linear-gradient(color_stops(#707DCF, #505DAF))
+    +linear-gradient(color_stops($gradient-top, $gradient-bottom))
     +border-radius(5px)
 
   a:hover
-    +linear-gradient(color_stops(#505DAF, #303D8F))
+    +linear-gradient(color_stops($gradient-bottom, $gradient-dark))
 
 
   .how
@@ -182,7 +204,7 @@ ul.bullet
     margin-bottom: 8px
     padding-right: 4px
     padding-left: 4px
-    color: #404
+    color: lighten($text, 5%)
     &+ a
       margin-top: 10px
     &+ pre
