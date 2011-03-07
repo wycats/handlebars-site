@@ -26,7 +26,7 @@
     .notes
       A handlebars expression is a <code>{{</code>, some contents,
       followed by a <code>}}</code>
-    = link("Learn More: Expressions")
+    = link("Learn More: Expressions", "expressions.html")
 
   .bullet
     .description
@@ -45,9 +45,8 @@
       var source   = $("#entry-template").html();
       var template = Handlebars.compile(source);
     .notes
-      You can also precompile templates before deployment to
-      improve performance on the client.
-    = link("Learn More: Precompiling")
+      In a future release, it will be possible to precompile Handlebars templates
+      into JavaScript files to save time on the client.
 
   .bullet
     .description
@@ -99,7 +98,26 @@
         </div>
       </div>
 
-    = link("Learn More: Escaping")
+    .notes
+      Handlebars will not escape a <code>Handlebars.SafeString</code>.
+      If you write a helper that generates its own HTML, you will usually
+      want to return a <code>new Handlebars.SafeString(result)</code>.
+      In such a circumstance, you will want to manually escape parameters.
+
+    :javascript
+      Handlebars.registerHelper('link', function(text, url) {
+        text = Handlebars.Utils.escapeExpression(text);
+        url  = Handlebars.Utils.escapeExpression(url);
+
+        var result = '<a href="' + url + '">' + text + '</a>';
+
+        return new Handlebars.SafeString(result);
+      });
+
+    .notes
+      This will escape the passed in parameters, but mark the response as
+      safe, so Handlebars will not try to escape it even if the "triple-stash"
+      is not used.
 
 %h2#block-expressions
   Block Expressions
@@ -159,7 +177,7 @@
       <code>else</code> section (used, for instance, by the built-in if
       helper).
 
-    = link("Learn More: Block Helpers")
+    = link("Learn More: Block Helpers", "block_helpers.html")
 
 %h1#builtins
   Built-In Block Helpers
@@ -341,11 +359,10 @@
     .notes
       This makes it possible to use Handlebars templates with
       more raw JSON objects.
-    = link("Learn More: Path Expressions")
 
   .bullet
     .description
-      Nested handlebars paths can also include <code>..</code> segments,
+      Nested handlebars paths can also include <code>../</code> segments,
       which evaluate their paths against a parent context.
     :html
       <h1>Comments</h1>
@@ -360,7 +377,12 @@
       Even though the link is printed while in the context of a comment,
       it can still go back to the main context (the post) to retrieve
       its permalink.
-    = link("Learn More: The Stack")
+    .notes
+      The <code>../</code> path segment references the parent template
+      scope, not one level up in the context. This is because block
+      helpers can invoke a block with any context, so the notion of
+      "one level up" isn't particularly meaningful except as a reference
+      to the parent template scope.
 
 %h2#helpers
   Helpers

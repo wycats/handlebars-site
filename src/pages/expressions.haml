@@ -1,0 +1,109 @@
+#intro
+  Handlebars expressions are the basic unit of a Handlebars template.
+  You can use them alone in a <code>{{mustache}}</code>, pass them
+  to a Handlebars helper, or use them as values in hash arguments.
+
+%h2#basic-blocks
+  Basic Usage
+
+.contents
+  .bullet
+    .description
+      The simplest Handlebars expression is a simple identifier:
+    :html
+      <h1>{{title}}</h1>
+    .notes
+      This expression means "look up the <code>title</code> property in
+      the current context". Block helpers may manipulate the current
+      context, but they do not change the basic meaning of an expression.
+    .notes
+      Actually, it means "look for a helper named <code>title</code>,
+      then do the above", but we'll get to that soon enough.
+
+  .bullet
+    .description
+      Handlebars expressions can also be dot-separated paths.
+    :html
+      <h1>{{article.title}}</h1>
+    .notes
+      This expression means "look up the <code>article</code> property in
+      the current context. Then look up the <code>title</code>
+      property in the result".
+    .notes
+      Handlebars also supports a deprecated <code>/</code> syntax,
+      so you could write the above template as:
+    :html
+      <h1>{{article/title}}</h1>
+
+%h2#helpers
+  Helpers
+
+.contents
+  .bullet
+    .description
+      A Handlebars helper call is a simple identifier, followed by
+      zero or more parameters. Each parameter is a Handlebars
+      expression.
+    :html
+      {{{link story}}}
+    .notes
+      In this case, <code>link</code> is the name of a Handlebars
+      helper, and story is a parameter to the helper. Handlebars
+      evaluates parameters in exactly the same way described above
+      in "Basic Usage".
+    :javascript
+      Handlebars.registerHelper('link', function(object) {
+        return "<a href='" + object.url + "'>" + object.text + "</a>"
+      });
+
+  .bullet
+    .description
+      You can also pass a simple String as a parameter to Handlebars
+      helpers.
+    :html
+      {{link "See more..." story.url}}
+    .notes
+      In this case, Handlebars will pass the link helper two parameters:
+      the String <code>"See more..."</code> and the result of evaluating
+      <code>story</code> in the current context.
+    :javascript
+      Handlebars.registerHelper('link', function(text, url) {
+        return "<a href='" + url + "'>" + text + "</a>"
+      });
+    .notes
+      You could use the exact same helper with dynamic text based on
+      the value of <code>story.text</code>:
+    :html
+      {{link story.text story}}
+
+  .bullet
+    .description
+      Handlebars helpers can also receive an optional sequence of key-value
+      pairs as their final parameter (referred to as hash arguments in
+      the documentation):
+    :html
+      {{link "See more..." href=story.url class="story"}}
+    .notes
+      The keys in hash arguments must each be simple identifiers, and the
+      arguments are Handlebars expressions. This means that values can
+      be simple identifiers, paths, or Strings.
+    :javascript
+      Handlebars.registerHelper('link', function(text, options) {
+        var attrs = []
+
+        for(var prop in options.hash) {
+          attrs.push(prop + '="' + options.hash[prop] + '"');
+        }
+
+        return "<a " + attrs.join(" ") + ">" + text + "</a>"
+      });
+    .notes
+      Handlebars provides additional metadata, such as Hash arguments,
+      to helpers as a final parameter.
+
+  .bullet
+    .description
+      Handlebars also offers a mechanism for invoking a helper with
+      a block of the template. Block helpers can then invoke that
+      block zero or more times with any context it chooses.
+    = link("Learn More: Block Helpers", "block_helpers.html")
