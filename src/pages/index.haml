@@ -54,7 +54,7 @@
       executing the template with a context.
     :javascript
       var context = {title: "My New Post", body: "This is my first post!"}
-      var html    = template(context)
+      var html    = template(context);
     .notes
       results in
     :html
@@ -355,7 +355,7 @@
           name: "Yehuda Katz"
         },
         body: "My first post. Wheeeee!"
-      }
+      };
     .notes
       This makes it possible to use Handlebars templates with
       more raw JSON objects.
@@ -416,7 +416,7 @@
           author: {firstName: "Yehuda", lastName: "Katz"},
           body: "Me too!"
         }]
-      }
+      };
 
       Handlebars.registerHelper('fullName', function(person) {
         return person.firstName + " " + person.lastName;
@@ -462,7 +462,7 @@
 
       Handlebars.registerHelper('agree_button', function() {
         return "<button>I agree. I " + this.emotion + " " + this.name + "</button>";
-      })
+      });
 
     .notes
       results in:
