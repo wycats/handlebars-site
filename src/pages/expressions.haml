@@ -53,7 +53,7 @@
       in "Basic Usage".
     :javascript
       Handlebars.registerHelper('link', function(object) {
-        return "<a href='" + object.url + "'>" + object.text + "</a>"
+        return "<a href='" + object.url + "'>" + object.text + "</a>";
       });
 
   .bullet
@@ -61,20 +61,20 @@
       You can also pass a simple String as a parameter to Handlebars
       helpers.
     :html
-      {{link "See more..." story.url}}
+      {{{link "See more..." story.url}}}
     .notes
       In this case, Handlebars will pass the link helper two parameters:
       the String <code>"See more..."</code> and the result of evaluating
-      <code>story</code> in the current context.
+      <code>story.url</code> in the current context.
     :javascript
       Handlebars.registerHelper('link', function(text, url) {
-        return "<a href='" + url + "'>" + text + "</a>"
+        return "<a href='" + url + "'>" + text + "</a>";
       });
     .notes
       You could use the exact same helper with dynamic text based on
       the value of <code>story.text</code>:
     :html
-      {{link story.text story}}
+      {{{link story.text story.url}}}
 
   .bullet
     .description
@@ -82,20 +82,20 @@
       pairs as their final parameter (referred to as hash arguments in
       the documentation):
     :html
-      {{link "See more..." href=story.url class="story"}}
+      {{{link "See more..." href=story.url class="story"}}}
     .notes
       The keys in hash arguments must each be simple identifiers, and the
-      arguments are Handlebars expressions. This means that values can
+      values are Handlebars expressions. This means that values can
       be simple identifiers, paths, or Strings.
     :javascript
       Handlebars.registerHelper('link', function(text, options) {
-        var attrs = []
+        var attrs = [];
 
         for(var prop in options.hash) {
           attrs.push(prop + '="' + options.hash[prop] + '"');
         }
 
-        return "<a " + attrs.join(" ") + ">" + text + "</a>"
+        return "<a " + attrs.join(" ") + ">" + text + "</a>";
       });
     .notes
       Handlebars provides additional metadata, such as Hash arguments,
