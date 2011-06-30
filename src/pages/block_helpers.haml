@@ -148,7 +148,7 @@
         var ret = "<ul>";
 
         for(var i=0, j=context.length; i<j; i++) {
-          ret = "<li>" + ret + block(context[i]) + "</li>";
+          ret = ret + "<li>" + block(context[i]) + "</li>";
         }
 
         return ret + "</ul>";
@@ -160,8 +160,8 @@
     :javascript
       Handlebars.registerHelper('list', function(context, block) {
         return "<ul>" + context.map(function(item) {
-          return "<li>" + block(item) + "</li>"
-        }).join("\n") + "</ul>"
+          return "<li>" + block(item) + "</li>";
+        }).join("\n") + "</ul>";
       });
 
 %h2#conditionals
@@ -248,8 +248,8 @@
         }).join(" ");
 
         return "<ul " + attrs + ">" + context.map(function(item) {
-          return "<li>" + block(item) + "</li>"
-        }).join("\n") + "</ul>"
+          return "<li>" + block(item) + "</li>";
+        }).join("\n") + "</ul>";
       });
     .notes
       Hash arguments provide a powerful way to offer a number of optional
