@@ -130,7 +130,7 @@
       current. Let's consider a helper that will generate an HTML list:
 
     :html
-      {{#list people}}{{firstName}} {{lastName}}{{/list}}}}
+      {{#list people}}{{firstName}} {{lastName}}{{/list}}
 
     .notes
       If we have the following context:
@@ -156,7 +156,7 @@
         var out = "<ul>";
 
         for(var i=0, l=items.length; i<l; i++) {
-          out = out + "<li>" + fn(items[i]) + "</li>";>
+          out = out + "<li>" + fn(items[i]) + "</li>";
         }
 
         return out + "</ul>";
