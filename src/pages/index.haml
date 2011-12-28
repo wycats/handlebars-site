@@ -45,8 +45,12 @@
       var source   = $("#entry-template").html();
       var template = Handlebars.compile(source);
     .notes
-      In a future release, it will be possible to precompile Handlebars templates
-      into JavaScript files to save time on the client.
+      It is also possible to precompile your templates. This will
+      result in a smaller required runtime library and significant
+      savings from not having to compile the template in the
+      browser. This can be especially important when working with
+      mobile devices.
+    = link("Learn More: Precompilation", "precompilation.html")
 
   .bullet
     .description

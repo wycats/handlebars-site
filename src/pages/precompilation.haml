@@ -1,0 +1,71 @@
+#intro
+  Using the Handlebars precompiler, you can precompile your
+  Handlebars templates to save time on the client and reduce
+  the required runtime size of the handlebars library.
+
+%h2#getting-started
+  Getting Started
+
+.contents
+  .bullet
+    .description
+      First, you will need to install node and npm. On OSX:
+
+    :highlight_plain
+      $ brew install node
+      $ curl http://npmjs.org/install.sh | sh
+    .notes
+      This assumes you already have Homebrew installed. If not,
+      install it first.
+    :highlight_plain
+      $ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+
+  .bullet
+    .description
+      Next, install the Handlebars npm package.
+
+    :highlight_plain
+      $ npm install handlebars -g
+    .notes
+      Using the <code>-g</code> flag installs the package globally,
+      so it can be used in any project.
+
+  .bullet
+    .description
+      Now, you're ready to use the precompiler:
+
+    :highlight_plain
+      $ handlebars &lt;input&gt; -f &lt;output&gt;
+
+    .notes
+      The compiler will insert templates in <code>Handlebars.templates</code>.
+      If your input file is <code>person.handlebars</code>, the compiler will
+      insert it at <code>Handlebars.templates.person</code>.
+
+  .bullet
+    .description
+      If you're working with precompiled templates, you don't need to ship
+      the compiler with your deployed application. Instead, you can use the
+      smaller "runtime" build.
+    :html
+      <script src="/libs/handlebars.runtime.js"></script>
+
+    .notes
+      In addition to reducing the download size, eliminating client-side
+      compilation will significantly speed up boot time, as compilation
+      is the most expensive part of Handlebars.
+
+%h2#optimizations
+  Optimizations
+
+.contents
+  .bullet
+    .description
+      Because you are precompiling templates, you can also apply several
+      optimization to the compiler. The first allows you to specify a
+      list of the known helpers to the compiler
+    :highlight_plain
+      handlebars &lt;input&gt; -f &lt;output&gt; -k each -k if -k unless
+    .notes
+      The Handlebars compiler will optimize accesses to those helpers for
+      performance.
