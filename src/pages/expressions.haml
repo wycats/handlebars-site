@@ -68,8 +68,14 @@
       in "Basic Usage".
     :javascript
       Handlebars.registerHelper('link', function(object) {
-        return "<a href='" + object.url + "'>" + object.text + "</a>";
+        return new Handlebars.SafeString(
+          "<a href='" + object.url + "'>" + object.text + "</a>"
+        );
       });
+    .notes
+      When returning HTML from a helper, you should return a
+      Handlebars SafeString if you don't want it to be escaped
+      by default.
 
   .bullet
     .description
@@ -83,7 +89,9 @@
       <code>story.url</code> in the current context.
     :javascript
       Handlebars.registerHelper('link', function(text, url) {
-        return "<a href='" + url + "'>" + text + "</a>";
+        return new Handlebars.SafeString(
+          "<a href='" + url + "'>" + text + "</a>"
+        );
       });
     .notes
       You could use the exact same helper with dynamic text based on
@@ -110,7 +118,9 @@
           attrs.push(prop + '="' + options.hash[prop] + '"');
         }
 
-        return "<a " + attrs.join(" ") + ">" + text + "</a>";
+        return new Handlebars.SafeString(
+          "<a " + attrs.join(" ") + ">" + text + "</a>"
+        );
       });
     .notes
       Handlebars provides additional metadata, such as Hash arguments,

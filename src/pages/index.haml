@@ -151,16 +151,17 @@
     .notes
       we would create a helper named <code>list</code> to generate our
       HTML list. The helper receives the <code>people</code> as its
-      first parameter, and <code>Function</code> as its second parameter.
-      Invoke the function with a context just as you would invoke a
+      first parameter, and an options hash as its second parameter.
+      The options hash contains a property named <code>fn</code>,
+      which you can invoke with a context just as you would invoke a
       normal Handlebars template.
 
     :javascript
-      Handlebars.registerHelper('list', function(items, fn) {
+      Handlebars.registerHelper('list', function(items, options) {
         var out = "<ul>";
 
         for(var i=0, l=items.length; i<l; i++) {
-          out = out + "<li>" + fn(items[i]) + "</li>";
+          out = out + "<li>" + options.fn(items[i]) + "</li>";
         }
 
         return out + "</ul>";
@@ -180,6 +181,12 @@
       Block helpers have more features, such as the ability to create an
       <code>else</code> section (used, for instance, by the built-in if
       helper).
+
+    .notes
+      Since the contents of a block helper are escaped when you call
+      <code>options.fn(context)</code>, Handlebars does not escape
+      the results of a block helper. If it did, inner content would
+      be double-escaped!
 
     = link("Learn More: Block Helpers", "block_helpers.html")
 

@@ -20,12 +20,14 @@
         </div>
       </div>
     .notes
-      The <code>noop</code> helper will receive a function that behaves
-      like a normal compiled Handlebars template. Specifically, the
-      function will take a context and return a String.
+      The <code>noop</code> helper will receive an options hash.
+      This options hash contains a function (<code>options.fn</code>)
+      that behaves like a normal compiled Handlebars template.
+      Specifically, the function will take a context and return a
+      String.
     :javascript
-      Handlebars.registerHelper('noop', function(block) {
-        return block(this);
+      Handlebars.registerHelper('noop', function(options) {
+        return options.fn(this);
       });
     .notes
       Handlebars always invokes helpers with the current context as
@@ -69,8 +71,8 @@
       parameters, and parameters are evaluated just like expressions
       used directly inside <code>{{mustache}}</code> blocks.
     :javascript
-      Handlebars.registerHelper(function(context, block) {
-        return block(context);
+      Handlebars.registerHelper(function(context, options) {
+        return options.fn(context);
       });
     .notes
       Parameters are passed to helpers in the order that they
@@ -106,11 +108,11 @@
       In this case, we want to invoke the block passed to <code>each</code>
       once for each element in the comments Array.
     :javascript
-      Handlebars.registerHelper('each', function(context, block) {
+      Handlebars.registerHelper('each', function(context, options) {
         var ret = "";
 
         for(var i=0, j=context.length; i<j; i++) {
-          ret = ret + block(context[i]);
+          ret = ret + options.fn(context[i]);
         }
 
         return ret;
@@ -182,9 +184,9 @@
       Control structures typically do not change the current context, but
       decide whether or not to invoke the block based upon some variable.
     :javascript
-      Handlebars.registerHelper('if', function(conditional, block) {
+      Handlebars.registerHelper('if', function(conditional, options) {
         if(conditional) {
-          return block(this);
+          return options.fn(this);
         }
       });
 
@@ -203,20 +205,20 @@
       {{/if}}
     .notes
       Handlebars provides the block for the <code>else</code> fragment
-      as <code>block.inverse</code>. If the template provides no inverse
+      as <code>options.inverse</code>. If the template provides no inverse
       section, Handlebars will automatically create a noop function, so
       you don't need to check for the existance of the inverse.
     :javascript
-      Handlebars.registerHelper('if', function(conditional, block) {
+      Handlebars.registerHelper('if', function(conditional, options) {
         if(conditional) {
-          return block(this);
+          return options.fn(this);
         } else {
-          return block.inverse(this);
+          return options.inverse(this);
         }
       });
     .notes
       Handlebars provides additional metadata to block helpers by attaching
-      them as properties of the block function. Keep reading for more
+      them as properties of the options hash. Keep reading for more
       examples.
 
 %h2#hash-arguments
@@ -235,20 +237,20 @@
         <a href="{{url}}">{{title}}</a>
       {{/list}}
     .notes
-      Handlebars provides the final hash as <code>block.hash</code>. This
+      Handlebars provides the final hash as <code>options.hash</code>. This
       makes it easier to accept a variable number of parameters, while
       also accepting an optional Hash. If the template provides no hash
       arguments, Handlebars will automatically pass an empty object
       (<code>{}</code>), so you don't need to check for the existance of
       hash arguments.
     :javascript
-      Handlebars.registerHelper('list', function(context, block) {
-        var attrs = SC.keys(block.hash).map(function(key) {
-          key + '="' + block.hash[key] + '"';
+      Handlebars.registerHelper('list', function(context, options) {
+        var attrs = SC.keys(options.hash).map(function(key) {
+          key + '="' + options.hash[key] + '"';
         }).join(" ");
 
         return "<ul " + attrs + ">" + context.map(function(item) {
-          return "<li>" + block(item) + "</li>";
+          return "<li>" + options.fn(item) + "</li>";
         }).join("\n") + "</ul>";
       });
     .notes
