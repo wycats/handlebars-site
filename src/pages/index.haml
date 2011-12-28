@@ -472,7 +472,9 @@
       };
 
       Handlebars.registerHelper('agree_button', function() {
-        return "<button>I agree. I " + this.emotion + " " + this.name + "</button>";
+        return new Handlebars.SafeString(
+          "<button>I agree. I " + this.emotion + " " + this.name + "</button>"
+        );
       });
 
     .notes
@@ -484,3 +486,7 @@
         <li><button>I agree. I enjoy Mustache</button></li>
         <li><button>I agree. I want to learn SproutCore</button></li>
       </ul>
+
+    .notes
+      If your helper returns HTML that you do not want escaped, make sure
+      to return a new <code>Handlebars.SafeString</code>.
