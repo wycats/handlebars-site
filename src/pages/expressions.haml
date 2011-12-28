@@ -35,6 +35,21 @@
     :html
       <h1>{{article/title}}</h1>
 
+  .bullet
+    .description
+      To reference a property that is not a valid identifier, you can
+      use segment-literal notation:
+    :html
+      {{#each articles.[10].comments}}
+        <h1>{{subject}}</h1>
+        <div>
+          {{body}}
+        </div>
+      {{/each}}
+    .notes
+      You may not include a closing <code>]</code> in a path-literal,
+      but all other characters are fair game.
+
 %h2#helpers
   Helpers
 
