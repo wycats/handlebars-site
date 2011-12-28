@@ -7,6 +7,13 @@ GIT
       haml (>= 2.0.0)
       rack (>= 1.0)
 
+GIT
+  remote: git://github.com/wycats/ultraviolet.git
+  revision: 8603d41ba99681248cac6cea6e0744b702a8d300
+  specs:
+    ultraviolet (0.10.5)
+      spox-textpow
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -24,8 +31,6 @@ GEM
     spox-plist (3.0.1)
     spox-textpow (0.10.3)
       spox-plist
-    spox-ultraviolet (0.10.5)
-      spox-textpow
 
 PLATFORMS
   ruby
@@ -34,5 +39,5 @@ DEPENDENCIES
   compass (~> 0.10.0)
   haml (~> 3.0.0)
   ronn
-  spox-ultraviolet
   staticmatic (~> 0.11.0.alpha)!
+  ultraviolet!
