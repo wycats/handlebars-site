@@ -20,6 +20,7 @@ GEM
     compass (0.10.6)
       haml (>= 3.0.4)
     haml (3.0.24)
+    highline (1.6.8)
     hpricot (0.8.3)
     mustache (0.11.2)
     rack (1.2.1)
@@ -38,6 +39,7 @@ PLATFORMS
 DEPENDENCIES
   compass (~> 0.10.0)
   haml (~> 3.0.0)
+  highline
   ronn
   staticmatic (~> 0.11.0.alpha)!
   ultraviolet!
