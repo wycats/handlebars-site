@@ -71,7 +71,7 @@
       parameters, and parameters are evaluated just like expressions
       used directly inside <code>{{mustache}}</code> blocks.
     :javascript
-      Handlebars.registerHelper(function(context, options) {
+      Handlebars.registerHelper('with', function(context, options) {
         return options.fn(context);
       });
     .notes
