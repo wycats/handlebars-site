@@ -48,6 +48,7 @@ $gradient-dark: darken($gradient, 25%)
 
 html
   width: 100%
+  background-color: #F7931E
   +radial-gradient(color-stops(#F7931E, #F15A24 750px), top center,  url("/images/noise.png"))
   padding-top: 10px
   font-family: Helvetica, sans-serif
@@ -186,10 +187,12 @@ ul.bullet
     margin: 10px 0 0 450px
     +text-shadow(rgba(0,0,0,0.3),0, -1px, 0)
     text-align: center
+    background-color: #C26C07
     +linear-gradient(color_stops($gradient-top, $gradient-bottom))
     +border-radius(5px)
 
   a:hover
+    background-color: #905005
     +linear-gradient(color_stops($gradient-bottom, $gradient-dark))
 
 
