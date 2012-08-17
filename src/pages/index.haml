@@ -287,8 +287,9 @@
   .bullet
     .description
       You can use the <code>if</code> helper to conditionally render a block. If
-      its argument returns <code>false</code>, <code>undefined</code>, <code>null</code>
-      or <code>[]</code> (a "falsy" value), Handlebars will not render the block.
+      its argument returns <code>false</code>, <code>undefined</code>, <code>null</code>,
+      <code>""</code> or <code>[]</code> (a "falsy" value), Handlebars will not
+      render the block.
     :html
       <div class="entry">
         {{#if author}}
