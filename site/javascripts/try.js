@@ -1,6 +1,6 @@
 jQuery(function($) {
 
-  var ERROR_TEMPLATE = Handlebars.compile('<div class="error">Error: {{error}}</div>')
+  var ERROR_TEMPLATE = Handlebars.compile('Error: {{error}}')
 
   function Try(template, data, output) {
     var render     = $.proxy(this.render, this);
