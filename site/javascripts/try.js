@@ -10,13 +10,11 @@ jQuery(function($) {
   }
 
   Try.prototype.render = function() {
-    var template = this.$template.val(),
-        data,
-        result;
+    var template, data, result;
 
     try {
       data = JSON.parse( this.$data.val() );
-      template = Handlebars.compile( template );
+      template = Handlebars.compile( this.$template.val() );
     } catch(e) {
       data = { error: e };
       template = ERROR_TEMPLATE;
