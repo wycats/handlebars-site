@@ -257,3 +257,37 @@
       Hash arguments provide a powerful way to offer a number of optional
       parameters to a block helper without the complexity caused by
       positional arguments.
+
+.contents
+  .bullet
+    .description
+      %p
+        Block helpers can also inject private variables into their child
+        templates. This can be useful to add extra information that is
+        not in the original context data.
+      %p
+        For example, when iterating over a list, you may provide the
+        current index as a private variable.
+    :html
+      {{#list array}}
+        {{@index}}. {{title}}
+      {{/list}}
+    :javascript
+      Handlebars.registerHelper('list', function(context, options) {
+        var out = "<ul>", data;
+
+        for (var i=0; i<context.length; i++) {
+          if (options.data) { data = Handlebars.createFrame(options.data); }
+          out += "<li>" + options.fn(context[i], { data: data }) + "</li>";
+        }
+
+        out += "</ul>";
+        return out;
+      });
+    .notes
+      Private variables provided via the <code>data</code> option are
+      available in all descendent scopes.
+    .notes
+      Make sure you create a new data frame each time you invoke a block
+      with data. Otherwise, downstream helpers might unexpectedly mutate
+      upstream variables.
