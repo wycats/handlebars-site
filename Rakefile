@@ -26,7 +26,7 @@ task :deploy do |t, args|
 
     unless File.exist?(".git")
       system "git init"
-      system "git remote add github git@github.com:wycats/handlebars-site.git"
+      system "git remote add github https://github.com/wycats/handlebars-site.git"
     end
 
     system "git fetch github"
