@@ -1,5 +1,6 @@
 require "bundler/setup"
 
+desc "Build the website"
 task :build do
   system "staticmatic build ."
 end
