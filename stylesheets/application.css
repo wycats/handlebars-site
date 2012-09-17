@@ -448,3 +448,28 @@ pre {
 #versions a.current {
   font-weight: bold;
 }
+
+/* line 290 */
+.try-handlebars {
+  margin-top: 1em;
+}
+/* line 293 */
+.try-handlebars textarea, .try-handlebars pre.output {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #444444;
+  color: #444444;
+  font-family: monospace;
+  min-height: 8em;
+  padding: 10px 2%;
+  resize: vertical;
+  width: 95%;
+}
+/* line 303 */
+.try-handlebars pre.output {
+  background: #eeeeee;
+}
