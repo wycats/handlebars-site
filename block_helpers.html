@@ -74,7 +74,7 @@
       parameters, and parameters are evaluated just like expressions
       used directly inside <code>{{mustache}}</code> blocks.
     </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="Storage">function</span>(context, options) {&#x000A;  <span class="Keyword">return</span> options.fn(context);&#x000A;});&#x000A;</pre>
+    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">'</span>with<span class="String">'</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Keyword">return</span> options.fn(context);&#x000A;});&#x000A;</pre>
     <div class="notes">
       Parameters are passed to helpers in the order that they
       are passed, followed by the block function.
