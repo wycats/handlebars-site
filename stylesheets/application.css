@@ -74,24 +74,15 @@ a.download {
 
 /* line 80 */
 a.download-runtime {
-  color: #6666cc;
-  display: block;
   text-align: center;
-  font-size: 12px;
-  margin-top: 5px;
-  text-decoration: none;
-}
-/* line 87 */
-a.download-runtime:hover {
-  text-decoration: underline;
 }
 
-/* line 90 */
+/* line 83 */
 .intro {
   width: 100%;
 }
 
-/* line 93 */
+/* line 86 */
 #body {
   display: -webkit-box;
   display: -moz-box;
@@ -102,7 +93,7 @@ a.download-runtime:hover {
   width: 100%;
 }
 
-/* line 97 */
+/* line 90 */
 #contents {
   display: -webkit-box;
   display: -moz-box;
@@ -127,13 +118,13 @@ a.download-runtime:hover {
   top: -20px;
   z-index: 2;
 }
-/* line 107 */
+/* line 100 */
 #contents h1 {
   color: #3f1e00;
   margin-bottom: 0;
 }
 
-/* line 111 */
+/* line 104 */
 #intro {
   background: rgba(0, 0, 0, 0.1);
   -moz-border-radius: 5px;
@@ -147,27 +138,27 @@ a.download-runtime:hover {
   font-size: 18px;
   line-height: 24px;
 }
-/* line 118 */
+/* line 111 */
 #intro p {
   margin: 0;
 }
-/* line 120 */
+/* line 113 */
 #intro p + p {
   margin-top: 10px;
 }
-/* line 122 */
+/* line 115 */
 #intro strong {
   color: #582a00;
 }
 
-/* line 125 */
+/* line 118 */
 #header {
   z-index: 1;
   margin-bottom: 20px;
   height: 200px;
   overflow: hidden;
 }
-/* line 130 */
+/* line 123 */
 #header h1 {
   font-size: 22px;
   text-align: right;
@@ -175,14 +166,14 @@ a.download-runtime:hover {
   color: #582a00;
 }
 
-/* line 137 */
+/* line 130 */
 #callout img {
   position: absolute;
   top: -170px;
   left: -90px;
 }
 
-/* line 142 */
+/* line 135 */
 #footer {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -201,28 +192,28 @@ a.download-runtime:hover {
   width: 100%;
   margin-top: 25px;
 }
-/* line 151 */
+/* line 144 */
 #footer img:first-child {
   -moz-box-shadow: 0 0 5px blue;
   -webkit-box-shadow: 0 0 5px blue;
   -o-box-shadow: 0 0 5px blue;
   box-shadow: 0 0 5px blue;
 }
-/* line 154 */
+/* line 147 */
 #footer img:last-child {
   margin-top: -20px;
   margin-right: -20px;
 }
-/* line 158 */
+/* line 151 */
 #footer .spacer {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
 }
-/* line 161 */
+/* line 154 */
 #footer img {
   display: block;
 }
-/* line 164 */
+/* line 157 */
 #footer #navigation {
   display: -webkit-box;
   display: -moz-box;
@@ -231,25 +222,25 @@ a.download-runtime:hover {
   -webkit-box-align: center;
   -moz-box-align: center;
 }
-/* line 167 */
+/* line 160 */
 #footer #navigation p {
   font-family: Helvetica, sans-serif;
   color: #336666;
   font-size: 16px;
   margin: 0;
 }
-/* line 172 */
+/* line 165 */
 #footer #navigation p a {
   text-decoration: none;
   color: #0e3f54;
 }
 
-/* line 175 */
+/* line 168 */
 .contents {
   width: 725px;
 }
 
-/* line 178 */
+/* line 171 */
 h2 {
   font-size: 20px;
   padding: 5px;
@@ -263,7 +254,7 @@ h2 {
   box-sizing: border-box;
 }
 
-/* line 187 */
+/* line 180 */
 ul.bullet {
   display: -webkit-box;
   display: -moz-box;
@@ -274,19 +265,19 @@ ul.bullet {
   -webkit-box-pack: justify;
   -moz-box-pack: justify;
 }
-/* line 191 */
+/* line 184 */
 ul.bullet a {
   margin-left: 0;
   margin-right: 10px;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
 }
-/* line 195 */
+/* line 188 */
 ul.bullet a:last-child {
   margin-right: 0;
 }
 
-/* line 198 */
+/* line 191 */
 .bullet {
   width: 100%;
   padding: 8px 15px;
@@ -301,7 +292,7 @@ ul.bullet a:last-child {
   -webkit-box-align: justify;
   -moz-box-align: justify;
 }
-/* line 204 */
+/* line 197 */
 .bullet .description {
   width: 100%;
   margin-right: 16px;
@@ -309,7 +300,7 @@ ul.bullet a:last-child {
   line-height: 24px;
   margin-bottom: 8px;
 }
-/* line 211 */
+/* line 204 */
 .bullet a {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -333,7 +324,7 @@ ul.bullet a:last-child {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 224 */
+/* line 217 */
 .bullet a:hover {
   background-color: #905005;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c26c07), color-stop(100%, #905005));
@@ -343,7 +334,7 @@ ul.bullet a:last-child {
   background-image: -ms-linear-gradient(top, #c26c07, #905005);
   background-image: linear-gradient(top, #c26c07, #905005);
 }
-/* line 229 */
+/* line 222 */
 .bullet .how {
   display: -webkit-box;
   display: -moz-box;
@@ -355,7 +346,7 @@ ul.bullet a:last-child {
   -moz-box-flex: 1;
   line-height: 24px;
 }
-/* line 233 */
+/* line 226 */
 .bullet .notes {
   font-size: 90%;
   line-height: 150%;
@@ -365,30 +356,30 @@ ul.bullet a:last-child {
   padding-left: 4px;
   color: #582a00;
 }
-/* line 241 */
+/* line 234 */
 .bullet .notes + a {
   margin-top: 10px;
 }
-/* line 243 */
+/* line 236 */
 .bullet .notes + pre {
   margin-top: 10px;
 }
-/* line 245 */
+/* line 238 */
 .bullet .notes + .description {
   margin-top: 20px;
 }
-/* line 248 */
+/* line 241 */
 .bullet pre {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   margin: 0;
 }
-/* line 252 */
+/* line 245 */
 .bullet code {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 255 */
+/* line 248 */
 pre {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -398,35 +389,35 @@ pre {
   border-radius: 5px;
 }
 
-/* line 258 */
+/* line 251 */
 .bullet:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.1);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* line 263 */
+/* line 256 */
 .bullet:not(:nth-of-type(1)) {
   padding-top: 15px;
 }
 
-/* line 266 */
+/* line 259 */
 .bullet {
   padding-bottom: 25px;
 }
 
-/* line 271 */
+/* line 264 */
 #credits p {
   text-align: center;
   font-size: 8pt;
   color: #668493;
 }
-/* line 275 */
+/* line 268 */
 #credits p a {
   color: #2c596b;
 }
 
-/* line 279 */
+/* line 272 */
 #github img {
   position: absolute;
   top: 0;
@@ -434,14 +425,14 @@ pre {
   border: 0;
 }
 
-/* line 285 */
+/* line 278 */
 #header-segment {
   display: inline;
   padding-left: auto;
   padding-right: auto;
 }
 
-/* line 290 */
+/* line 283 */
 #versions {
   position: absolute;
   top: 0;
@@ -455,22 +446,22 @@ pre {
   -khtml-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-/* line 297 */
+/* line 290 */
 #versions a {
   text-decoration: none;
   color: #0e3f54;
   padding: 0.1em 0.25em;
 }
-/* line 300 */
+/* line 293 */
 #versions a.current {
   font-weight: bold;
 }
 
-/* line 303 */
+/* line 296 */
 .try-handlebars {
   margin-top: 1em;
 }
-/* line 306 */
+/* line 299 */
 .try-handlebars textarea, .try-handlebars pre.output {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -486,7 +477,7 @@ pre {
   resize: vertical;
   width: 95%;
 }
-/* line 316 */
+/* line 309 */
 .try-handlebars pre.output {
   background: #eeeeee;
 }
