@@ -74,15 +74,24 @@ a.download {
 
 /* line 80 */
 a.download-runtime {
+  color: #6666cc;
+  display: block;
   text-align: center;
+  font-size: 12px;
+  margin-top: 5px;
+  text-decoration: none;
+}
+/* line 88 */
+a.download-runtime:hover {
+  text-decoration: underline;
 }
 
-/* line 83 */
+/* line 91 */
 .intro {
   width: 100%;
 }
 
-/* line 86 */
+/* line 94 */
 #body {
   display: -webkit-box;
   display: -moz-box;
@@ -93,7 +102,7 @@ a.download-runtime {
   width: 100%;
 }
 
-/* line 90 */
+/* line 98 */
 #contents {
   display: -webkit-box;
   display: -moz-box;
@@ -118,13 +127,13 @@ a.download-runtime {
   top: -20px;
   z-index: 2;
 }
-/* line 100 */
+/* line 108 */
 #contents h1 {
   color: #3f1e00;
   margin-bottom: 0;
 }
 
-/* line 104 */
+/* line 112 */
 #intro {
   background: rgba(0, 0, 0, 0.1);
   -moz-border-radius: 5px;
@@ -138,27 +147,27 @@ a.download-runtime {
   font-size: 18px;
   line-height: 24px;
 }
-/* line 111 */
+/* line 119 */
 #intro p {
   margin: 0;
 }
-/* line 113 */
+/* line 121 */
 #intro p + p {
   margin-top: 10px;
 }
-/* line 115 */
+/* line 123 */
 #intro strong {
   color: #582a00;
 }
 
-/* line 118 */
+/* line 126 */
 #header {
   z-index: 1;
   margin-bottom: 20px;
   height: 200px;
   overflow: hidden;
 }
-/* line 123 */
+/* line 131 */
 #header h1 {
   font-size: 22px;
   text-align: right;
@@ -166,14 +175,14 @@ a.download-runtime {
   color: #582a00;
 }
 
-/* line 130 */
+/* line 138 */
 #callout img {
   position: absolute;
   top: -170px;
   left: -90px;
 }
 
-/* line 135 */
+/* line 143 */
 #footer {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -192,28 +201,28 @@ a.download-runtime {
   width: 100%;
   margin-top: 25px;
 }
-/* line 144 */
+/* line 152 */
 #footer img:first-child {
   -moz-box-shadow: 0 0 5px blue;
   -webkit-box-shadow: 0 0 5px blue;
   -o-box-shadow: 0 0 5px blue;
   box-shadow: 0 0 5px blue;
 }
-/* line 147 */
+/* line 155 */
 #footer img:last-child {
   margin-top: -20px;
   margin-right: -20px;
 }
-/* line 151 */
+/* line 159 */
 #footer .spacer {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
 }
-/* line 154 */
+/* line 162 */
 #footer img {
   display: block;
 }
-/* line 157 */
+/* line 165 */
 #footer #navigation {
   display: -webkit-box;
   display: -moz-box;
@@ -222,25 +231,25 @@ a.download-runtime {
   -webkit-box-align: center;
   -moz-box-align: center;
 }
-/* line 160 */
+/* line 168 */
 #footer #navigation p {
   font-family: Helvetica, sans-serif;
   color: #336666;
   font-size: 16px;
   margin: 0;
 }
-/* line 165 */
+/* line 173 */
 #footer #navigation p a {
   text-decoration: none;
   color: #0e3f54;
 }
 
-/* line 168 */
+/* line 176 */
 .contents {
   width: 725px;
 }
 
-/* line 171 */
+/* line 179 */
 h2 {
   font-size: 20px;
   padding: 5px;
@@ -254,7 +263,7 @@ h2 {
   box-sizing: border-box;
 }
 
-/* line 180 */
+/* line 188 */
 ul.bullet {
   display: -webkit-box;
   display: -moz-box;
@@ -265,19 +274,19 @@ ul.bullet {
   -webkit-box-pack: justify;
   -moz-box-pack: justify;
 }
-/* line 184 */
+/* line 192 */
 ul.bullet a {
   margin-left: 0;
   margin-right: 10px;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
 }
-/* line 188 */
+/* line 196 */
 ul.bullet a:last-child {
   margin-right: 0;
 }
 
-/* line 191 */
+/* line 199 */
 .bullet {
   width: 100%;
   padding: 8px 15px;
@@ -292,7 +301,7 @@ ul.bullet a:last-child {
   -webkit-box-align: justify;
   -moz-box-align: justify;
 }
-/* line 197 */
+/* line 205 */
 .bullet .description {
   width: 100%;
   margin-right: 16px;
@@ -300,7 +309,7 @@ ul.bullet a:last-child {
   line-height: 24px;
   margin-bottom: 8px;
 }
-/* line 204 */
+/* line 212 */
 .bullet a {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -324,7 +333,7 @@ ul.bullet a:last-child {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 217 */
+/* line 225 */
 .bullet a:hover {
   background-color: #905005;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c26c07), color-stop(100%, #905005));
@@ -334,7 +343,7 @@ ul.bullet a:last-child {
   background-image: -ms-linear-gradient(top, #c26c07, #905005);
   background-image: linear-gradient(top, #c26c07, #905005);
 }
-/* line 222 */
+/* line 230 */
 .bullet .how {
   display: -webkit-box;
   display: -moz-box;
@@ -346,7 +355,7 @@ ul.bullet a:last-child {
   -moz-box-flex: 1;
   line-height: 24px;
 }
-/* line 226 */
+/* line 234 */
 .bullet .notes {
   font-size: 90%;
   line-height: 150%;
@@ -356,30 +365,30 @@ ul.bullet a:last-child {
   padding-left: 4px;
   color: #582a00;
 }
-/* line 234 */
+/* line 242 */
 .bullet .notes + a {
   margin-top: 10px;
 }
-/* line 236 */
+/* line 244 */
 .bullet .notes + pre {
   margin-top: 10px;
 }
-/* line 238 */
+/* line 246 */
 .bullet .notes + .description {
   margin-top: 20px;
 }
-/* line 241 */
+/* line 249 */
 .bullet pre {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   margin: 0;
 }
-/* line 245 */
+/* line 253 */
 .bullet code {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 248 */
+/* line 256 */
 pre {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -389,35 +398,35 @@ pre {
   border-radius: 5px;
 }
 
-/* line 251 */
+/* line 259 */
 .bullet:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.1);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* line 256 */
+/* line 264 */
 .bullet:not(:nth-of-type(1)) {
   padding-top: 15px;
 }
 
-/* line 259 */
+/* line 267 */
 .bullet {
   padding-bottom: 25px;
 }
 
-/* line 264 */
+/* line 272 */
 #credits p {
   text-align: center;
   font-size: 8pt;
   color: #668493;
 }
-/* line 268 */
+/* line 276 */
 #credits p a {
   color: #2c596b;
 }
 
-/* line 272 */
+/* line 280 */
 #github img {
   position: absolute;
   top: 0;
@@ -425,14 +434,14 @@ pre {
   border: 0;
 }
 
-/* line 278 */
+/* line 286 */
 #header-segment {
   display: inline;
   padding-left: auto;
   padding-right: auto;
 }
 
-/* line 283 */
+/* line 291 */
 #versions {
   position: absolute;
   top: 0;
@@ -446,22 +455,22 @@ pre {
   -khtml-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-/* line 290 */
+/* line 298 */
 #versions a {
   text-decoration: none;
   color: #0e3f54;
   padding: 0.1em 0.25em;
 }
-/* line 293 */
+/* line 301 */
 #versions a.current {
   font-weight: bold;
 }
 
-/* line 296 */
+/* line 304 */
 .try-handlebars {
   margin-top: 1em;
 }
-/* line 299 */
+/* line 307 */
 .try-handlebars textarea, .try-handlebars pre.output {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -477,7 +486,7 @@ pre {
   resize: vertical;
   width: 95%;
 }
-/* line 309 */
+/* line 317 */
 .try-handlebars pre.output {
   background: #eeeeee;
 }
