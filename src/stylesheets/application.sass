@@ -3,7 +3,6 @@
 @import compass/css3/border-radius
 @import compass/css3/box-sizing
 @import compass/css3/gradient
-@import compass/css3/text-shadow
 @import compass/css3/shared
 
 $back: #FFB572
@@ -47,9 +46,9 @@ $gradient-dark: darken($gradient, 25%)
     line-height: 125%
 
 html
+  @include background-image(url("/images/noise.png"), radial-gradient(top center, #f7931e, #f15a24 750px))
   width: 100%
   background-color: #F7931E
-  +radial-gradient(color-stops(#F7931E, #F15A24 750px), top center,  url("/images/noise.png"))
   padding-top: 10px
   font-family: Helvetica, sans-serif
 
@@ -72,9 +71,9 @@ a.download
   height: 45px
   line-height: 45px
   font-size: 20px
-  +text-shadow(rgba(0,0,0,0.3),0, -1px, 0)
+  +single-text-shadow(rgba(0,0,0,0.3),0, -1px, 0)
   text-align: center
-  +linear-gradient(color_stops($gradient-top, $gradient-bottom))
+  @include background-image(linear-gradient($gradient-top, $gradient-bottom))
   +border-radius(5px)
 
 a.download-runtime
@@ -98,7 +97,7 @@ a.download-runtime
 #contents
   +flexbox(vertical, justify)
   background-color: rgba(#fff, 0.9)
-  +box-shadow(darken($back, 50%), 0, 0, 10px)
+  +single-box-shadow(darken($back, 50%), 0, 0, 10px)
   padding: 20px
   +border-radius(10px)
   width: 725px
@@ -150,7 +149,7 @@ a.download-runtime
   margin-top: 25px
 
   img:first-child
-    +box-shadow(blue, 0, 0, 5px)
+    +single-box-shadow(blue, 0, 0, 5px)
 
   img:last-child
     margin-top: -20px
@@ -216,15 +215,15 @@ ul.bullet
     display: block
     color: #fff
     margin: 10px 0 0 450px
-    +text-shadow(rgba(0,0,0,0.3),0, -1px, 0)
+    +single-text-shadow(rgba(0,0,0,0.3),0, -1px, 0)
     text-align: center
     background-color: #C26C07
-    +linear-gradient(color_stops($gradient-top, $gradient-bottom))
+    @include background-image(linear-gradient($gradient-top, $gradient-bottom))
     +border-radius(5px)
 
   a:hover
     background-color: #905005
-    +linear-gradient(color_stops($gradient-bottom, $gradient-dark))
+    @include background-image(linear-gradient($gradient-bottom, $gradient-dark))
 
 
   .how
