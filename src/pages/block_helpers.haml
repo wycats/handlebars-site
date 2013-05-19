@@ -146,11 +146,11 @@
       The helper would not be that different from the original <code>each</code>
       helper.
     :javascript
-      Handlebars.registerHelper('list', function(context, block) {
+      Handlebars.registerHelper('list', function(context, options) {
         var ret = "<ul>";
 
         for(var i=0, j=context.length; i<j; i++) {
-          ret = ret + "<li>" + block(context[i]) + "</li>";
+          ret = ret + "<li>" + options.fn(context[i]) + "</li>";
         }
 
         return ret + "</ul>";
@@ -160,9 +160,9 @@
       runtime library to make this look a bit prettier. Using SproutCore's
       runtime:
     :javascript
-      Handlebars.registerHelper('list', function(context, block) {
+      Handlebars.registerHelper('list', function(context, options) {
         return "<ul>" + context.map(function(item) {
-          return "<li>" + block(item) + "</li>";
+          return "<li>" + options.fn(item) + "</li>";
         }).join("\n") + "</ul>";
       });
 
@@ -277,7 +277,8 @@
         var out = "<ul>", data;
 
         for (var i=0; i<context.length; i++) {
-          if (options.data) { data = Handlebars.createFrame(options.data); }
+          data = Handlebars.createFrame(options.data || {});
+          data.index = i;
           out += "<li>" + options.fn(context[i], { data: data }) + "</li>";
         }
 
