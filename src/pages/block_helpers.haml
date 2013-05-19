@@ -277,8 +277,11 @@
         var out = "<ul>", data;
 
         for (var i=0; i<context.length; i++) {
-          data = Handlebars.createFrame(options.data || {});
-          data.index = i;
+          if (options.data) {
+            data = Handlebars.createFrame(options.data || {});
+            data.index = i;
+          }
+
           out += "<li>" + options.fn(context[i], { data: data }) + "</li>";
         }
 
