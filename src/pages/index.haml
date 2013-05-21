@@ -255,6 +255,16 @@
       "one level up" isn't particularly meaningful except as a reference
       to the parent template scope.
 
+  .bullet
+    .description
+      Handlebars also allows for name conflict resolution between helpers and
+      data fields via a <code>this</code> reference:
+    :html
+      <p>{{./name}} or {{this/name}} or {{this.name}}</p>
+    .notes
+      Any of the above would cause the <code>name</code> field on the
+      current context to be used rather than a helper of the same name.
+
 %h2#Comments
   Template comments with <code>{{! }}</code>
 
@@ -521,3 +531,18 @@
       falsy value, Handlebars will render the warning. Otherwise, it will render
       nothing.
 
+%h3#log
+  The <code>log</code> block helper
+
+.contents
+  .bullet
+    .description
+      The <code>log</code> helper allows for logging of context state while executing
+      a template.
+
+    :html
+      {{log "Look at me!"}}
+
+    .notes
+      Delegates to <code>Handlebars.logger.log</code> which may
+      be overriden to perform custom logging.
