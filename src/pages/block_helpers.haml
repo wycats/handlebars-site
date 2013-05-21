@@ -295,3 +295,7 @@
       Make sure you create a new data frame each time you invoke a block
       with data. Otherwise, downstream helpers might unexpectedly mutate
       upstream variables.
+    .notes
+      Also ensure that the <code>data</code> field is defined prior to attempting to
+      interact with an existing data object. The private variable behavior is condtionally
+      compiled and some templates might not create this field.
