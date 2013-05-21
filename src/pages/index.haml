@@ -193,175 +193,6 @@
 
     = link("Learn More: Block Helpers", "block_helpers.html")
 
-%h1#builtins
-  Built-In Block Helpers
-
-%h2#with
-  The <code>with</code> Block Helper
-
-.content
-  .bullet
-    .description
-      Normally, Handlebars templates are evaluated against the context
-      passed into the compiled method.
-    :javascript
-      var source   = "<p>{{lastName}}, {{firstName}}</p>";
-      var template = Handlebars.compile(source);
-      template({firstName: "Alan", lastName: "Johnson"});
-    .notes
-      results in
-    :html
-      <p>Johnson, Alan</p>
-
-  .bullet
-    .description
-      You can shift the context for a section of a template by using
-      the built-in <code>with</code> block helper.
-    :html
-      <div class="entry">
-        <h1>{{title}}</h1>
-
-        {{#with author}}
-        <h2>By {{firstName}} {{lastName}}</h2>
-        {{/with}}
-      </div>
-    .notes
-      when used with this context:
-    :javascript
-      {
-        title: "My first post!",
-        author: {
-          firstName: "Charles",
-          lastName: "Jolley"
-        }
-      }
-    .notes
-      will result in:
-    :html
-      <div class="entry">
-        <h1>My first post!</h1>
-
-        <h2>By Charles Jolley</h2>
-      </div>
-
-%h2#iteration
-  The <code>each</code> block helper
-
-.content
-  .bullet
-    .description
-      You can iterate over a list using the built-in <code>each</code>
-      helper. Inside the block, you can use <code>this</code> to reference
-      the element being iterated over.
-    :html
-      <ul class="people_list">
-        {{#each people}}
-        <li>{{this}}</li>
-        {{/each}}
-      </ul>
-    .notes
-      when used with this context:
-    :javascript
-      {
-        people: [
-          "Yehuda Katz",
-          "Alan Johnson",
-          "Charles Jolley"
-        ]
-      }
-    .notes
-      will result in:
-    :javascript
-      <ul class="people_list">
-        <li>Yehuda Katz</li>
-        <li>Alan Johnson</li>
-        <li>Charles Jolley</li>
-      </ul>
-    .notes
-      You can use the <code>this</code> expression in any context to reference
-      the current context.
-
-%h2#conditionals
-  The <code>if</code> block helper
-
-.content
-  .bullet
-    .description
-      You can use the <code>if</code> helper to conditionally render a block. If
-      its argument returns <code>false</code>, <code>undefined</code>, <code>null</code>,
-      <code>""</code> or <code>[]</code> (a "falsy" value), Handlebars will not
-      render the block.
-    :html
-      <div class="entry">
-        {{#if author}}
-        <h1>{{firstName}} {{lastName}}</h1>
-        {{/if}}
-      </div>
-    .notes
-      when used with an empty (<code>{}</code>) context, will result in:
-    :html
-      <div class="entry">
-      </div>
-
-  .bullet
-    .description
-      When using a block expression, you can specify a template section to
-      run if the expression returns a falsy value. The section, marked by
-      <code>{{else}}</code> is called an "else section".
-    :html
-      <div class="entry">
-        {{#if author}}
-          <h1>{{firstName}} {{lastName}}</h1>
-        {{else}}
-          <h1>Unknown Author</h1>
-        {{/if}}
-      </div>
-
-%h2#Comments
-  Template comments with <code>{{! }}</code>
-
-.content
-  .bullet
-    .description
-      You can use comments in your handlebars code just as you would in your
-      code. Since there is generally some level of logic, this is a good
-      practice.
-    :html
-      <div class="entry">
-        {{! only output this author names if an author exists }}
-        {{#if author}}
-          <h1>{{firstName}} {{lastName}}</h1>
-        {{/if}}
-      </div>
-    .notes
-      The comments will not being in the resulting output. If you'd like the
-      comments to show up. Just use html comments, and they will be output.
-    :html
-      <div class="entry">
-        {{! This comment will not be in the output }}
-        <!-- This comment will be in the output -->
-      </div>
-
-%h2#unless
-  The <code>unless</code> block helper
-
-.content
-  .bullet
-    .description
-      You can use the <code>unless</code> helper as the inverse of the
-      <code>if</code> helper. Its block will be rendered if the expression
-      returns a falsy value.
-    :html
-      <div class="entry">
-        {{#unless license}}
-        <h3 class="warning">WARNING: This entry does not have a license!</h3>
-        {{/unless}}
-      </div>
-    .notes
-      If looking up <code>license</code> under the current context returns a
-      falsy value, Handlebars will render the warning. Otherwise, it will render
-      nothing.
-
 %h2#paths
   Handlebars Paths
 
@@ -423,6 +254,31 @@
       helpers can invoke a block with any context, so the notion of
       "one level up" isn't particularly meaningful except as a reference
       to the parent template scope.
+
+%h2#Comments
+  Template comments with <code>{{! }}</code>
+
+.content
+  .bullet
+    .description
+      You can use comments in your handlebars code just as you would in your
+      code. Since there is generally some level of logic, this is a good
+      practice.
+    :html
+      <div class="entry">
+        {{! only output this author names if an author exists }}
+        {{#if author}}
+          <h1>{{firstName}} {{lastName}}</h1>
+        {{/if}}
+      </div>
+    .notes
+      The comments will not being in the resulting output. If you'd like the
+      comments to show up. Just use html comments, and they will be output.
+    :html
+      <div class="entry">
+        {{! This comment will not be in the output }}
+        <!-- This comment will be in the output -->
+      </div>
 
 %h2#helpers
   Helpers
@@ -519,3 +375,149 @@
     .notes
       If your helper returns HTML that you do not want escaped, make sure
       to return a new <code>Handlebars.SafeString</code>.
+
+
+%h2#builtins
+  Built-In Helpers
+
+%h3#with
+  The <code>with</code> Block Helper
+
+.content
+  .bullet
+    .description
+      Normally, Handlebars templates are evaluated against the context
+      passed into the compiled method.
+    :javascript
+      var source   = "<p>{{lastName}}, {{firstName}}</p>";
+      var template = Handlebars.compile(source);
+      template({firstName: "Alan", lastName: "Johnson"});
+    .notes
+      results in
+    :html
+      <p>Johnson, Alan</p>
+
+  .bullet
+    .description
+      You can shift the context for a section of a template by using
+      the built-in <code>with</code> block helper.
+    :html
+      <div class="entry">
+        <h1>{{title}}</h1>
+
+        {{#with author}}
+        <h2>By {{firstName}} {{lastName}}</h2>
+        {{/with}}
+      </div>
+    .notes
+      when used with this context:
+    :javascript
+      {
+        title: "My first post!",
+        author: {
+          firstName: "Charles",
+          lastName: "Jolley"
+        }
+      }
+    .notes
+      will result in:
+    :html
+      <div class="entry">
+        <h1>My first post!</h1>
+
+        <h2>By Charles Jolley</h2>
+      </div>
+
+%h3#iteration
+  The <code>each</code> block helper
+
+.content
+  .bullet
+    .description
+      You can iterate over a list using the built-in <code>each</code>
+      helper. Inside the block, you can use <code>this</code> to reference
+      the element being iterated over.
+    :html
+      <ul class="people_list">
+        {{#each people}}
+        <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    .notes
+      when used with this context:
+    :javascript
+      {
+        people: [
+          "Yehuda Katz",
+          "Alan Johnson",
+          "Charles Jolley"
+        ]
+      }
+    .notes
+      will result in:
+    :javascript
+      <ul class="people_list">
+        <li>Yehuda Katz</li>
+        <li>Alan Johnson</li>
+        <li>Charles Jolley</li>
+      </ul>
+    .notes
+      You can use the <code>this</code> expression in any context to reference
+      the current context.
+
+%h3#conditionals
+  The <code>if</code> block helper
+
+.content
+  .bullet
+    .description
+      You can use the <code>if</code> helper to conditionally render a block. If
+      its argument returns <code>false</code>, <code>undefined</code>, <code>null</code>,
+      <code>""</code> or <code>[]</code> (a "falsy" value), Handlebars will not
+      render the block.
+    :html
+      <div class="entry">
+        {{#if author}}
+        <h1>{{firstName}} {{lastName}}</h1>
+        {{/if}}
+      </div>
+    .notes
+      when used with an empty (<code>{}</code>) context, will result in:
+    :html
+      <div class="entry">
+      </div>
+
+  .bullet
+    .description
+      When using a block expression, you can specify a template section to
+      run if the expression returns a falsy value. The section, marked by
+      <code>{{else}}</code> is called an "else section".
+    :html
+      <div class="entry">
+        {{#if author}}
+          <h1>{{firstName}} {{lastName}}</h1>
+        {{else}}
+          <h1>Unknown Author</h1>
+        {{/if}}
+      </div>
+
+%h3#unless
+  The <code>unless</code> block helper
+
+.content
+  .bullet
+    .description
+      You can use the <code>unless</code> helper as the inverse of the
+      <code>if</code> helper. Its block will be rendered if the expression
+      returns a falsy value.
+    :html
+      <div class="entry">
+        {{#unless license}}
+        <h3 class="warning">WARNING: This entry does not have a license!</h3>
+        {{/unless}}
+      </div>
+    .notes
+      If looking up <code>license</code> under the current context returns a
+      falsy value, Handlebars will render the warning. Otherwise, it will render
+      nothing.
+
