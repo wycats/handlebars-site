@@ -264,6 +264,19 @@ h2 {
 }
 
 /* line 187 */
+h3 {
+  font-size: 18px;
+  padding: 5px;
+  margin-top: 12px;
+  color: #582a00;
+  width: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 195 */
 ul.bullet {
   display: -webkit-box;
   display: -moz-box;
@@ -274,19 +287,19 @@ ul.bullet {
   -webkit-box-pack: justify;
   -moz-box-pack: justify;
 }
-/* line 191 */
+/* line 199 */
 ul.bullet a {
   margin-left: 0;
   margin-right: 10px;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
 }
-/* line 195 */
+/* line 203 */
 ul.bullet a:last-child {
   margin-right: 0;
 }
 
-/* line 198 */
+/* line 206 */
 .bullet {
   width: 100%;
   padding: 8px 15px;
@@ -301,7 +314,7 @@ ul.bullet a:last-child {
   -webkit-box-align: justify;
   -moz-box-align: justify;
 }
-/* line 204 */
+/* line 212 */
 .bullet .description {
   width: 100%;
   margin-right: 16px;
@@ -309,7 +322,7 @@ ul.bullet a:last-child {
   line-height: 24px;
   margin-bottom: 8px;
 }
-/* line 211 */
+/* line 219 */
 .bullet a {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -333,7 +346,7 @@ ul.bullet a:last-child {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 224 */
+/* line 232 */
 .bullet a:hover {
   background-color: #905005;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c26c07), color-stop(100%, #905005));
@@ -343,7 +356,7 @@ ul.bullet a:last-child {
   background-image: -ms-linear-gradient(#c26c07, #905005);
   background-image: linear-gradient(#c26c07, #905005);
 }
-/* line 229 */
+/* line 237 */
 .bullet .how {
   display: -webkit-box;
   display: -moz-box;
@@ -355,7 +368,7 @@ ul.bullet a:last-child {
   -moz-box-flex: 1;
   line-height: 24px;
 }
-/* line 233 */
+/* line 241 */
 .bullet .notes {
   font-size: 90%;
   line-height: 150%;
@@ -365,30 +378,30 @@ ul.bullet a:last-child {
   padding-left: 4px;
   color: #582a00;
 }
-/* line 241 */
+/* line 249 */
 .bullet .notes + a {
   margin-top: 10px;
 }
-/* line 243 */
+/* line 251 */
 .bullet .notes + pre {
   margin-top: 10px;
 }
-/* line 245 */
+/* line 253 */
 .bullet .notes + .description {
   margin-top: 20px;
 }
-/* line 248 */
+/* line 256 */
 .bullet pre {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   margin: 0;
 }
-/* line 252 */
+/* line 260 */
 .bullet code {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 255 */
+/* line 263 */
 pre {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -398,35 +411,35 @@ pre {
   border-radius: 5px;
 }
 
-/* line 258 */
+/* line 266 */
 .bullet:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.1);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* line 263 */
+/* line 271 */
 .bullet:not(:nth-of-type(1)) {
   padding-top: 15px;
 }
 
-/* line 266 */
+/* line 274 */
 .bullet {
   padding-bottom: 25px;
 }
 
-/* line 271 */
+/* line 279 */
 #credits p {
   text-align: center;
   font-size: 8pt;
   color: #668493;
 }
-/* line 275 */
+/* line 283 */
 #credits p a {
   color: #2c596b;
 }
 
-/* line 279 */
+/* line 287 */
 #github img {
   position: absolute;
   top: 0;
@@ -434,14 +447,14 @@ pre {
   border: 0;
 }
 
-/* line 285 */
+/* line 293 */
 #header-segment {
   display: inline;
   padding-left: auto;
   padding-right: auto;
 }
 
-/* line 290 */
+/* line 298 */
 #versions {
   position: absolute;
   top: 0;
@@ -455,22 +468,22 @@ pre {
   -khtml-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-/* line 297 */
+/* line 305 */
 #versions a {
   text-decoration: none;
   color: #0e3f54;
   padding: 0.1em 0.25em;
 }
-/* line 300 */
+/* line 308 */
 #versions a.current {
   font-weight: bold;
 }
 
-/* line 303 */
+/* line 311 */
 .try-handlebars {
   margin-top: 1em;
 }
-/* line 306 */
+/* line 314 */
 .try-handlebars textarea, .try-handlebars pre.output {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -486,7 +499,7 @@ pre {
   resize: vertical;
   width: 95%;
 }
-/* line 316 */
+/* line 324 */
 .try-handlebars pre.output {
   background: #eeeeee;
 }
