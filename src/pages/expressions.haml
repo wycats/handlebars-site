@@ -50,6 +50,13 @@
       You may not include a closing <code>]</code> in a path-literal,
       but all other characters are fair game.
 
+  .bullet
+    .description
+      Handlebars HTML-escapes values returned by a <code>{{expression}}</code>.
+      If you don't want Handlebars to escape a value, use the "triple-stash", <code>{{{</code>
+    :html
+      {{{foo}}}
+
 %h2#helpers
   Helpers
 
