@@ -268,7 +268,7 @@
       current context to be used rather than a helper of the same name.
 
 %h2#Comments
-  Template comments with <code>{{! }}</code>
+  Template comments with <code>{{! }}</code> or <code>{{!-- --}}</code>.
 
 .content
   .bullet
@@ -291,6 +291,10 @@
         {{! This comment will not be in the output }}
         <!-- This comment will be in the output -->
       </div>
+
+    .notes
+      Any comments that must contain <code>}}</code> or other other handlebars
+      tokens should use the <code>{{!-- --}}</code> syntax.
 
 %h2#helpers
   Helpers
