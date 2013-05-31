@@ -37,6 +37,39 @@
 
   .bullet
     .description
+      Identifiers mabe any unicode character except for the following:
+    .notes
+      Whitespace
+      %code !
+      %code "
+      %code #
+      %code %
+      %code &
+      %code '
+      %code (
+      %code )
+      %code *
+      %code +
+      %code ,
+      %code .
+      %code /
+      %code ;
+      %code <
+      %code =
+      %code >
+      %code @
+      %code [
+      %code \
+      %code ]
+      %code ^
+      %code `
+      %code {
+      %code |<!-- Comment to prevent multiline parsing -->
+      %code }
+      %code ~
+
+  .bullet
+    .description
       To reference a property that is not a valid identifier, you can
       use segment-literal notation, <code>[</code>:
     :html
