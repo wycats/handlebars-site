@@ -38,7 +38,7 @@
   .bullet
     .description
       To reference a property that is not a valid identifier, you can
-      use segment-literal notation:
+      use segment-literal notation, <code>[</code>:
     :html
       {{#each articles.[10].[#comments]}}
         <h1>{{subject}}</h1>
@@ -46,6 +46,10 @@
           {{body}}
         </div>
       {{/each}}
+    .notes
+      In the example above, the template will treat the <code>each</code>
+      parameter roughly eqivalent to this javascript:
+      <code>articles[10]['#comments']</code>
     .notes
       You may not include a closing <code>]</code> in a path-literal,
       but all other characters are fair game.
