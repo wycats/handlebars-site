@@ -488,6 +488,23 @@
         <p class="empty">No content</p>
       {{/each}}
 
+  .bullet
+    .description
+      When looping through items in <code>each</code>, you can optionally reference the current loop index via <code>{{@index}}</code>
+
+    :html
+      {{#each array}}
+        {{@index}}: {{this}}
+      {{/each}}
+
+    .notes
+      For object iteration, use <code>{{@key}}</code> instead:
+
+    :html
+      {{#each object}}
+        {{@key}}: {{this}}
+      {{/each}}
+
 %h3#conditionals
   The <code>if</code> block helper
 
