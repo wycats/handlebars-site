@@ -1,0 +1,48 @@
+#intro
+  .bullet
+    .description
+      Get the HTML result of evaluating a Handlebars template by
+      executing the template with a context.
+    :javascript
+      var context = {title: "My New Post", body: "This is my first post!"}
+      var html    = template(context);
+    .notes
+      results in
+    :html
+      <div class="entry">
+        <h1>My New Post</h1>
+        <div class="body">
+          This is my first post!
+        </div>
+      </div>
+
+%h2#Options
+  Options
+
+.contents
+  .bullet
+    .description
+      The template function can be passed an options object as the second parameter
+      which allows for customization:
+
+    .notes
+      %ul
+        %li
+          %code
+            data
+          Pass in an object to define custom <code>@variable</code> private variables.
+        %li
+          %code
+            helpers
+          Pass in to provide custom helpers in addition to the globally defined helpers.
+          %br
+          Values defined in this object will replace any values defined in the global object
+          for the duration of the template execution.
+
+        %li
+          %code
+            partials
+          Pass in to provide custom partials in addition to the globally defined partials.
+          %br
+          Values defined in this object will replace any values defined in the global object
+          for the duration of the template execution.
