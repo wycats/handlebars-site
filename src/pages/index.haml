@@ -475,6 +475,17 @@
       You can use the <code>this</code> expression in any context to reference
       the current context.
 
+  .bullet
+    .description
+      You can optionally provide an <code>{{else}}</code> section which will display only when the list is empty.
+
+    :html
+      {{#each paragraphs}}
+        <p>{{this}}</p>
+      {{else}}
+        <p class="empty">No content</p>
+      {{/each}}
+
 %h3#conditionals
   The <code>if</code> block helper
 
