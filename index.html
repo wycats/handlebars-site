@@ -3,7 +3,7 @@
   <head>
     <title>Handlebars.js: Minimal Templating on Steroids</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/><link href="/stylesheets/sunburst.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="/images/favicon.png" rel="shortcut icon" type="image/png" />
   </head>
   <body>
@@ -28,8 +28,8 @@
     taking advantage of the extra Handlebars features.
   </p>
 </div>
-<a class="download" href="https://raw.github.com/wycats/handlebars.js/1.0.0-rc.4/dist/handlebars.js">Download: 1.0.0-rc.4</a>
-<a class="download-runtime" href="https://raw.github.com/wycats/handlebars.js/1.0.0-rc.4/dist/handlebars.runtime.js">Download: runtime-1.0.0-rc.4</a>
+<a class="download" href="https://raw.github.com/wycats/handlebars.js/1.0.0/dist/handlebars.js">Download: 1.0.0</a>
+<a class="download-runtime" href="https://raw.github.com/wycats/handlebars.js/1.0.0/dist/handlebars.runtime.js">Download: runtime-1.0.0</a>
 <h2 id="getting-started">
   Getting Started
 </h2>
@@ -78,11 +78,12 @@
       results in
     </div>
     <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>My New Post<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    This is my first post!&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+    <a href="execution.html">Learn More: Execution</a>
   </div>
   <div class="bullet">
     <div class="description">
       Handlebars HTML-escapes values returned by a <code>{{expression}}</code>.
-      If you don't want Handlebars to escape a value, use the "triple-stash".
+      If you don't want Handlebars to escape a value, use the "triple-stash", <code>{{{</code>.
     </div>
     <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{{body}}</span>}&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
     <div class="notes">
@@ -206,7 +207,7 @@
   </div>
 </div>
 <h2 id="Comments">
-  Template comments with <code>{{! }}</code>
+  Template comments with <code>{{! }}</code> or <code>{{!-- --}}</code>.
 </h2>
 <div class="content">
   <div class="bullet">
@@ -221,6 +222,10 @@
       comments to show up. Just use html comments, and they will be output.
     </div>
     <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{! This comment will not be in the output }}</span>&#x000A;  <span class="Comment"><span class="Comment">&lt;!--</span> This comment will be in the output <span class="Comment">--&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+    <div class="notes">
+      Any comments that must contain <code>}}</code> or other other handlebars
+      tokens should use the <code>{{!-- --}}</code> syntax.
+    </div>
   </div>
 </div>
 <h2 id="helpers">
@@ -319,6 +324,22 @@
       You can use the <code>this</code> expression in any context to reference
       the current context.
     </div>
+  </div>
+  <div class="bullet">
+    <div class="description">
+      You can optionally provide an <code>{{else}}</code> section which will display only when the list is empty.
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each paragraphs}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{this}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{else}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">p</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>empty<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>No content<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+  </div>
+  <div class="bullet">
+    <div class="description">
+      When looping through items in <code>each</code>, you can optionally reference the current loop index via <code>{{@index}}</code>
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@index}}</span>: <span class="EmbeddedSourceBright">{{this}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+    <div class="notes">
+      For object iteration, use <code>{{@key}}</code> instead:
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each object}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@key}}</span>: <span class="EmbeddedSourceBright">{{this}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
   </div>
 </div>
 <h3 id="conditionals">

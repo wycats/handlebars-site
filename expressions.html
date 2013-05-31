@@ -3,7 +3,7 @@
   <head>
     <title>Handlebars.js: Minimal Templating on Steroids</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/><link href="/stylesheets/sunburst.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="/images/favicon.png" rel="shortcut icon" type="image/png" />
   </head>
   <body>
@@ -59,14 +59,61 @@
   </div>
   <div class="bullet">
     <div class="description">
+      Identifiers may be any unicode character except for the following:
+    </div>
+    <div class="notes">
+      Whitespace
+      <code>!</code>
+      <code>"</code>
+      <code>#</code>
+      <code>%</code>
+      <code>&</code>
+      <code>'</code>
+      <code>(</code>
+      <code>)</code>
+      <code>*</code>
+      <code>+</code>
+      <code>,</code>
+      <code>.</code>
+      <code>/</code>
+      <code>;</code>
+      <code><</code>
+      <code>=</code>
+      <code>></code>
+      <code>@</code>
+      <code>[</code>
+      <code>\</code>
+      <code>]</code>
+      <code>^</code>
+      <code>`</code>
+      <code>{</code>
+      <code>|<!-- Comment to prevent multiline parsing --></code>
+      <code>}</code>
+      <code>~</code>
+    </div>
+  </div>
+  <div class="bullet">
+    <div class="description">
       To reference a property that is not a valid identifier, you can
-      use segment-literal notation:
+      use segment-literal notation, <code>[</code>:
     </div>
     <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each articles.[10].[#comments]}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{subject}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{body}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+    <div class="notes">
+      In the example above, the template will treat the <code>each</code>
+      parameter roughly eqivalent to this javascript:
+      <code>articles[10]['#comments']</code>
+    </div>
     <div class="notes">
       You may not include a closing <code>]</code> in a path-literal,
       but all other characters are fair game.
     </div>
+  </div>
+  <div class="bullet">
+    <div class="description">
+      Handlebars HTML-escapes values returned by a <code>{{expression}}</code>.
+      If you don't want Handlebars to escape a value, use the "triple-stash", <code>{{{</code>
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{{foo}}</span>}&#x000A;</pre>
   </div>
 </div>
 <h2 id="helpers">
