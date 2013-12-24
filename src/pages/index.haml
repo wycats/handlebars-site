@@ -8,8 +8,8 @@
     take a Mustache template, import it into Handlebars, and start
     taking advantage of the extra Handlebars features.
 
-= link("Download: 1.1.2", "http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v1.1.2.js", :class => 'download')
-= link("Download: runtime-1.1.2", "http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars.runtime-v1.1.2.js", :class => 'download-runtime')
+= link("Download: 1.2.0", "http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v1.2.0.js", :class => 'download')
+= link("Download: runtime-1.2.0", "http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars.runtime-v1.2.0.js", :class => 'download-runtime')
 
 %h2#getting-started
   Getting Started
@@ -502,12 +502,17 @@
       {{/each}}
 
     .notes
-      For object iteration, use <code>{{@key}}</code> instead:
+      Additionally for object iteration, <code>{{@key}}</code> references the current key name:
 
     :html
       {{#each object}}
         {{@key}}: {{this}}
       {{/each}}
+
+    .notes
+      The first and last steps of iteration are noted via the <code>@first</code> and <code>@last</code>
+      variables then iterating over an array. When iterating over an object only the <code>@first</code>
+      is available.
 
 %h3#conditionals
   The <code>if</code> block helper
