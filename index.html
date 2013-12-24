@@ -28,8 +28,8 @@
     taking advantage of the extra Handlebars features.
   </p>
 </div>
-<a class="download" href="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v1.1.2.js">Download: 1.1.2</a>
-<a class="download-runtime" href="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars.runtime-v1.1.2.js">Download: runtime-1.1.2</a>
+<a class="download" href="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v1.2.0.js">Download: 1.2.0</a>
+<a class="download-runtime" href="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars.runtime-v1.2.0.js">Download: runtime-1.2.0</a>
 <h2 id="getting-started">
   Getting Started
 </h2>
@@ -337,9 +337,14 @@
     </div>
     <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@index}}</span>: <span class="EmbeddedSourceBright">{{this}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
     <div class="notes">
-      For object iteration, use <code>{{@key}}</code> instead:
+      Additionally for object iteration, <code>{{@key}}</code> references the current key name:
     </div>
     <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each object}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@key}}</span>: <span class="EmbeddedSourceBright">{{this}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+    <div class="notes">
+      The first and last steps of iteration are noted via the <code>@first</code> and <code>@last</code>
+      variables then iterating over an array. When iterating over an object only the <code>@first</code>
+      is available.
+    </div>
   </div>
 </div>
 <h3 id="conditionals">
