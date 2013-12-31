@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/indirect/staticmatic.git
+  remote: git://github.com/staticmatic/staticmatic.git
   revision: 489d81927b8f1dfa2e8610840a3bec4c78916061
   specs:
     staticmatic (0.11.0.alpha.8)
