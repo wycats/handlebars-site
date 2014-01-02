@@ -176,3 +176,24 @@
       a block of the template. Block helpers can then invoke that
       block zero or more times with any context it chooses.
     = link("Learn More: Block Helpers", "block_helpers.html")
+
+%h2#helpers
+  Subexpressions
+
+.contents
+  .bullet
+    .description
+      Handlebars offers support for subexpressions, which allows
+      you to invoke multiple helpers within a single mustache, and
+      pass in the results of inner helper invocations as arguments
+      to outer helpers. Subexpressions are delimited by
+      parentheses.
+    :html
+      {{outer-helper (inner-helper 'abc') 'def'}}
+    .notes
+      In this case, <code>inner-helper</code> will get invoked
+      with the string argument <code>'abc'</code>, and whatever
+      the <code>inner-helper</code> function returns will get
+      passed in as the first argument to <code>outer-helper</code>
+      (and <code>'def'</code> will get passed passed in as the 
+      second argument to <code>outer-helper</code>.
