@@ -1,0 +1,88 @@
+%h1#hutils
+  Utilities
+
+.contents
+  .bullet
+    .description
+      Handlebars offers a variety of utility methods that are exposed through
+      the <code>Handlebars.Utils</code> object.
+
+%h2#utils-escapeExpression
+  %code Handlebars.Utils.escapeExpression(string)
+
+.contents
+  .bullet
+    .description
+      HTML escapes the passed string, making it safe for rendering as text within HTML content.
+
+    :javascript
+      Handlebars.Utils.escapeExpression(string)
+
+    .notes
+      Replaces <code>&</code>, <code><</code>, <code>></code>, <code>"</code>, <code>'</code>,
+      <code>`</code> with the HTML entity equivalent value for string values. <code>SafeString</code>
+      values are left untouched.
+    .notes
+      The output of all expressions except for triple braced expressions are passed through this
+      method. Additionally helpers should use this method when returning HTML content via a
+      <code>SafeString</code> instance to prevent possible code injection.
+
+%h2#utils-isEmpty
+  %code Handlebars.Utils.isEmpty(value)
+
+.contents
+  .bullet
+    .description
+      Determines if a given value is empty.
+
+    :javascript
+      Handlebars.Utils.isEmpty(value)
+
+    .notes
+      This is used by the native <code>if</code> and <code>with</code> helpers control their
+      execution flow. Handlebar's definition of empty is any of:
+
+      %ul
+        %li
+          Array with length 0
+        %li
+          falsy values other than 0
+
+      Which is intended to match the <a href="http://mustache.github.io/mustache.5.html#Sections">Mustache behavior</a>
+
+%h2#utils-extend
+  %code Handlebars.Utils.extend(obj, value)
+
+.contents
+  .bullet
+    .description
+      Simple utility method to augment <code>obj</code> with all keys defined on <code>value</code>
+
+    :javascript
+      Handlebars.Utils.extend(foo, {bar: true})
+    .notes
+      Will set the key <code>bar</code> on object <code>foo</code> with the value <code>true</code>
+
+%h2#utils-toString
+  %code Handlebars.Utils.toString(obj)
+
+.contents
+  .bullet
+    .description
+      Generic <code>toString</code> method.
+
+%h2#utils-isArray
+  %code Handlebars.Utils.isArray(obj)
+
+.contents
+  .bullet
+    .description
+      Determines if an obj is an array.
+
+%h2#utils-isFunction
+  %code Handlebars.Utils.isFunction(obj)
+
+.contents
+  .bullet
+    .description
+      Determines if an obj is an array.
