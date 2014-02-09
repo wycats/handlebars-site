@@ -40,7 +40,12 @@
     .notes
       The compiler will insert templates in <code>Handlebars.templates</code>.
       If your input file is <code>person.handlebars</code>, the compiler will
-      insert it at <code>Handlebars.templates.person</code>.
+      insert it at <code>Handlebars.templates.person</code>. This template will
+      be a function that may be directly executed in the same manner as templates
+      compiled locally. I.e.
+
+    :javascript
+      Handlebars.templates.person(context, options);
 
   .bullet
     .description
