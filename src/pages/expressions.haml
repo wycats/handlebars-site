@@ -197,3 +197,23 @@
       passed in as the first argument to <code>outer-helper</code>
       (and <code>'def'</code> will get passed passed in as the 
       second argument to <code>outer-helper</code>.
+
+%h2#escaping
+  Escaping
+
+.contents
+  .bullet
+    .description
+      Handlebars content may be escaped in one of two ways, inline escapes or raw block helpers.
+      Inline escapes created by prefixing a mustache block with <code>\</code>. Raw blocks are
+      created using <code>{{{{</code> mustache braces.
+
+    :html
+      \{{escaped}}
+      {{{{raw}}}
+        {{escaped}}
+      {{{{/raw}}}}
+
+    .notes
+      Raw blocks operate in the same manner as other <a href="/block_helpers.html">block helpers</a>
+      with the distinction of the child content is treated as a literal string.
