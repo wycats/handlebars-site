@@ -74,6 +74,10 @@
 
     = link("Learn More: Execution", "execution.html")
 
+%h2#html-escaping
+  HTML Escaping
+
+.context
   .bullet
     .description
       Handlebars HTML-escapes values returned by a <code>{{expression}}</code>.
@@ -531,7 +535,8 @@
         {{/if}}
       </div>
     .notes
-      when used with an empty (<code>{}</code>) context, will result in:
+      when used with an empty (<code>{}</code>) context, <code>author</code> will be
+      <code>undefined</code>, resulting in:
     :html
       <div class="entry">
       </div>
