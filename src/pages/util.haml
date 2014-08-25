@@ -26,6 +26,8 @@
       The output of all expressions except for triple braced expressions are passed through this
       method. Additionally helpers should use this method when returning HTML content via a
       <code>SafeString</code> instance to prevent possible code injection.
+    .notes
+      This method is aliased at <code>Handlebars.escapeExpression</code>.
 
 %h2#utils-isEmpty
   %code Handlebars.Utils.isEmpty(value)
