@@ -112,18 +112,22 @@
       in "Basic Usage".
     :javascript
       Handlebars.registerHelper('link', function(object) {
+        var url = Handlebars.escapeExpression(object.url),
+            text = Handlebars.escapeExpression(object.text);
+
         return new Handlebars.SafeString(
-          "<a href='" + object.url + "'>" + object.text + "</a>"
+          "<a href='" + url + "'>" + objecttext + "</a>"
         );
       });
     .notes
       When returning HTML from a helper, you should return a
       Handlebars SafeString if you don't want it to be escaped
-      by default.
+      by default. When using SafeString all unknown or unsafe data should
+      be manually escaped with the <code>escapeExpression</code> method.
 
   .bullet
     .description
-      You can also pass a simple String as a parameter to Handlebars
+      You can also pass a simple String, number, or boolean as a parameter to Handlebars
       helpers.
     :html
       {{{link "See more..." story.url}}}
@@ -133,6 +137,9 @@
       <code>story.url</code> in the current context.
     :javascript
       Handlebars.registerHelper('link', function(text, url) {
+        url = Handlebars.escapeExpression(url);
+        text = Handlebars.escapeExpression(text);
+
         return new Handlebars.SafeString(
           "<a href='" + url + "'>" + text + "</a>"
         );
@@ -158,12 +165,14 @@
       Handlebars.registerHelper('link', function(text, options) {
         var attrs = [];
 
-        for(var prop in options.hash) {
-          attrs.push(prop + '="' + options.hash[prop] + '"');
+        for (var prop in options.hash) {
+          attrs.push(
+              Handlebars.escapeExpression(prop) + '="'
+              + Handlebars.escapeExpression(options.hash[prop]) + '"');
         }
 
         return new Handlebars.SafeString(
-          "<a " + attrs.join(" ") + ">" + text + "</a>"
+          "<a " + attrs.join(" ") + ">" + Handlebars.escapeExpression(text) + "</a>"
         );
       });
     .notes

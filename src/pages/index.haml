@@ -379,8 +379,11 @@
       };
 
       Handlebars.registerHelper('agree_button', function() {
+        var emotion = Handlebars.escapeExpression(this.emotion),
+            name = Handlebars.escapeExpression(this.name);
+
         return new Handlebars.SafeString(
-          "<button>I agree. I " + this.emotion + " " + this.name + "</button>"
+          "<button>I agree. I " + emotion + " " + name + "</button>"
         );
       });
 
