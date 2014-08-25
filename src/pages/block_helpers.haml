@@ -53,8 +53,10 @@
       As before, the function will take a context as input and return a String.
     :javascript
       Handlebars.registerHelper('bold', function(options) {
-        var out = '<div class="mybold">'+options.fn(this)+'</div>';
-	return new Handlebars.SafeString(out);
+        return new Handlebars.SafeString(
+            '<div class="mybold">'
+            + options.fn(this)
+            + '</div>');
       });
 
 
