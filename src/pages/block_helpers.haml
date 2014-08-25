@@ -1,7 +1,7 @@
 #intro
   %p
     Block helpers make it possible to define custom iterators and
-    other helpers that can invoke the passed block with a new
+    other functionality that can invoke the passed block with a new
     context.
 
 %h2#basic-blocks
@@ -10,7 +10,7 @@
 .contents
   .bullet
     .description
-      Let's define a simple block helper that simply invokes the
+      For demonstration purposes, let's define a block helper that invokes the
       block as though no helper existed.
     :html
       <div class="entry">
@@ -20,7 +20,7 @@
         </div>
       </div>
     .notes
-      The <code>noop</code> helper will receive an options hash.
+      The <code>noop</code> helper (short for "no operation") will receive an options hash.
       This options hash contains a function (<code>options.fn</code>)
       that behaves like a normal compiled Handlebars template.
       Specifically, the function will take a context and return a
@@ -31,8 +31,33 @@
       });
     .notes
       Handlebars always invokes helpers with the current context as
-      <code>this</code>, so you can simply invoke the block with
+      <code>this</code>, so you can invoke the block with
       <code>this</code> to evaluate the block in the current context.
+
+%h2#basic-blocks
+  Basic Block Variation
+
+.contents
+  .bullet
+    .description
+      To better illustrate the syntax, let's define another block helper that adds some markup to the wrapped text.
+    :html
+      <div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+          {{#bold}}{{body}}{{/bold}}
+        </div>
+      </div>
+    .notes
+      The <code>bold</code> helper will add markup to make its text bold.
+      As before, the function will take a context as input and return a String.
+    :javascript
+      Handlebars.registerHelper('bold', function(options) {
+        var out = '<div class="mybold">'+options.fn(this)+'</div>';
+	return new Handlebars.SafeString(out);
+      });
+
+
 
 %h2#with-helper
   The <code>with</code> helper
@@ -40,10 +65,9 @@
 .contents
   .bullet
     .description
-      Based on the description of the <code>noop</code> helper, it
-      should be obvious how to implement a <code>with</code> helper.
-      Instead of invoking the block with the current context, we will
-      invoke it with whatever context the template passed in.
+      The <code>with</code> helper demonstrates how to pass a parameter to your helper.
+      When a helper is called with a parameter, it is invoked 
+      with whatever context the template passed in.
     :html
       <div class="entry">
         <h1>{{title}}</h1>
@@ -54,8 +78,8 @@
       </div>
     .notes
       You might find a helper like this useful if a section of your
-      JSON object contains a lot of important properties, and you
-      don't want to constantly need to repeat the parent name. The
+      JSON object contains deeply nested properties, and you
+      want to avoid repeating the parent name. The
       above template could be useful with a JSON like:
     :javascript
       {
@@ -67,7 +91,7 @@
       }
     .notes
       Implementing a helper like this is a lot like implementing
-      the <code>noop</code> helper. Note that helpers take
+      the <code>noop</code> helper. Helpers can take
       parameters, and parameters are evaluated just like expressions
       used directly inside <code>{{mustache}}</code> blocks.
     :javascript
@@ -84,7 +108,7 @@
 .contents
   .bullet
     .description
-      A very common use-case for block helpers is using them to define
+      A common use-case for block helpers is using them to define
       custom iterators. In fact, all Handlebars built-in helpers are
       defined as regular Handlebars block helpers. Let's take a look
       at how the built-in <code>each</code> helper works.
@@ -124,8 +148,8 @@
 
   .bullet
     .description
-      It is easy to see how you could use this to implement more advanced
-      iterators. For instance, let's create an iterator that creates a
+      This pattern can be used to implement more advanced iterators. 
+      For instance, let's create an iterator that creates a
       <code>&lt;ul&gt;</code> wrapper, and wraps each resulting element
       in an <code>&lt;li&gt;</code>.
     :html
@@ -143,8 +167,7 @@
         ]
       }
     .notes
-      The helper would not be that different from the original <code>each</code>
-      helper.
+      The helper is similar to the original <code>each</code> helper.
     :javascript
       Handlebars.registerHelper('list', function(context, options) {
         var ret = "<ul>";
@@ -156,9 +179,9 @@
         return ret + "</ul>";
       });
     .notes
-      You could, of course, use a library like underscore.js or SproutCore's
-      runtime library to make this look a bit prettier. Using SproutCore's
-      runtime:
+      Using a library like underscore.js or SproutCore's runtime library 
+      could make this a bit prettier. For example, here's what it might 
+      look like using SproutCore's runtime library:
     :javascript
       Handlebars.registerHelper('list', function(context, options) {
         return "<ul>" + context.map(function(item) {
@@ -172,8 +195,8 @@
 .contents
   .bullet
     .description
-      Another relatively common use-case for block helpers is to implement
-      conditionals. Again, Handlebars' built-in <code>if</code> and
+      Another common use-case for block helpers is to evaluate conditional statements. 
+      As with the iterators, Handlebars' built-in <code>if</code> and
       <code>unless</code> control structures are implemented as regular
       Handlebars helpers.
     :html
@@ -181,8 +204,8 @@
         <img src="star.gif" alt="Active">
       {{/if}}
     .notes
-      Control structures typically do not change the current context, but
-      decide whether or not to invoke the block based upon some variable.
+      Control structures typically do not change the current context, instead
+      they decide whether or not to invoke the block based upon some variable.
     :javascript
       Handlebars.registerHelper('if', function(conditional, options) {
         if(conditional) {
@@ -205,9 +228,9 @@
       {{/if}}
     .notes
       Handlebars provides the block for the <code>else</code> fragment
-      as <code>options.inverse</code>. If the template provides no inverse
-      section, Handlebars will automatically create a noop function, so
-      you don't need to check for the existance of the inverse.
+      as <code>options.inverse</code>. You do not need to check for the 
+      existence of the <code>else</code> fragment: Handlebars will detect
+      it automatically and register a "noop" function. 
     :javascript
       Handlebars.registerHelper('if', function(conditional, options) {
         if(conditional) {
@@ -228,10 +251,9 @@
   .bullet
     .description
       Like regular helpers, block helpers can accept an optional Hash
-      as its final argument. Let's revisit the <code>list</code> helper
-      from earlier, and make it possible for us to add any number of
-      optional attributes to the <code>&lt;ul&gt;</code> element we will
-      create.
+      as its final argument. Let's revisit the <code>list</code> helper 
+      and make it possible for us to add any number of optional attributes 
+      to the <code>&lt;ul&gt;</code> element we will create.
     :html
       {{#list nav id="nav-bar" class="top"}}
         <a href="{{url}}">{{title}}</a>
@@ -241,7 +263,7 @@
       makes it easier to accept a variable number of parameters, while
       also accepting an optional Hash. If the template provides no hash
       arguments, Handlebars will automatically pass an empty object
-      (<code>{}</code>), so you don't need to check for the existance of
+      (<code>{}</code>), so you don't need to check for the existence of
       hash arguments.
     :javascript
       Handlebars.registerHelper('list', function(context, options) {
