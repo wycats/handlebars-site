@@ -176,6 +176,20 @@
         <h2>By Charles Jolley</h2>
       </div>
 
+%h2#lookup
+  The <code>lookup</code> helper
+
+.contents
+  .bullet
+    .description
+      The <code>lookup</code> helper allows for dynamic parameter resolution using Handlebars
+      variables. This is useful for resolving values for array indexes.
+
+    :html
+      {{#each bar}}
+        {{lookup ../foo @index}}
+      {{/each}}
+
 %h2#log
   The <code>log</code> block helper
 
