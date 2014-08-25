@@ -62,6 +62,13 @@ code
   border: 1px solid rgba(0,0,0,0.1)
   +border-radius(3px)
 
+a
+  color: #6666cc
+  text-decoration: none
+
+  &:hover
+    text-decoration: underline
+
 a.download
   text-decoration: none
   display: block
@@ -77,15 +84,28 @@ a.download
   +border-radius(5px)
 
 a.download-runtime
-  color: #6666cc
   display: block
-  text-align: center
-  font-size: 12px
   margin-top: 5px
+  font-size: 12px
+  text-align: center
+
+a.more-info
+  padding-top: 8px
+  padding-bottom: 8px
   text-decoration: none
+  display: block
+  color: #fff
+  margin: 10px 0 0 450px
+  +single-text-shadow(rgba(0,0,0,0.3),0, -1px, 0)
+  text-align: center
+  background-color: #C26C07
+  @include background-image(linear-gradient($gradient-top, $gradient-bottom))
+  +border-radius(5px)
 
   &:hover
-    text-decoration: underline
+    background-color: #905005
+    @include background-image(linear-gradient($gradient-bottom, $gradient-dark))
+
 
 .intro
   width: 100%
@@ -215,24 +235,6 @@ ul.bullet
     color: $text
     line-height: 24px
     margin-bottom: 8px
-
-  a
-    padding-top: 8px
-    padding-bottom: 8px
-    text-decoration: none
-    display: block
-    color: #fff
-    margin: 10px 0 0 450px
-    +single-text-shadow(rgba(0,0,0,0.3),0, -1px, 0)
-    text-align: center
-    background-color: #C26C07
-    @include background-image(linear-gradient($gradient-top, $gradient-bottom))
-    +border-radius(5px)
-
-  a:hover
-    background-color: #905005
-    @include background-image(linear-gradient($gradient-bottom, $gradient-dark))
-
 
   .how
     +flexbox(vertical, justify)
