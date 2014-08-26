@@ -88,3 +88,16 @@
   .bullet
     .description
       Determines if an obj is a function.
+
+%h2#utils-appendContextPath
+  %code Handlebars.Utils.appendContextPath(contextPath, id)
+
+.contents
+  .bullet
+    .description
+      Takes a given <code>contextPath</code> value and generates the path to the child, <code>id</code>.
+
+    :javascript
+      Handlebars.Utils.appendContextPath('foo.bar', 'baz')
+    .notes
+      Will return <code>foo.bar.baz</code>.
