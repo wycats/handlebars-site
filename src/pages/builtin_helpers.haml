@@ -14,7 +14,7 @@
     :html
       <div class="entry">
         {{#if author}}
-        <h1>{{firstName}} {{lastName}}</h1>
+          <h1>{{firstName}} {{lastName}}</h1>
         {{/if}}
       </div>
     .notes
@@ -70,7 +70,7 @@
     :html
       <ul class="people_list">
         {{#each people}}
-        <li>{{this}}</li>
+          <li>{{this}}</li>
         {{/each}}
       </ul>
     .notes
@@ -175,6 +175,18 @@
 
         <h2>By Charles Jolley</h2>
       </div>
+
+  .bullet
+    .description
+      You can optionally provide an <code>{{else}}</code> section which will display
+      only when the passed value is empty.
+
+    :html
+      {{#with author}}
+        <p>{{name}}</p>
+      {{else}}
+        <p class="empty">No content</p>
+      {{/with}}
 
 %h2#lookup
   The <code>lookup</code> helper
