@@ -1,4 +1,7 @@
-%h1#hutils
+%h1#reference
+  Reference
+
+%h2#hutils
   Utilities
 
 .contents
@@ -7,7 +10,7 @@
       Handlebars offers a variety of utility methods that are exposed through
       the <code>Handlebars.Utils</code> object.
 
-%h2#utils-escapeExpression
+%h3#utils-escapeExpression
   %code Handlebars.Utils.escapeExpression(string)
 
 .contents
@@ -29,7 +32,7 @@
     .notes
       This method is aliased at <code>Handlebars.escapeExpression</code>.
 
-%h2#utils-isEmpty
+%h3#utils-isEmpty
   %code Handlebars.Utils.isEmpty(value)
 
 .contents
@@ -52,7 +55,7 @@
 
       Which is intended to match the <a href="http://mustache.github.io/mustache.5.html#Sections">Mustache behavior</a>
 
-%h2#utils-extend
+%h3#utils-extend
   %code Handlebars.Utils.extend(obj, value)
 
 .contents
@@ -65,7 +68,7 @@
     .notes
       Will set the key <code>bar</code> on object <code>foo</code> with the value <code>true</code>
 
-%h2#utils-toString
+%h3#utils-toString
   %code Handlebars.Utils.toString(obj)
 
 .contents
@@ -73,7 +76,7 @@
     .description
       Generic <code>toString</code> method.
 
-%h2#utils-isArray
+%h3#utils-isArray
   %code Handlebars.Utils.isArray(obj)
 
 .contents
@@ -81,7 +84,7 @@
     .description
       Determines if an obj is an array.
 
-%h2#utils-isFunction
+%h3#utils-isFunction
   %code Handlebars.Utils.isFunction(obj)
 
 .contents
@@ -89,7 +92,7 @@
     .description
       Determines if an obj is a function.
 
-%h2#utils-appendContextPath
+%h3#utils-appendContextPath
   %code Handlebars.Utils.appendContextPath(contextPath, id)
 
 .contents
