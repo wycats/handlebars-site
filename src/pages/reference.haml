@@ -1,17 +1,164 @@
 %h1#reference
   Reference
 
-%h2#hutils
-  Utilities
+%h2#base
+  Base
+
+%h3#base-compile
+  %code Handlebars.compile(template, options)
 
 .contents
   .bullet
     .description
-      Handlebars offers a variety of utility methods that are exposed through
-      the <code>Handlebars.Utils</code> object.
+      Compiles a template so it can be executed immediately.
 
-%h3#utils-escapeExpression
-  %code Handlebars.Utils.escapeExpression(string)
+    :javascript
+      var template = Handlebars.compile('{{foo}}');
+      template({});
+
+    .notes
+      Supports a variety of options that alter how the template executes
+      %UL
+        %li
+          <code>data</code>: Set to false to disable <code>@data</code> tracking.
+        %li
+          <code>compat</code>: Set to true to enable recursive field lookup.
+        %li
+          <code>knownHelpers</code>: Hash containing list of helpers that are known to 
+          exist (truthy) at template execution time. Passing this allows
+          the compiler to optimize a number of cases.
+          Builtin helpers are automatically included in this list and may be omitted by setting
+          that value to <code>false</code>.
+        %li
+          <code>knownHelpersOnly</code>: Set to true to allow further optimzations
+          based on the known helpers list.
+        %li
+          <code>trackIds</code>: Set to true to include the id names used to resolve
+          parameters for helpers. 
+        %li
+          <code>noEscape</code>: Set to true to not HTML escape any content.
+
+%h3#base-precompile
+  %code Handlebars.precompile(template, options)
+
+.contents
+  .bullet
+    .description
+      Precompiles a given template so it can be sent to the client and executed without
+      compilation.
+
+    :javascript
+      var templateSpec = Handlebars.precompile('{{foo}}');
+
+    .notes
+      Supports all of the same options parameters as the <code>Handlebars.compile</code> method.
+
+%h3#base-template
+  %code Handlebars.template(templateSpec)
+
+.contents
+  .bullet
+    .description
+      Sets up a template that was precompiled with <code>Handlebars.precompile</code>
+
+    :javascript
+      var template = Handlebars.precompile(templateSpec);
+      template({});
+
+
+%h3#base-registerPartial
+  %code Handlebars.registerPartial(name, partial)
+
+.contents
+  .bullet
+    .description
+      Registers partials accessible by any template in the environment.
+
+    :javascript
+      Handlebars.registerPartial('foo', partial);
+
+    .notes
+      Also supports registering multiple partials at once.
+
+    :javascript
+      Handlebars.registerPartial({
+        foo: partial,
+        bar: partial
+      });
+
+    .notes
+      If loading the whole library, then the partials may be string values which will be
+      compiled on demand. If only loading the runtime, then the partials must be a precompiled
+      template that has been properly setup using the <code>Handlebars.template</code> method.
+
+
+%h3#base-unregisterPartial
+  %code Handlebars.unregisterPartial(name)
+
+.contents
+  .bullet
+    .description
+      Unregisters a previously registered partial.
+
+    :javascript
+      Handlebars.unregisterPartial('foo');
+
+
+%h3#base-registerHelper
+  %code Handlebars.registerHelper(name, helper)
+
+.contents
+  .bullet
+    .description
+      Registers helpers accessible by any template in the environment.
+
+    :javascript
+      Handlebars.registerHelper('foo', function() {
+      });
+
+    .notes
+      Also supports registering multiple helpers at once.
+
+    :javascript
+      Handlebars.registerHelper({
+        foo: function() {
+        },
+        bar: function() {
+        }
+      });
+
+
+%h3#base-unregisterHelper
+  %code Handlebars.unregisterHelper(name)
+
+.contents
+  .bullet
+    .description
+      Unregisters a previously registered helper.
+
+    :javascript
+      Handlebars.unregisterHelper('foo');
+
+
+%h3#base-SafeString
+  %code Handlebars.SafeString(string)
+
+.contents
+  .bullet
+    .descrption
+      Prevents <code>string</code> from being escaped when the template is rendered.
+
+    :javascript
+      new Handlebars.SafeString('<div>HTML Content!</div>')
+
+    .notes
+      When constructing the string that will be marked as safe, any external content should be
+      properly escaped using the <code>Handlebars.escapeExpression</code> method to avoid potential
+      security concerns.
+
+
+%h3#base-escapeExpression
+  %code Handlebars.escapeExpression(string)
 
 .contents
   .bullet
@@ -30,7 +177,70 @@
       method. Additionally helpers should use this method when returning HTML content via a
       <code>SafeString</code> instance to prevent possible code injection.
     .notes
-      This method is aliased at <code>Handlebars.escapeExpression</code>.
+      This method is aliased at <code>Handlebars.Utils.escapeExpression</code>.
+
+
+%h3#base-createFrame
+  %code Handlebars.createFrame(data)
+
+.contents
+  .bullet
+    .description
+      Used by block helpers to create a child data object.
+
+    :javascript
+      if (options.data) {
+        var data = Handlebars.createFrame(options.data);
+        data.foo = 'bar';
+        options.data = data;
+      }
+
+    .notes
+      Helpers that modify the data state should create a new frame when doing so to isolates
+      themselves and avoid corrupting the state of any parents. Generally only one frame needs
+      to be created per helper exection, i.e. the <code>each</code> iterator only creates one frame
+      which is reused for all child execution.
+
+
+%h3#base-create
+  %code Handlebars.create()
+
+.contents
+  .bullet
+    .description
+      Creates an isolated Handlebars environment.
+
+    :javascript
+      var OtherHandlebars = Handlebars.create();
+
+    .notes
+      Each environment has it's own helpers and partials. This is only necessary for use cases
+      that demand distinct helpers or partials. Most use cases can use the root
+      <code>Handlebars</code> environment directly.
+    .notes
+      Templates created for a given environment are bound to that environment. This means that
+      templates that need to run in multiple environments will need to be recompiled or
+      reconstructed via <code>Handlebars.template</code> for each environment. This applies to
+      paritals as well.
+
+%h3#base-log
+  %code Handlebars.log(level, message)
+
+.contents
+  .bullet
+    .description
+      Logger utilized by the <code>log</code> helper.
+    .notes
+      May be overriden if desired.
+
+%h2#hutils
+  Utilities
+
+.contents
+  .bullet
+    .description
+      Handlebars offers a variety of utility methods that are exposed through
+      the <code>Handlebars.Utils</code> object.
 
 %h3#utils-isEmpty
   %code Handlebars.Utils.isEmpty(value)
