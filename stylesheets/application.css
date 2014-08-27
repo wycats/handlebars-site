@@ -47,6 +47,16 @@ code {
 }
 
 /* line 65 */
+a {
+  color: #6666cc;
+  text-decoration: none;
+}
+/* line 69 */
+a:hover {
+  text-decoration: underline;
+}
+
+/* line 72 */
 a.download {
   text-decoration: none;
   display: block;
@@ -72,26 +82,64 @@ a.download {
   border-radius: 5px;
 }
 
-/* line 79 */
+/* line 86 */
+.download-more,
 a.download-runtime {
-  color: #6666cc;
   display: block;
-  text-align: center;
-  font-size: 12px;
   margin-top: 5px;
-  text-decoration: none;
-}
-/* line 87 */
-a.download-runtime:hover {
-  text-decoration: underline;
+  font-size: 12px;
+  text-align: center;
 }
 
-/* line 90 */
+/* line 93 */
+a.more-info {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-decoration: none;
+  display: block;
+  color: white;
+  margin: 10px 0 0 450px;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
+  text-align: center;
+  background-color: #c26c07;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f38709), color-stop(100%, #c26c07));
+  background-image: -webkit-linear-gradient(#f38709, #c26c07);
+  background-image: -moz-linear-gradient(#f38709, #c26c07);
+  background-image: -o-linear-gradient(#f38709, #c26c07);
+  background-image: -ms-linear-gradient(#f38709, #c26c07);
+  background-image: linear-gradient(#f38709, #c26c07);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 106 */
+a.more-info:hover {
+  background-color: #905005;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c26c07), color-stop(100%, #905005));
+  background-image: -webkit-linear-gradient(#c26c07, #905005);
+  background-image: -moz-linear-gradient(#c26c07, #905005);
+  background-image: -o-linear-gradient(#c26c07, #905005);
+  background-image: -ms-linear-gradient(#c26c07, #905005);
+  background-image: linear-gradient(#c26c07, #905005);
+}
+
+/* line 110 */
+a.issue-tracker {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  text-align: right;
+}
+
+/* line 116 */
 .intro {
   width: 100%;
 }
 
-/* line 93 */
+/* line 119 */
 #body {
   display: -webkit-box;
   display: -moz-box;
@@ -102,7 +150,7 @@ a.download-runtime:hover {
   width: 100%;
 }
 
-/* line 97 */
+/* line 123 */
 #contents {
   display: -webkit-box;
   display: -moz-box;
@@ -127,13 +175,13 @@ a.download-runtime:hover {
   top: -20px;
   z-index: 2;
 }
-/* line 107 */
+/* line 133 */
 #contents h1 {
   color: #3f1e00;
   margin-bottom: 0;
 }
 
-/* line 111 */
+/* line 137 */
 #intro {
   background: rgba(0, 0, 0, 0.1);
   -moz-border-radius: 5px;
@@ -147,27 +195,27 @@ a.download-runtime:hover {
   font-size: 18px;
   line-height: 24px;
 }
-/* line 118 */
+/* line 144 */
 #intro p {
   margin: 0;
 }
-/* line 120 */
+/* line 146 */
 #intro p + p {
   margin-top: 10px;
 }
-/* line 122 */
+/* line 148 */
 #intro strong {
   color: #582a00;
 }
 
-/* line 125 */
+/* line 151 */
 #header {
   z-index: 1;
   margin-bottom: 20px;
   height: 200px;
   overflow: hidden;
 }
-/* line 130 */
+/* line 156 */
 #header h1 {
   font-size: 22px;
   text-align: right;
@@ -175,14 +223,14 @@ a.download-runtime:hover {
   color: #582a00;
 }
 
-/* line 137 */
+/* line 163 */
 #callout img {
   position: absolute;
   top: -170px;
   left: -90px;
 }
 
-/* line 142 */
+/* line 168 */
 #footer {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -201,28 +249,28 @@ a.download-runtime:hover {
   width: 100%;
   margin-top: 25px;
 }
-/* line 151 */
+/* line 177 */
 #footer img:first-child {
   -moz-box-shadow: 0 0 5px blue;
   -webkit-box-shadow: 0 0 5px blue;
   -o-box-shadow: 0 0 5px blue;
   box-shadow: 0 0 5px blue;
 }
-/* line 154 */
+/* line 180 */
 #footer img:last-child {
   margin-top: -20px;
   margin-right: -20px;
 }
-/* line 158 */
+/* line 184 */
 #footer .spacer {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
 }
-/* line 161 */
+/* line 187 */
 #footer img {
   display: block;
 }
-/* line 164 */
+/* line 190 */
 #footer #navigation {
   display: -webkit-box;
   display: -moz-box;
@@ -231,25 +279,25 @@ a.download-runtime:hover {
   -webkit-box-align: center;
   -moz-box-align: center;
 }
-/* line 167 */
+/* line 193 */
 #footer #navigation p {
   font-family: Helvetica, sans-serif;
   color: #336666;
   font-size: 16px;
   margin: 0;
 }
-/* line 172 */
+/* line 198 */
 #footer #navigation p a {
   text-decoration: none;
   color: #0e3f54;
 }
 
-/* line 175 */
+/* line 201 */
 .contents {
   width: 725px;
 }
 
-/* line 178 */
+/* line 204 */
 h2 {
   font-size: 20px;
   padding: 5px;
@@ -263,7 +311,7 @@ h2 {
   box-sizing: border-box;
 }
 
-/* line 187 */
+/* line 213 */
 h3 {
   font-size: 18px;
   padding: 5px;
@@ -275,8 +323,12 @@ h3 {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
+/* line 221 */
+h3 code {
+  font-size: inherit;
+}
 
-/* line 195 */
+/* line 224 */
 ul.bullet {
   display: -webkit-box;
   display: -moz-box;
@@ -287,19 +339,19 @@ ul.bullet {
   -webkit-box-pack: justify;
   -moz-box-pack: justify;
 }
-/* line 199 */
+/* line 228 */
 ul.bullet a {
   margin-left: 0;
   margin-right: 10px;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
 }
-/* line 203 */
+/* line 232 */
 ul.bullet a:last-child {
   margin-right: 0;
 }
 
-/* line 206 */
+/* line 235 */
 .bullet {
   width: 100%;
   padding: 8px 15px;
@@ -314,7 +366,7 @@ ul.bullet a:last-child {
   -webkit-box-align: justify;
   -moz-box-align: justify;
 }
-/* line 212 */
+/* line 241 */
 .bullet .description {
   width: 100%;
   margin-right: 16px;
@@ -322,41 +374,7 @@ ul.bullet a:last-child {
   line-height: 24px;
   margin-bottom: 8px;
 }
-/* line 219 */
-.bullet a {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  text-decoration: none;
-  display: block;
-  color: white;
-  margin: 10px 0 0 450px;
-  text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
-  text-align: center;
-  background-color: #c26c07;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f38709), color-stop(100%, #c26c07));
-  background-image: -webkit-linear-gradient(#f38709, #c26c07);
-  background-image: -moz-linear-gradient(#f38709, #c26c07);
-  background-image: -o-linear-gradient(#f38709, #c26c07);
-  background-image: -ms-linear-gradient(#f38709, #c26c07);
-  background-image: linear-gradient(#f38709, #c26c07);
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-}
-/* line 232 */
-.bullet a:hover {
-  background-color: #905005;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c26c07), color-stop(100%, #905005));
-  background-image: -webkit-linear-gradient(#c26c07, #905005);
-  background-image: -moz-linear-gradient(#c26c07, #905005);
-  background-image: -o-linear-gradient(#c26c07, #905005);
-  background-image: -ms-linear-gradient(#c26c07, #905005);
-  background-image: linear-gradient(#c26c07, #905005);
-}
-/* line 237 */
+/* line 248 */
 .bullet .how {
   display: -webkit-box;
   display: -moz-box;
@@ -368,7 +386,7 @@ ul.bullet a:last-child {
   -moz-box-flex: 1;
   line-height: 24px;
 }
-/* line 241 */
+/* line 252 */
 .bullet .notes {
   font-size: 90%;
   line-height: 150%;
@@ -378,30 +396,30 @@ ul.bullet a:last-child {
   padding-left: 4px;
   color: #582a00;
 }
-/* line 249 */
+/* line 260 */
 .bullet .notes + a {
   margin-top: 10px;
 }
-/* line 251 */
+/* line 262 */
 .bullet .notes + pre {
   margin-top: 10px;
 }
-/* line 253 */
+/* line 264 */
 .bullet .notes + .description {
   margin-top: 20px;
 }
-/* line 256 */
+/* line 267 */
 .bullet pre {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   margin: 0;
 }
-/* line 260 */
+/* line 271 */
 .bullet code {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 263 */
+/* line 274 */
 pre {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -411,35 +429,35 @@ pre {
   border-radius: 5px;
 }
 
-/* line 266 */
+/* line 277 */
 .bullet:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.1);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* line 271 */
+/* line 282 */
 .bullet:not(:nth-of-type(1)) {
   padding-top: 15px;
 }
 
-/* line 274 */
+/* line 285 */
 .bullet {
   padding-bottom: 25px;
 }
 
-/* line 279 */
+/* line 290 */
 #credits p {
   text-align: center;
   font-size: 8pt;
   color: #668493;
 }
-/* line 283 */
+/* line 294 */
 #credits p a {
   color: #2c596b;
 }
 
-/* line 287 */
+/* line 298 */
 #github img {
   position: absolute;
   top: 0;
@@ -447,14 +465,14 @@ pre {
   border: 0;
 }
 
-/* line 293 */
+/* line 304 */
 #header-segment {
   display: inline;
   padding-left: auto;
   padding-right: auto;
 }
 
-/* line 298 */
+/* line 309 */
 #versions {
   position: absolute;
   top: 0;
@@ -468,22 +486,22 @@ pre {
   -khtml-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-/* line 305 */
+/* line 316 */
 #versions a {
   text-decoration: none;
   color: #0e3f54;
   padding: 0.1em 0.25em;
 }
-/* line 308 */
+/* line 319 */
 #versions a.current {
   font-weight: bold;
 }
 
-/* line 311 */
+/* line 322 */
 .try-handlebars {
   margin-top: 1em;
 }
-/* line 314 */
+/* line 325 */
 .try-handlebars textarea, .try-handlebars pre.output {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -499,7 +517,7 @@ pre {
   resize: vertical;
   width: 95%;
 }
-/* line 324 */
+/* line 335 */
 .try-handlebars pre.output {
   background: #eeeeee;
 }
