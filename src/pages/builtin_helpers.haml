@@ -217,3 +217,62 @@
     .notes
       Delegates to <code>Handlebars.logger.log</code> which may
       be overriden to perform custom logging.
+
+%h2#blockHelperMissing
+  The <code>blockHelperMissing</code> helper
+
+.contents
+  .bullet
+    .description
+      Implicitly called when a helper can not be directly resolved in the environment's helpers hash.
+
+    :html
+      {{#foo}}{{/foo}}
+
+    .notes
+      will call this helper with the resolved value of <code>foo</code> on the current context and
+      the <code>options.name</code> field set to <code>"foo"</code>. For instances where there is no
+      registered helper named <code>foo</code>.
+
+    .notes
+      This may be overriden by users that wish to change the behavior of block evaluation.
+      For example
+
+    :javascript
+      Handlebars.registerHelper('blockHelperMissing', function(context, options) {
+        throw new Handlebars.Exception('Only if or each is allowed');
+      });
+
+    .notes
+      could be used to prevent the use of mustache-style block evaluation in favor of the
+      more efficent <code>if</code> and <code>each</code> helpers.
+
+%h2#helperMissing
+  The <code>helperMissing</code> helper
+
+.contents
+  .bullet
+    .description
+      Internal helper that is called when a potential helper expression was not found in either the
+      environment helpers or the current context. For cases where both are run, this is run prior
+      to the <code>blockHelperMissing</code> helper.
+
+    :html
+      {{foo}}
+      {{foo bar}}
+      {{#foo}}{{/foo}}
+
+    .notes
+      Will each call this helper, passing any arguments that would have been otherwise passed to a
+      helper of the same name. This helper is not called when using <code>knownHelpersOnly</code>
+      mode.
+
+    .notes
+      This may be overriden by applications. To force the existence of the field, the following may
+      be used:
+
+    :javascript
+      Handlebars.registerHelper('helperMissing', function(/* [args, ] options */) {
+        var options = arguments[arguments.length - 1];
+        throw new Handlebars.Exception('Unknown field: ' + options.name);
+      });
