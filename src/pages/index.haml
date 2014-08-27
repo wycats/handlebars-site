@@ -274,7 +274,7 @@
       current context to be used rather than a helper of the same name.
 
 %h2#Comments
-  Template comments with <code>{{! }}</code> or <code>{{!-- --}}</code>.
+  Template comments with <code>{{!-- --}}</code> or <code>{{! }}</code>.
 
 .content
   .bullet
@@ -284,7 +284,7 @@
       practice.
     :html
       <div class="entry">
-        {{! only output this author names if an author exists }}
+        {{!-- only output this author names if an author exists --}}
         {{#if author}}
           <h1>{{firstName}} {{lastName}}</h1>
         {{/if}}
