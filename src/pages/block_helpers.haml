@@ -325,45 +325,6 @@
       compiled and some templates might not create this field.
 
 
-%h2#whitespace-control
-  Whitespace Control
-
-.contents
-  .bullet
-    .description
-      Template whitespace may be omitted from either side of any mustache statement by adding a
-      <code>~</code> character by the braces. When applied all whitespace on that side will be
-      removed up to the first handlebars expression or non-whitespace character on that side.
-
-    :html
-      {{#each nav ~}}
-        <a href="{{url}}">
-          {{~#if test}}
-            {{~title}}
-          {{~^~}}
-            Empty
-          {{~/if~}}
-        </a>
-      {{~/each}}
-
-
-    .notes
-      with this context:
-
-    :javascript
-      {
-        nav: [
-          {url: 'foo', test: true, title: 'bar'},
-          {url: 'bar'}
-        ]
-      }
-
-    .notes
-      results in output sans newlines and formatting whitespace:
-
-    :html
-      <a href="foo">bar</a><a href="bar">Empty</a>
-
 %h2#raw-blocks
   Raw Blocks
 
