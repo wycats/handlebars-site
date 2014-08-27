@@ -104,3 +104,137 @@
       Handlebars.Utils.appendContextPath('foo.bar', 'baz')
     .notes
       Will return <code>foo.bar.baz</code>.
+
+%h2#data
+  @data Variables
+
+.contents
+  .bullet
+    .description
+      The following <code>@data<code> variables are implemented by Handlebars and its builtin
+      helpers.
+
+%h3#data-root
+  %code
+    @root
+
+.contents
+  .bullet
+    .description
+      Initial context that the template was executed with.
+
+    :html
+      {{#each array}}
+        {{@root.foo}}
+      {{/each}}
+
+    .notes
+      Unless explicitly modified this value is consistent across all portions of the page rendering,
+      meaning it's be be used within partials where depthed parameters are unable to reference their
+      parent template.
+
+%h3#data-first
+  %code
+    @first
+
+.contents
+  .bullet
+    .description
+      Set to true by the <code>each</code> helper for the first step of iteration.
+
+    :html
+      {{#each array}}
+        {{#if @first}}
+          First!
+        {{/if}}
+      {{/each}}
+
+%h3#data-index
+  %code
+    @index
+
+.contents
+  .bullet
+    .description
+      Zero-based index for the current iteratation step. Set by the <code>each</code> helper.
+
+    :html
+      {{#each array}}
+        {{@index}}
+      {{/each}}
+
+%h3#data-key
+  %code
+    @key
+
+.contents
+  .bullet
+    .description
+      Key name for the current iteratation step. Set by the <code>each</code> helper when iterating over objects.
+
+    :html
+      {{#each array}}
+        {{@key}}
+      {{/each}}
+
+%h3#data-last
+  %code
+    @last
+
+.contents
+  .bullet
+    .description
+      Set to true by the <code>each</code> helper for the last step of iteration.
+
+    :html
+      {{#each array}}
+        {{#if @last}}
+          Last :(
+        {{/if}}
+      {{/each}}
+
+%h3#data-contextPath
+  %code
+    @contextPath
+
+.contents
+  .bullet
+    .description
+      Value set in <code>trackId</code> mode that records the lookup path for the current
+      context.
+    .notes
+      Any custom helpers that apply a custom context should set this value as appropriate.
+      If the new context is the child of an existing one, it may use the
+      <code>Handlebars.Utils.appendContextPath</code> helper to perform this operation.
+
+    :javascript
+      if (options.data && options.ids) {
+        var data = Handlebars.createFrame(options.data);
+        data.contextPath = Handlebars.Utils.appendContextPath(data.contextPath, 'foo');
+        options.data = data;
+      }
+
+%h3#data-level
+  %code
+    @level
+
+.contents
+  .bullet
+    .description
+      Assigned log level.
+
+    :javascript
+      template({}, {data: {level: Handlebars.logger.WARN}})
+    .notes
+      May be set to one of
+      %code Handlebars.logger.DEBUG
+      ,
+      %code Handlebars.logger.INFO
+      ,
+      %code Handlebars.logger.WARN
+      , or
+      %code Handlebars.logger.ERROR
+
+    .notes
+      When set the logger will only output when the <code>Handlebars.logger.level</code> value is
+      set to that value or more verbose. This value defaults to logging only error mode.
