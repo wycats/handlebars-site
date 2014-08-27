@@ -246,3 +246,31 @@
 
     :html
       <a href="foo">bar</a><a href="bar">Empty</a>
+
+    .notes
+      This expands the default behavior of stripping lines that are "standalone" helpers (only a block
+      helper, comment, or partial and whitespace).
+
+    :html
+      {{#each nav}}
+        <a href="{{url}}">
+          {{#if test}}
+            {{title}}
+          {{^}}
+            Empty
+          {{/if}}
+        </a>
+      {{~/each}}
+
+    .notes
+      will render
+
+    :html
+      <a href="foo">
+          bar
+      </a>
+      <a href="bar">
+          Empty
+      </a>
+
+
