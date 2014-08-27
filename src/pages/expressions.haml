@@ -274,3 +274,28 @@
       </a>
 
 
+%h2#id-tracking
+  Id Tracking
+
+.contents
+  .bullet
+    .description
+      Optionally, helpers can be informed of the paths that were used to lookup an argument for a
+      given value. This mode may be enabled via the <code>trackId</code> compiler flag.
+
+    :html
+      {{foo bar.baz}}
+
+    .notes
+      would call the helper <code>foo</code> with the value of <code>bar.baz</code> but also will
+      include the literal string <code>"bar.baz"</code> in the <code>ids</code> field on the
+      <code>options</code> argument.
+
+    .notes
+      This can be used for future lookup of parameters should it be necessary, but does add
+      additional overhead.
+    .notes
+      When this mode is enabled, all builtin helpers will generate a
+      <a href="/reference.html#data-contextPath"><code>@contextPath</code></a> variable that denotes
+      the lookup path for the current context. It's highly recommended that generic helpers provide
+      such a variable if they modify the context when executing their children.
