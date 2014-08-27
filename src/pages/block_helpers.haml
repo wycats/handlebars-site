@@ -363,3 +363,30 @@
 
     :html
       <a href="foo">bar</a><a href="bar">Empty</a>
+
+%h2#raw-blocks
+  Raw Blocks
+
+.contents
+  .bullet
+    .description
+      Raw blocks are available for templates needing to handle unprocessed mustache blocks.
+
+      :html
+        {{{raw-helper}}}
+          {{bar}}
+        {{{/raw-helper}}}
+
+      .notes
+        will execute the helper <code>foo</code> without interpretting the content.
+
+      :javascript
+        Handlebars.registerHelper('raw-helper', function(options) {
+          return options.fn();
+        });
+
+      .notes
+        will render
+
+      :hteml
+        {{bar}}
