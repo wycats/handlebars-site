@@ -198,7 +198,7 @@
     .notes
       Helpers that modify the data state should create a new frame when doing so to isolates
       themselves and avoid corrupting the state of any parents. Generally only one frame needs
-      to be created per helper exection, i.e. the <code>each</code> iterator only creates one frame
+      to be created per helper execution, i.e. the <code>each</code> iterator only creates one frame
       which is reused for all child execution.
 
 
@@ -221,7 +221,7 @@
       Templates created for a given environment are bound to that environment. This means that
       templates that need to run in multiple environments will need to be recompiled or
       reconstructed via <code>Handlebars.template</code> for each environment. This applies to
-      paritals as well.
+      partials as well.
 
 %h3#base-log
   %code Handlebars.log(level, message)
