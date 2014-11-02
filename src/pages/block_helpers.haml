@@ -316,6 +316,10 @@
       Private variables provided via the <code>data</code> option are
       available in all descendent scopes.
     .notes
+      Private variables defined in parent scopes may be accessed via pathed queries.
+      To access the <code>index</code> field of the parent iterator, <code>@../index</code>
+      may be used.
+    .notes
       Make sure you create a new data frame each time you invoke a block
       with data. Otherwise, downstream helpers might unexpectedly mutate
       upstream variables.
