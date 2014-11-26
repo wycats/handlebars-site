@@ -128,6 +128,10 @@
       variables then iterating over an array. When iterating over an object only the <code>@first</code>
       is available.
 
+    .notes
+      Nested <code>each</code> blocks may access the interation variables via depted paths.
+      To access the parent index, for example, <code>{{@../index}}</code> can be used.
+
 %h2#with
   The <code>with</code> Block Helper
 
