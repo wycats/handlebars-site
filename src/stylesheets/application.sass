@@ -15,10 +15,17 @@ $gradient-bottom: darken($gradient, 15%)
 $gradient-dark: darken($gradient, 25%)
 
 @mixin flexbox($direction, $align: center)
+  display: -ms-flexbox
   display: -webkit-box
   display: -moz-box
+  @if $direction == vertical {
+    -ms-flex-direction: column
+  } @else {
+    -ms-flex-direction: row
+  }
   -webkit-box-orient: $direction
   -moz-box-orient: $direction
+  -ms-flex-align: $align
   -webkit-box-align: $align
   -moz-box-align: $align
 
