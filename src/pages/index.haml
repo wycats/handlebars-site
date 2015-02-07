@@ -142,7 +142,12 @@
     .description
       Block expressions allow you to define helpers that will invoke
       a section of your template with a different context than the
-      current. Let's consider a helper that will generate an HTML list:
+      current. These block helpers are identified by a <code>#</code> preceeding
+      the helper name and require a matching closing mustache, <code>/</code>, of the
+      same name.
+
+    .notes
+      Let's consider a helper that will generate an HTML list:
 
     :html
       {{#list people}}{{firstName}} {{lastName}}{{/list}}
