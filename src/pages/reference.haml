@@ -232,6 +232,24 @@
       reconstructed via <code>Handlebars.template</code> for each environment. This applies to
       partials as well.
 
+
+%h3#base-noConflict
+  %code Handlebars.noConflict()
+
+.contents
+  .bullet
+    .description
+      Removes this Handlebars instance from the global space, restoring any libraries that may have
+      been previously registered.
+
+    :javascript
+      var myHandlebars = Handlebars.noConflict();
+
+    .notes
+      This allows for distinct versions of the library to be loaded into one global space without
+      concern for potential version conflicts.
+
+
 %h3#base-log
   %code Handlebars.log(level, message)
 
