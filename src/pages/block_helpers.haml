@@ -246,6 +246,25 @@
       them as properties of the options hash. Keep reading for more
       examples.
 
+  .bullet
+    .description
+      Conditionals may also be chained by including the subsequent helper call
+      within the else mustache.
+
+    :html
+      {{#if isActive}}
+        <img src="star.gif" alt="Active">
+      {{else if isInactive}}
+        <img src="cry.gif" alt="Inactive">
+      {{/if}}
+
+    .description
+      It is not necessary to use the same helper in subsequent calls, the
+      <code>unless</code> helper could be used in the else portion as with any
+      other helper. When the helper values are different, the closing mustache
+      should match the opening helper name.
+
+
 %h2#hash-arguments
   Hash Arguments
 
