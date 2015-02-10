@@ -348,6 +348,33 @@
       compiled and some templates might not create this field.
 
 
+%h2#bloack-params
+  Block Parameters
+
+.contents
+  .bullet
+    .description
+      New in Handlebars 3.0, it's possible to received named parameters from supporting helpers.
+
+    :html
+      {{#each users as |user userId|}}
+        Id: {{userId}} Name: {{user.name}}
+      {{/each}}
+
+    .notes
+      In this particular example, <code>user</code> will have the same value as the current context and <code>userId</code> will have the index value for the iteration.
+
+    .notes
+      This allows for nested helpers to avoid name conflicts that can occur with private variables.
+
+    :html
+      {{#each users as |user userId|}}
+        {{#each user.book as |book bookId|}}
+          User Id: {{userId}} Book Id: {{bookId}}
+        {{/each}}
+      {{/each}}
+
+
 %h2#raw-blocks
   Raw Blocks
 
