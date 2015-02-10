@@ -37,6 +37,10 @@
           parameters for helpers. 
         %li
           <code>noEscape</code>: Set to true to not HTML escape any content.
+        %li
+          <code>strict</code>: Run in strict mode. In this mode, templates will throw rather than silently ignore missing fields. This has the side effect of disabling inverse operatins such as <code>{{^foo}}{{/foo}}</code> unless fields are explicitly included in the source object.
+        %li
+          <code>assumeObjects</code>: Removes object existence checks when traversing paths. This is a subset of <code>strict</code> mode that generates optimized templates when the data inputs are known to be safe.
 
 %h3#base-precompile
   %code Handlebars.precompile(template, options)
