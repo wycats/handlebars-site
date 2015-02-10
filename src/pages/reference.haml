@@ -55,7 +55,12 @@
       var templateSpec = Handlebars.precompile('{{foo}}');
 
     .notes
-      Supports all of the same options parameters as the <code>Handlebars.compile</code> method.
+      Supports all of the same options parameters as the <code>Handlebars.compile</code> method. Additionally may pass:
+      %ul
+        %li
+          <code>srcName</code>: Passed to generate the source map for the input file. When run in this manner, the return structure is <code>{code, map}</code> with <code>code</code> containing the template definition and <code>map</code> containing the source map.
+        %li
+          <code>destName</code>: Optional parameter used in conjunction with <code>srcName</code> to provide a destination file name when generating source maps.
 
 %h3#base-template
   %code Handlebars.template(templateSpec)
