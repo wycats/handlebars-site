@@ -184,6 +184,19 @@
       examples.
     </div>
   </div>
+  <div class="bullet">
+    <div class="description">
+      Conditionals may also be chained by including the subsequent helper call
+      within the else mustache.
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#if isActive}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>star.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Active<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{else if isInactive}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>cry.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Inactive<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;</pre>
+    <div class="notes">
+      It is not necessary to use the same helper in subsequent calls, the
+      <code>unless</code> helper could be used in the else portion as with any
+      other helper. When the helper values are different, the closing mustache
+      should match the opening helper name.
+    </div>
+  </div>
 </div>
 <h2 id="hash-arguments">
   Hash Arguments
@@ -247,6 +260,24 @@
       interact with an existing data object. The private variable behavior is condtionally
       compiled and some templates might not create this field.
     </div>
+  </div>
+</div>
+<h2 id="bloack-params">
+  Block Parameters
+</h2>
+<div class="contents">
+  <div class="bullet">
+    <div class="description">
+      New in Handlebars 3.0, it's possible to received named parameters from supporting helpers.
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each users as |user userId|}}</span>&#x000A;  Id: <span class="EmbeddedSourceBright">{{userId}}</span> Name: <span class="EmbeddedSourceBright">{{user.name}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+    <div class="notes">
+      In this particular example, <code>user</code> will have the same value as the current context and <code>userId</code> will have the index value for the iteration.
+    </div>
+    <div class="notes">
+      This allows for nested helpers to avoid name conflicts that can occur with private variables.
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each users as |user userId|}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#each user.book as |book bookId|}}</span>&#x000A;    User Id: <span class="EmbeddedSourceBright">{{userId}}</span> Book Id: <span class="EmbeddedSourceBright">{{bookId}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
   </div>
 </div>
 <h2 id="raw-blocks">

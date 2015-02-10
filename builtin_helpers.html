@@ -28,7 +28,7 @@
     <div class="description">
       You can use the <code>if</code> helper to conditionally render a block. If
       its argument returns <code>false</code>, <code>undefined</code>, <code>null</code>,
-      <code>""</code> or <code>[]</code> (a "falsy" value), Handlebars will not
+      <code>""</code>, <code>0</code>, or <code>[]</code>, Handlebars will not
       render the block.
     </div>
     <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#if author}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{firstName}}</span> <span class="EmbeddedSourceBright">{{lastName}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>

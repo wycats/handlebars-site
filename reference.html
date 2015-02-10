@@ -59,6 +59,12 @@
         <li>
           <code>noEscape</code>: Set to true to not HTML escape any content.
         </li>
+        <li>
+          <code>strict</code>: Run in strict mode. In this mode, templates will throw rather than silently ignore missing fields. This has the side effect of disabling inverse operatins such as <code>{{^foo}}{{/foo}}</code> unless fields are explicitly included in the source object.
+        </li>
+        <li>
+          <code>assumeObjects</code>: Removes object existence checks when traversing paths. This is a subset of <code>strict</code> mode that generates optimized templates when the data inputs are known to be safe.
+        </li>
       </UL>
     </div>
   </div>
@@ -74,7 +80,15 @@
     </div>
     <pre class="sunburst"><span class="Storage">var</span> templateSpec <span class="Keyword">=</span> Handlebars.precompile(<span class="String"><span class="String">&#39;</span>{{foo}}<span class="String">&#39;</span></span>);&#x000A;</pre>
     <div class="notes">
-      Supports all of the same options parameters as the <code>Handlebars.compile</code> method.
+      Supports all of the same options parameters as the <code>Handlebars.compile</code> method. Additionally may pass:
+      <ul>
+        <li>
+          <code>srcName</code>: Passed to generate the source map for the input file. When run in this manner, the return structure is <code>{code, map}</code> with <code>code</code> containing the template definition and <code>map</code> containing the source map.
+        </li>
+        <li>
+          <code>destName</code>: Optional parameter used in conjunction with <code>srcName</code> to provide a destination file name when generating source maps.
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -222,6 +236,22 @@
       templates that need to run in multiple environments will need to be recompiled or
       reconstructed via <code>Handlebars.template</code> for each environment. This applies to
       partials as well.
+    </div>
+  </div>
+</div>
+<h3 id="base-noConflict">
+  <code>Handlebars.noConflict()</code>
+</h3>
+<div class="contents">
+  <div class="bullet">
+    <div class="description">
+      Removes this Handlebars instance from the global space, restoring any libraries that may have
+      been previously registered.
+    </div>
+    <pre class="sunburst"><span class="Storage">var</span> myHandlebars <span class="Keyword">=</span> Handlebars.noConflict();&#x000A;</pre>
+    <div class="notes">
+      This allows for distinct versions of the library to be loaded into one global space without
+      concern for potential version conflicts.
     </div>
   </div>
 </div>
