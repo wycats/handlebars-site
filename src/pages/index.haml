@@ -39,7 +39,12 @@
       in a <code>&lt;script&gt;</code> tag.
     :html
       <script id="entry-template" type="text/x-handlebars-template">
-        template content
+        <div class="entry">
+          <h1>{{title}}</h1>
+          <div class="body">
+            {{body}}
+          </div>
+        </div>
       </script>
 
   .bullet
