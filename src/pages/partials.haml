@@ -1,0 +1,48 @@
+#intro
+  %p
+    Handlebars allows for template reuse through partials. Partials are normal Handlebars templates that may be called directly by other templates.
+
+%h2#basic-partials
+  Basic Partials
+
+.contents
+  .bullet
+    .description
+      In order to use a partial, it must be registered via <code>Handlebars.registerPartial</code>.
+    :javascript
+      Handlebars.registerPartial('myPartial', '{{name}}')
+    .notes
+      This call will register the <code>myPartial</code> partial. Partials may be precompiled and the precompiled template passed into the second parameter.
+
+    .description
+      Calling the partial is done through the partial call syntax:
+    :html
+      {{> myPartial }}
+    .notes
+      Will render the partial named <code>myPartial</code>. When the partial executes, it will be run under the current execution context.
+
+%h2#partial-context
+  Partial Contexts
+
+.contents
+  .bullet
+    .description
+      It's possible to execute partials on a custom context by passing in the context to the partial call.
+    :html
+      {{> myPartial myOtherContext }}
+
+%h2#partial-parameters
+  Partial Parameters
+
+.contents
+  .bullet
+    .description
+      Custom data can be passed to partials through hash parameters.
+    :html
+      {{> myPartial parameter=value }}
+    .notes
+      Will set <code>parameter</code> to <code>value</code> when the partial runs.
+    .notes
+      This is particularly useful for exposing data from parent contexts to the partial:
+    :html
+      {{> myPartial name=../name }}
