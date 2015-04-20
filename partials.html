@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Handlebars.js: Minimal Templating on Steroids</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/><link href="/stylesheets/sunburst.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/images/favicon.png" rel="shortcut icon" type="image/png" />
+  </head>
+  <body>
+    <div id="body">
+      <div id="header">
+        <a href="/">
+          <img alt="Handlebars.js: Minimal Templating on Steroids" src="images/handlebars_logo.png"/>
+        </a>
+      </div>
+      <div id="contents">
+        <a href="http://www.devswag.com/collections/handlebars" id="callout">
+          <img alt="Buy Handlebars swag on DevSwag!" src="images/handlebars-devswag.png"/>
+        </a>
+        <div id="intro">
+  <p>
+    Handlebars allows for template reuse through partials. Partials are normal Handlebars templates that may be called directly by other templates.
+  </p>
+</div>
+<h2 id="basic-partials">
+  Basic Partials
+</h2>
+<div class="contents">
+  <div class="bullet">
+    <div class="description">
+      In order to use a partial, it must be registered via <code>Handlebars.registerPartial</code>.
+    </div>
+    <pre class="sunburst">Handlebars.registerPartial(<span class="String"><span class="String">&#39;</span>myPartial<span class="String">&#39;</span></span>, <span class="String"><span class="String">&#39;</span>{{name}}<span class="String">&#39;</span></span>)&#x000A;</pre>
+    <div class="notes">
+      This call will register the <code>myPartial</code> partial. Partials may be precompiled and the precompiled template passed into the second parameter.
+    </div>
+    <div class="description">
+      Calling the partial is done through the partial call syntax:
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{&gt; myPartial }}</span>&#x000A;</pre>
+    <div class="notes">
+      Will render the partial named <code>myPartial</code>. When the partial executes, it will be run under the current execution context.
+    </div>
+  </div>
+</div>
+<h2 id="partial-context">
+  Partial Contexts
+</h2>
+<div class="contents">
+  <div class="bullet">
+    <div class="description">
+      It's possible to execute partials on a custom context by passing in the context to the partial call.
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{&gt; myPartial myOtherContext }}</span>&#x000A;</pre>
+  </div>
+</div>
+<h2 id="partial-parameters">
+  Partial Parameters
+</h2>
+<div class="contents">
+  <div class="bullet">
+    <div class="description">
+      Custom data can be passed to partials through hash parameters.
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{&gt; myPartial parameter=value }}</span>&#x000A;</pre>
+    <div class="notes">
+      Will set <code>parameter</code> to <code>value</code> when the partial runs.
+    </div>
+    <div class="notes">
+      This is particularly useful for exposing data from parent contexts to the partial:
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{&gt; myPartial name=../name }}</span>&#x000A;</pre>
+  </div>
+</div>
+        <a class="issue-tracker" href="https://github.com/wycats/handlebars-site/issues">
+          Found an issue? Tell us!
+        </a>
+      </div>
+    </div>
+    <div id="credits"></div>
+    <a href="http://github.com/wycats/handlebars.js/" id="github">
+      <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" />
+    </a>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-557621-9']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
