@@ -289,7 +289,7 @@
     :javascript
       Handlebars.registerHelper('list', function(context, options) {
         var attrs = Em.keys(options.hash).map(function(key) {
-          key + '="' + options.hash[key] + '"';
+          return key + '="' + options.hash[key] + '"';
         }).join(" ");
 
         return "<ul " + attrs + ">" + context.map(function(item) {
