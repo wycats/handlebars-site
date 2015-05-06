@@ -21,6 +21,22 @@
     .notes
       Will render the partial named <code>myPartial</code>. When the partial executes, it will be run under the current execution context.
 
+%h2#dynamic-partials
+  Dynamic Partials
+
+.contents
+  .bullet
+    .description
+      It's possible to dynamically select the partial to be executed by using sub expression syntax.
+    :html
+      {{> (whichPartial) }}
+    .notes
+      Will evaluate <code>whichPartial</code> and then render the partial whose name is returned by this function.
+    .notes
+      Subexpressions do not resolve variables so <code>whichPartial</code> must be a function. If a simple variable has the partial name, it's possible to resolve it via the <code>lookup</code> helper.
+    :html
+      {{> (lookup . 'myVariable') }}
+
 %h2#partial-context
   Partial Contexts
 
