@@ -43,6 +43,24 @@
     </div>
   </div>
 </div>
+<h2 id="dynamic-partials">
+  Dynamic Partials
+</h2>
+<div class="contents">
+  <div class="bullet">
+    <div class="description">
+      It's possible to dynamically select the partial to be executed by using sub expression syntax.
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{&gt; (whichPartial) }}</span>&#x000A;</pre>
+    <div class="notes">
+      Will evaluate <code>whichPartial</code> and then render the partial whose name is returned by this function.
+    </div>
+    <div class="notes">
+      Subexpressions do not resolve variables so <code>whichPartial</code> must be a function. If a simple variable has the partial name, it's possible to resolve it via the <code>lookup</code> helper.
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{&gt; (lookup . &#39;myVariable&#39;) }}</span>&#x000A;</pre>
+  </div>
+</div>
 <h2 id="partial-context">
   Partial Contexts
 </h2>
