@@ -319,9 +319,12 @@
       Handlebars.registerHelper('list', function(context, options) {
         var out = "<ul>", data;
 
+        if (options.data) {
+          data = Handlebars.createFrame(options.data);
+        }
+
         for (var i=0; i<context.length; i++) {
-          if (options.data) {
-            data = Handlebars.createFrame(options.data || {});
+          if (data) {
             data.index = i;
           }
 
@@ -339,9 +342,8 @@
       To access the <code>index</code> field of the parent iterator, <code>@../index</code>
       may be used.
     .notes
-      Make sure you create a new data frame each time you invoke a block
-      with data. Otherwise, downstream helpers might unexpectedly mutate
-      upstream variables.
+      Make sure you create a new data frame in each helper that assigns its own data.
+      Otherwise, downstream helpers might unexpectedly mutate upstream variables.
     .notes
       Also ensure that the <code>data</code> field is defined prior to attempting to
       interact with an existing data object. The private variable behavior is condtionally
