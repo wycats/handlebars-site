@@ -106,11 +106,11 @@
     <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each object}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@key}}</span>: <span class="EmbeddedSourceBright">{{this}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
     <div class="notes">
       The first and last steps of iteration are noted via the <code>@first</code> and <code>@last</code>
-      variables then iterating over an array. When iterating over an object only the <code>@first</code>
+      variables when iterating over an array. When iterating over an object only the <code>@first</code>
       is available.
     </div>
     <div class="notes">
-      Nested <code>each</code> blocks may access the interation variables via depted paths.
+      Nested <code>each</code> blocks may access the interation variables via depth based paths.
       To access the parent index, for example, <code>{{@../index}}</code> can be used.
     </div>
   </div>
