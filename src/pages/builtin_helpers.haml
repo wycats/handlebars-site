@@ -132,6 +132,21 @@
       Nested <code>each</code> blocks may access the interation variables via depth based paths.
       To access the parent index, for example, <code>{{@../index}}</code> can be used.
 
+
+  .bullet
+    .description
+      The <code>each</code> helper also supports <a href="block_helpers.html#block-params">block parameters</a>, allowing for named references anywhere in the block.
+
+    :html
+      {{#each array as |value, key|}}
+        {{#each child as |childValue, childKey|}}
+          {{key}} - {{childKey}}. {{childValue}}
+        {{/each}}
+      {{/each}}
+
+    .notes
+      Will create a <code>key</code> and <code>value</code> variable that children may access without the need for depthed variable references. In the example above, <code>{{key}}</code> is identical to <code>{{@../key}}</code> but in many cases is more readable.
+
 %h2#with
   The <code>with</code> Block Helper
 
@@ -179,6 +194,22 @@
 
         <h2>By Charles Jolley</h2>
       </div>
+
+  .bullet
+    .description
+      <code>with</code> can also be used with block parameters to define known references in the current block. The example above can be converted to
+
+    :html
+      <div class="entry">
+        <h1>{{title}}</h1>
+
+        {{#with author as |myAuthor|}}
+        <h2>By {{myAuthor.firstName}} {{myAuthor.lastName}}</h2>
+        {{/with}}
+      </div>
+
+    .notes
+      Which allows for complex templates to potentially provide clearer code than <code>../</code> depthed references allow for.
 
   .bullet
     .description
