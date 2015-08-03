@@ -253,6 +253,21 @@
       Delegates to <code>Handlebars.logger.log</code> which may
       be overriden to perform custom logging.
 
+    .notes
+      Any number of arguments may be passed to this method and all will be forwarded to the logger.
+
+    :html
+      {{log "This is logged" foo "And so is this"}}
+
+    .notes
+      The log level may be set using the <code>level</code> hash parameter. Supported values are <code>debug</code>, <code>info</code>, <code>warn</code>, and <code>error</code>. When omitted, <code>info</code> is the default value,
+
+    :html
+      {{log "Log!" level="error"}}
+
+    .notes
+      Logging is conditional based on the level and to value set in <code>Handlebars.logger.level</code>, which defaults to <code>info</code>. All log statements at or above the current level will be output.
+
 %h2#blockHelperMissing
   The <code>blockHelperMissing</code> helper
 
