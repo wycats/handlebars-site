@@ -1,5 +1,6 @@
 source :gemcutter
 
+gem "rake"
 gem "staticmatic", "~> 0.11.0.alpha", :git => "git://github.com/staticmatic/staticmatic.git"
 gem "sass"
 gem "compass", '~> 0.11.7'
