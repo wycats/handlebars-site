@@ -34,6 +34,12 @@
       <code>this</code>, so you can invoke the block with
       <code>this</code> to evaluate the block in the current context.
 
+    .notes
+      Any helpers defined in this manner will take precedence over fields defined in the context. To access a field that is masked by a helper, a path reference may be used. In the example above a field named <code>noop</code> on the context object would be referenced using:
+
+    :html
+      {{./noop}}
+
 %h2#basic-blocks
   Basic Block Variation
 

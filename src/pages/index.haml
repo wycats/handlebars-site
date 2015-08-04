@@ -200,7 +200,7 @@
 
     .notes
       Block helpers have more features, such as the ability to create an
-      <code>else</code> section (used, for instance, by the built-in if
+      <code>else</code> section (used, for instance, by the built-in <code>if</code>
       helper).
 
     .notes
@@ -267,11 +267,20 @@
       it can still go back to the main context (the post) to retrieve
       its permalink.
     .notes
-      The <code>../</code> path segment references the parent template
-      scope, not one level up in the context. This is because block
-      helpers can invoke a block with any context, so the notion of
-      "one level up" isn't particularly meaningful except as a reference
-      to the parent template scope.
+      The exact value that <code>../</code> will resolve to varies based on the helper that is calling the block. Using <code>../</code> is only necessary when context changes, so children of helpers such as <code>each</code> would require the use of <code>../</code> while children of helpers such as <code>if</code> do not.
+
+    :html
+      {{permalink}}
+      {{#each comments}}
+        {{../permalink}}
+
+        {{#if title}}
+          {{../permalink}}
+        {{/if}}
+      {{/each}}
+
+    .notes
+      In this example all of the above reference the same <code>permalink</code> value even though they are located within different blocks. This behavior is new as of Handlebars 4, the <a href="https://github.com/wycats/handlebars.js/blob/master/release-notes.md">release notes</a> discuss the prior behavior as well as the migration plan.
 
   .bullet
     .description
@@ -283,7 +292,7 @@
       Any of the above would cause the <code>name</code> field on the
       current context to be used rather than a helper of the same name.
 
-%h2#Comments
+%h2#comments
   Template comments with <code>{{!-- --}}</code> or <code>{{! }}</code>.
 
 .content
@@ -410,6 +419,17 @@
     .notes
       If your helper returns HTML that you do not want escaped, make sure
       to return a new <code>Handlebars.SafeString</code>.
+
+%h2#literals
+  Literals
+
+.content
+  .bullent
+    .description
+      Helper calls may also have literal values passed to them either as paramter arguments or hash arguments. Supported literals include numbers, strings, <code>true</code>, <code>false</code>, <code>null</code>, and <code>undefined</code>.
+
+    :javascript
+      {{agree_button "My Text" class="my-class" visible=true counter=4}}
 
 %h2#partials
   Partials
