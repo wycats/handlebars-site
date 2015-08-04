@@ -150,7 +150,7 @@
     <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>Yehuda Katz<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>Carl Lerche<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>Alan Johnson<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
     <div class="notes">
       Block helpers have more features, such as the ability to create an
-      <code>else</code> section (used, for instance, by the built-in if
+      <code>else</code> section (used, for instance, by the built-in <code>if</code>
       helper).
     </div>
     <div class="notes">
@@ -218,7 +218,7 @@
     </div>
   </div>
 </div>
-<h2 id="Comments">
+<h2 id="comments">
   Template comments with <code>{{!-- --}}</code> or <code>{{! }}</code>.
 </h2>
 <div class="content">
@@ -277,6 +277,17 @@
       If your helper returns HTML that you do not want escaped, make sure
       to return a new <code>Handlebars.SafeString</code>.
     </div>
+  </div>
+</div>
+<h2 id="literals">
+  Literals
+</h2>
+<div class="content">
+  <div class="bullent">
+    <div class="description">
+      Helper calls may also have literal values passed to them either as paramter arguments or hash arguments. Supported literals include numbers, strings, <code>true</code>, <code>false</code>, <code>null</code>, and <code>undefined</code>.
+    </div>
+    <pre class="sunburst">{{agree_button <span class="String"><span class="String">&quot;</span>My Text<span class="String">&quot;</span></span> <span class="Storage">class</span><span class="Keyword">=</span><span class="String"><span class="String">&quot;</span>my-class<span class="String">&quot;</span></span> visible<span class="Keyword">=</span><span class="Constant">true</span> counter<span class="Keyword">=</span><span class="Constant">4</span>}}&#x000A;</pre>
   </div>
 </div>
 <h2 id="partials">

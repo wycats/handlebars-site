@@ -89,6 +89,23 @@
       The Handlebars compiler will optimize accesses to those helpers for
       performance.
     </div>
+    <div class="notes">
+      When all helpers are known at compile time, the <code>--knownOnly</code> option provides the smallest generated code that also provides the fastest execution.
+    </div>
+  </div>
+</div>
+<h2 id="usage">
+  Usage
+</h2>
+<div class="contents">
+  <div class="bullet">
+    <pre class="sunburst" style="overflow:auto">Usage: node ./bin/handlebars [template|directory]...&#x000A;&#x000A;Options:&#x000A;  -f, --output         Output File&#x000A;  --map                Source Map File                                                         [string]  [default: undefined]&#x000A;  -a, --amd            Exports amd style (require.js)&#x000A;  -c, --commonjs       Exports CommonJS style, path to Handlebars module                       [default: null]&#x000A;  -h, --handlebarPath  Path to handlebar.js (only valid for amd-style)                         [default: &quot;&quot;]&#x000A;  -k, --known          Known helpers&#x000A;  -o, --knownOnly      Known helpers only&#x000A;  -m, --min            Minimize output&#x000A;  -n, --namespace      Template namespace                                                      [default: &quot;Handlebars.templates&quot;]&#x000A;  -s, --simple         Output template function only.&#x000A;  -r, --root           Template root. Base value that will be stripped from template names.&#x000A;  -p, --partial        Compiling a partial template&#x000A;  -d, --data           Include data when compiling&#x000A;  -e, --extension      Template extension.                                                     [default: &quot;handlebars&quot;]&#x000A;  -b, --bom            Removes the BOM (Byte Order Mark) from the beginning of the templates.&#x000A;  -v, --version        Prints the current compiler version&#x000A;  --help               Outputs this message</pre>
+    <div class="notes">
+      If using the precompiler's normal mode, the resulting templates will be stored to the <code>Handlebars.templates</code> object using the relative template name sans the extension. These templates may be executed in the same manner as templates.
+    </div>
+    <div class="notes">
+      If using the simple mode the precompiler will generate a single javascript method. To execute this method it must be passed to the <code>Handlebars.template</code> method and the resulting object may be used as normal.
+    </div>
   </div>
 </div>
         <a class="issue-tracker" href="https://github.com/wycats/handlebars-site/issues">

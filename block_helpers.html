@@ -47,6 +47,10 @@
       <code>this</code>, so you can invoke the block with
       <code>this</code> to evaluate the block in the current context.
     </div>
+    <div class="notes">
+      Any helpers defined in this manner will take precedence over fields defined in the context. To access a field that is masked by a helper, a path reference may be used. In the example above a field named <code>noop</code> on the context object would be referenced using:
+    </div>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{./noop}}</span>&#x000A;</pre>
   </div>
 </div>
 <h2 id="basic-blocks">
@@ -261,7 +265,7 @@
     </div>
   </div>
 </div>
-<h2 id="bloack-params">
+<h2 id="block-params">
   Block Parameters
 </h2>
 <div class="contents">
@@ -277,6 +281,19 @@
       This allows for nested helpers to avoid name conflicts that can occur with private variables.
     </div>
     <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each users as |user userId|}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#each user.book as |book bookId|}}</span>&#x000A;    User Id: <span class="EmbeddedSourceBright">{{userId}}</span> Book Id: <span class="EmbeddedSourceBright">{{bookId}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+  </div>
+  <div class="bullet">
+    <div class="description">
+      A number of <a href="builtin_helpers.html">builtin helpers</a> support block parameters and any custom helper may provide them through the <code>blockParams</code> options field.
+    </div>
+    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>block-params<span class="String">&#39;</span></span>, <span class="Storage">function</span>() {&#x000A;  <span class="Storage">var</span> args <span class="Keyword">=</span> [],&#x000A;      options <span class="Keyword">=</span> arguments[arguments.<span class="SupportConstant">length</span> <span class="Keyword">-</span> <span class="Constant">1</span>];&#x000A;  <span class="Keyword">for</span> (<span class="Storage">var</span> i <span class="Keyword">=</span> <span class="Constant">0</span>; i <span class="Keyword">&lt;</span> arguments.<span class="SupportConstant">length</span> <span class="Keyword">-</span> <span class="Constant">1</span>; i<span class="Keyword">++</span>) {&#x000A;    args.<span class="SupportFunction">push</span>(arguments[i]);&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">return</span> options.fn(<span class="Variable">this</span>, {data: options.<span class="SupportConstant">data</span>, blockParams: args});&#x000A;});&#x000A;</pre>
+    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#block-params 1 2 3 as |foo bar baz|}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{foo}}</span> <span class="EmbeddedSourceBright">{{bar}}</span> <span class="EmbeddedSourceBright">{{baz}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/block-params}}</span>&#x000A;</pre>
+    <div class="notes">
+      Implements a helper that allows for named variable declarations within a given block. This example would output <code>1 2 3</code> on render.
+    </div>
+    <div class="notes">
+      Helpers can determine the number of block paramemters referenced by the template via the <code>options.fn.blockParams</code> field, which is an integer count. This value represents the number of block parameters that could be referenced by the child template. Parameters beyond this cound will never be referenced and can safely be omitted by the helper if desired. This is optional and any additional parameters passed to the template will be silently ignored.
+    </div>
   </div>
 </div>
 <h2 id="raw-blocks">
