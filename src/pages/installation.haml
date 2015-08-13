@@ -1,0 +1,83 @@
+#intro
+  There are many different ways to install and use Handlebars, the following are some of the more popular. Please send <a href="https://github.com/wycats/handlebars-site/blob/master/src/pages/installation.haml">pull requests</a> if we are missing one!
+
+.contents
+  .bullet
+    .description
+      The fastest route is to manually download the package and copy into your project but a number of other systems are available.
+      = link("Download: 3.0.3", "http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v3.0.3.js", :class => 'download')
+      = link("Download: runtime-3.0.3", "http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars.runtime-v3.0.3.js", :class => 'download-runtime')
+
+%h2#npm
+  NPM
+
+.contents
+  .bullet
+    .description
+      Handlebar's npm package includes both libraries suitable for CommonJS aware systems and built browser libraries that can be consumed direct browser mechanisms.
+
+    :highlight_plain
+      npm install --save handlebars
+
+    .notes
+      Require-aware systems such as Node and Webpack can then load via:
+
+    :javascript
+      require('handlebars');
+
+    .notes
+      or for the runtime only:
+
+    :javascript
+      require('handlebars/runtime');
+
+  .bullet
+    .description
+      The browser builds are located in the <code>node_modules/handlebars/dist/</code> directory. Making these accessible to the browser will depend on what build system you are using but this may be as simple as copying the files to an acessible place.
+
+    .notes
+      This is the preferred method of installation when using the precompiler as it ensures that your precompiled templates always run against the same version of the runtime.
+
+%h2#bower
+  Bower
+
+.contents
+  .bullet
+    .description
+      Handlebars maintains a <a href="https://github.com/components/handlebars.js">bower component</a> as well that is available for <a href="http://bower.io/">bower</a> users. This can be installed in a project like so.
+
+    :highlight_plain
+      bower install --save handlebars
+
+    .notes
+      The default bower library is UMD-style so this should work properly with global, CJS, and AMD module systems. <code>handlebars.js</code> and <code>handlebars.runtime.js</code> are the primary source files but a number of other options exist in this component. We recommend looking at them and selecting the best one for your needs.
+
+    .notes
+      This component should also work with other packagers such as <a href="https://github.com/componentjs/component">component</a> but these have not been tested as throughly.
+
+%h2#download
+  Manual Download
+
+.contents
+  .bullet
+    .description
+      All of Handlebar's released versions and CI builds are available for download on S3 in our <a href="http://builds.handlebarsjs.com.s3.amazonaws.com/bucket-listing.html?sort=lastmod&sortdir=desc">builds page</a>.
+
+    .notes
+      The latest passing master build is named <code>handlebars-latest.js</code> and each passing SHA on master will create a <code>handlebars-gitSHA.js</code> file. While these all pass the CI, it's preferrable to use one fo the tagged releases. 
+
+    .notes
+      **Note**: The S3 builds page is provided as a convenience for the community, but you should not use it for hosting Handlebars in production.
+
+%h2#cdn
+  CDNs
+
+.contents
+  .bullet
+    .description
+      Handlebars is hosted on a number of free CDNs as well.
+
+      %ul
+        %li <a href="https://cdnjs.com/libraries/handlebars.js">cdnjs</a>
+        %li <a href="http://www.jsdelivr.com/#!handlebarsjs">jsDelivr</a>. Advanced usage, such as <a href="https://github.com/jsdelivr/jsdelivr#usage">version aliasing & concocting</a>, is available.</li>
+
