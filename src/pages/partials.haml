@@ -62,3 +62,52 @@
       This is particularly useful for exposing data from parent contexts to the partial:
     :html
       {{> myPartial name=../name }}
+
+%h2#partial-block
+  Partial Blocks
+
+.contents
+  .bullet
+    .description
+      The normal behavior when attempting to render a partial that is not found is for the implementation to throw an error. If failover is desired instead, partials may be called using the block syntax.
+
+    :html
+      {{#> myPartial }}
+        Failover content
+      {{/myPartial}}
+
+    .notes
+      Which will render <code>Failover content</code> if the <code>myPartial</code> partial is not registered.
+
+  .bullet
+    .description
+      This block syntax may alow be used to pass templates to the partial, which can be executed by the specially named partial, <code>@partial-block</code>. A template of
+    :html
+      {{#> layout }}
+        My Content
+      {{/layout}}
+
+    .descrption
+      with the <code>layout</code> partial containing
+    :html
+      Site Content
+      {{> @partial-block }}
+
+    .description
+      Would render
+    :html
+      Site Content
+      My Content
+
+    .notes
+      When called in this manner, the block will execute under the context of the partial at the time of the call. Depthed paths and block parameters operate relative to the partial block rather than the partial template.
+
+    :html
+      {{#each children as |child|}}
+        {{#> childEntry}}
+          {{child.value}}
+        {{/childEntry}}
+      {{/each}}
+
+    .notes
+      Will render <code>child.value</code> from this template, not the partial.
