@@ -111,3 +111,47 @@
 
     .notes
       Will render <code>child.value</code> from this template, not the partial.
+
+%h2#inline-partials
+  Inline Partials
+
+.contents
+  .bullet
+    .description
+      Templates may define block scoped partials via the <code>inline</code> decorator.
+
+    :html
+      {{#*inline "myPartial"}}
+        My Content
+      {{/inline}}
+      {{#each children}}
+        {{> myPartial}}
+      {{/each}}
+
+    .description
+      Which will render the <code>myPartial</code> partial for each child.
+
+  .bullet
+    .description
+      Each inline partial is available to the current block and all children, including execution of other partials. This allows for layout templates and similar functionality:
+
+    :html
+      {{#> layout}}
+        {{#*inline "nav"}}
+          My Nav
+        {{/inline}}
+        {{#*inline "content"}}
+          My Content
+        {{/inline}}
+      {{/layout}}
+
+    .notes
+      Where the <code>layout</code> partial may be:
+
+    :html
+      <div class="nav">
+        {{> nav}}
+      </div>
+      <div class="content">
+        {{> content}}
+      </div>
