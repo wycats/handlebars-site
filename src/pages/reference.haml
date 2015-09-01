@@ -43,9 +43,13 @@
           <code>assumeObjects</code>: Removes object existence checks when traversing paths. This is a subset of <code>strict</code> mode that generates optimized templates when the data inputs are known to be safe.
         %li
           <code>preventIndent</code>: By default an indented partial-call causes the output of the 
-          whole partial being indented by the same amount. This leads to unexpected behavior when the
+          whole partial being indented by the same amount. This can lead to unexpected behavior when the
           partial writes <code>pre</code>-tags. 
           Setting this option to <code>true</code> will disable the auto-indent feature.
+        %li
+          <code>ignoreStandalone</code>: Disables standalone tag removal when set to <code>true</code>. When set, blocks and partials that are on their own line will not remove the whitespace on that line.
+        %li
+          <code>explicitPartialContext</code>: Disables implicit context for partials. When enabled, partials that are not passed a context value will execute against an empty object.
 
 %h3#base-precompile
   %code Handlebars.precompile(template, options)
@@ -152,6 +156,42 @@
 
     :javascript
       Handlebars.unregisterHelper('foo');
+
+
+%h3#base-registerDecorator
+  %code Handlebars.registerDecorator(name, helper)
+
+.contents
+  .bullet
+    .description
+      Registers a decorator accessible by any template in the environment.
+
+    :javascript
+      Handlebars.registerDecorator('foo', function() {
+      });
+
+    .notes
+      Also supports registering multiple decorators at once.
+
+    :javascript
+      Handlebars.registerDecorator({
+        foo: function() {
+        },
+        bar: function() {
+        }
+      });
+
+
+%h3#base-unregisterDecorator
+  %code Handlebars.unregisterDecorator(name)
+
+.contents
+  .bullet
+    .description
+      Unregisters a previously registered decorator.
+
+    :javascript
+      Handlebars.unregisterDecorator('foo');
 
 
 %h3#base-SafeString
