@@ -87,19 +87,23 @@
 
           Options:
             -f, --output         Output File
-            --map                Source Map File                                                         [string]  [default: undefined]
+            --map                Source Map File                                                    [string]  [default: undefined]
             -a, --amd            Exports amd style (require.js)
-            -c, --commonjs       Exports CommonJS style, path to Handlebars module                       [default: null]
-            -h, --handlebarPath  Path to handlebar.js (only valid for amd-style)                         [default: ""]
+            -c, --commonjs       Exports CommonJS style, path to Handlebars module                                 [default: null]
+            -h, --handlebarPath  Path to handlebar.js (only valid for amd-style)                                     [default: ""]
             -k, --known          Known helpers
             -o, --knownOnly      Known helpers only
             -m, --min            Minimize output
-            -n, --namespace      Template namespace                                                      [default: "Handlebars.templates"]
+            -n, --namespace      Template namespace                                              [default: "Handlebars.templates"]
             -s, --simple         Output template function only.
+            -N, --name           Name of passed string templates. Optional if running in a simple mode. Required when operating
+                                 on multiple templates.
+            -i, --string         Generates a template from the passed CLI argument.
+                                 "-" is treated as a special value and causes stdin to be read for the template value.
             -r, --root           Template root. Base value that will be stripped from template names.
             -p, --partial        Compiling a partial template
             -d, --data           Include data when compiling
-            -e, --extension      Template extension.                                                     [default: "handlebars"]
+            -e, --extension      Template extension.                                                       [default: "handlebars"]
             -b, --bom            Removes the BOM (Byte Order Mark) from the beginning of the templates.
             -v, --version        Prints the current compiler version
             --help               Outputs this message
