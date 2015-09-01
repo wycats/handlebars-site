@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <title>Handlebars.js: Minimal Templating on Steroids</title>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/><link href="/stylesheets/sunburst.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="/images/favicon.png" rel="shortcut icon" type="image/png" />
+    <link href="/images/favicon.png" rel="shortcut icon" type="image/png">
   </head>
   <body>
     <div id="body">
@@ -18,468 +18,500 @@
           <img alt="Buy Handlebars swag on DevSwag!" src="images/handlebars-devswag.png"/>
         </a>
         <h1 id="reference">
-  Reference
-</h1>
-<h2 id="base">
-  Base
-</h2>
-<h3 id="base-compile">
-  <code>Handlebars.compile(template, options)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Compiles a template so it can be executed immediately.
-    </div>
-    <pre class="sunburst"><span class="Storage">var</span> template <span class="Keyword">=</span> Handlebars.<span class="SupportFunction">compile</span>(<span class="String"><span class="String">&#39;</span>{{foo}}<span class="String">&#39;</span></span>);&#x000A;template({});&#x000A;</pre>
-    <div class="notes">
-      Supports a variety of options that alter how the template executes
-      <UL>
-        <li>
-          <code>data</code>: Set to false to disable <code>@data</code> tracking.
-        </li>
-        <li>
-          <code>compat</code>: Set to true to enable recursive field lookup.
-        </li>
-        <li>
-          <code>knownHelpers</code>: Hash containing list of helpers that are known to
-          exist (truthy) at template execution time. Passing this allows
-          the compiler to optimize a number of cases.
-          Builtin helpers are automatically included in this list and may be omitted by setting
-          that value to <code>false</code>.
-        </li>
-        <li>
-          <code>knownHelpersOnly</code>: Set to true to allow further optimzations
-          based on the known helpers list.
-        </li>
-        <li>
-          <code>trackIds</code>: Set to true to include the id names used to resolve
-          parameters for helpers.
-        </li>
-        <li>
-          <code>noEscape</code>: Set to true to not HTML escape any content.
-        </li>
-        <li>
-          <code>strict</code>: Run in strict mode. In this mode, templates will throw rather than silently ignore missing fields. This has the side effect of disabling inverse operatins such as <code>{{^foo}}{{/foo}}</code> unless fields are explicitly included in the source object.
-        </li>
-        <li>
-          <code>assumeObjects</code>: Removes object existence checks when traversing paths. This is a subset of <code>strict</code> mode that generates optimized templates when the data inputs are known to be safe.
-        </li>
-        <li>
-          <code>preventIndent</code>: By default an indented partial-call causes the output of the
-          whole partial being indented by the same amount. This leads to unexpected behavior when the
-          partial writes <code>pre</code>-tags.
-          Setting this option to <code>true</code> will disable the auto-indent feature.
-        </li>
-      </UL>
-    </div>
-  </div>
-</div>
-<h3 id="base-precompile">
-  <code>Handlebars.precompile(template, options)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Precompiles a given template so it can be sent to the client and executed without
-      compilation.
-    </div>
-    <pre class="sunburst"><span class="Storage">var</span> templateSpec <span class="Keyword">=</span> Handlebars.precompile(<span class="String"><span class="String">&#39;</span>{{foo}}<span class="String">&#39;</span></span>);&#x000A;</pre>
-    <div class="notes">
-      Supports all of the same options parameters as the <code>Handlebars.compile</code> method. Additionally may pass:
-      <ul>
-        <li>
-          <code>srcName</code>: Passed to generate the source map for the input file. When run in this manner, the return structure is <code>{code, map}</code> with <code>code</code> containing the template definition and <code>map</code> containing the source map.
-        </li>
-        <li>
-          <code>destName</code>: Optional parameter used in conjunction with <code>srcName</code> to provide a destination file name when generating source maps.
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<h3 id="base-template">
-  <code>Handlebars.template(templateSpec)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Sets up a template that was precompiled with <code>Handlebars.precompile</code>
-    </div>
-    <pre class="sunburst"><span class="Storage">var</span> template <span class="Keyword">=</span> Handlebars.template(templateSpec);&#x000A;template({});&#x000A;</pre>
-  </div>
-</div>
-<h3 id="base-registerPartial">
-  <code>Handlebars.registerPartial(name, partial)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Registers partials accessible by any template in the environment.
-    </div>
-    <pre class="sunburst">Handlebars.registerPartial(<span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>, partial);&#x000A;</pre>
-    <div class="notes">
-      Also supports registering multiple partials at once.
-    </div>
-    <pre class="sunburst">Handlebars.registerPartial({&#x000A;  foo: partial,&#x000A;  bar: partial&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      If loading the whole library, then the partials may be string values which will be
-      compiled on demand. If only loading the runtime, then the partials must be a precompiled
-      template that has been properly setup using the <code>Handlebars.template</code> method.
-    </div>
-  </div>
-</div>
-<h3 id="base-unregisterPartial">
-  <code>Handlebars.unregisterPartial(name)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Unregisters a previously registered partial.
-    </div>
-    <pre class="sunburst">Handlebars.unregisterPartial(<span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>);&#x000A;</pre>
-  </div>
-</div>
-<h3 id="base-registerHelper">
-  <code>Handlebars.registerHelper(name, helper)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Registers helpers accessible by any template in the environment.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>, <span class="Storage">function</span>() {&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      Also supports registering multiple helpers at once.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper({&#x000A;  <span class="Entity">foo</span>: <span class="Storage">function</span>() {&#x000A;  },&#x000A;  <span class="Entity">bar</span>: <span class="Storage">function</span>() {&#x000A;  }&#x000A;});&#x000A;</pre>
-  </div>
-</div>
-<h3 id="base-unregisterHelper">
-  <code>Handlebars.unregisterHelper(name)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Unregisters a previously registered helper.
-    </div>
-    <pre class="sunburst">Handlebars.unregisterHelper(<span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>);&#x000A;</pre>
-  </div>
-</div>
-<h3 id="base-SafeString">
-  <code>Handlebars.SafeString(string)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="descrption">
-      Prevents <code>string</code> from being escaped when the template is rendered.
-    </div>
-    <pre class="sunburst"><span class="Keyword">new</span> <span class="JEntityNameType">Handlebars.SafeString</span>(<span class="String"><span class="String">&#39;</span>&lt;div&gt;HTML Content!&lt;/div&gt;<span class="String">&#39;</span></span>)&#x000A;</pre>
-    <div class="notes">
-      When constructing the string that will be marked as safe, any external content should be
-      properly escaped using the <code>Handlebars.escapeExpression</code> method to avoid potential
-      security concerns.
-    </div>
-  </div>
-</div>
-<h3 id="base-escapeExpression">
-  <code>Handlebars.escapeExpression(string)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      HTML escapes the passed string, making it safe for rendering as text within HTML content.
-    </div>
-    <pre class="sunburst">Handlebars.Utils.escapeExpression(string)&#x000A;</pre>
-    <div class="notes">
-      Replaces <code>&</code>, <code><</code>, <code>></code>, <code>"</code>, <code>'</code>,
-      <code>`</code> with the HTML entity equivalent value for string values. <code>SafeString</code>
-      values are left untouched.
-    </div>
-    <div class="notes">
-      The output of all expressions except for triple braced expressions are passed through this
-      method. Additionally helpers should use this method when returning HTML content via a
-      <code>SafeString</code> instance to prevent possible code injection.
-    </div>
-    <div class="notes">
-      This method is aliased at <code>Handlebars.Utils.escapeExpression</code>.
-    </div>
-  </div>
-</div>
-<h3 id="base-createFrame">
-  <code>Handlebars.createFrame(data)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Used by block helpers to create a child data object.
-    </div>
-    <pre class="sunburst"><span class="Keyword">if</span> (options.<span class="SupportConstant">data</span>) {&#x000A;  <span class="Storage">var</span> data <span class="Keyword">=</span> Handlebars.createFrame(options.<span class="SupportConstant">data</span>);&#x000A;  data.foo <span class="Keyword">=</span> <span class="String"><span class="String">&#39;</span>bar<span class="String">&#39;</span></span>;&#x000A;  options.<span class="SupportConstant">data</span> <span class="Keyword">=</span> data;&#x000A;}&#x000A;</pre>
-    <div class="notes">
-      Helpers that modify the data state should create a new frame when doing so to isolates
-      themselves and avoid corrupting the state of any parents. Generally only one frame needs
-      to be created per helper execution, i.e. the <code>each</code> iterator only creates one frame
-      which is reused for all child execution.
-    </div>
-  </div>
-</div>
-<h3 id="base-create">
-  <code>Handlebars.create()</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Creates an isolated Handlebars environment.
-    </div>
-    <pre class="sunburst"><span class="Storage">var</span> OtherHandlebars <span class="Keyword">=</span> Handlebars.create();&#x000A;</pre>
-    <div class="notes">
-      Each environment has it's own helpers and partials. This is only necessary for use cases
-      that demand distinct helpers or partials. Most use cases can use the root
-      <code>Handlebars</code> environment directly.
-    </div>
-    <div class="notes">
-      Templates created for a given environment are bound to that environment. This means that
-      templates that need to run in multiple environments will need to be recompiled or
-      reconstructed via <code>Handlebars.template</code> for each environment. This applies to
-      partials as well.
-    </div>
-  </div>
-</div>
-<h3 id="base-noConflict">
-  <code>Handlebars.noConflict()</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Removes this Handlebars instance from the global space, restoring any libraries that may have
-      been previously registered.
-    </div>
-    <pre class="sunburst"><span class="Storage">var</span> myHandlebars <span class="Keyword">=</span> Handlebars.noConflict();&#x000A;</pre>
-    <div class="notes">
-      This allows for distinct versions of the library to be loaded into one global space without
-      concern for potential version conflicts.
-    </div>
-  </div>
-</div>
-<h3 id="base-log">
-  <code>Handlebars.log(level, message)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Logger utilized by the <code>log</code> helper.
-    </div>
-    <div class="notes">
-      May be overriden if desired.
-    </div>
-  </div>
-</div>
-<h2 id="hutils">
-  Utilities
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Handlebars offers a variety of utility methods that are exposed through
-      the <code>Handlebars.Utils</code> object.
-    </div>
-  </div>
-</div>
-<h3 id="utils-isEmpty">
-  <code>Handlebars.Utils.isEmpty(value)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Determines if a given value is empty.
-    </div>
-    <pre class="sunburst">Handlebars.Utils.isEmpty(value)&#x000A;</pre>
-    <div class="notes">
-      This is used by the native <code>if</code> and <code>with</code> helpers control their
-      execution flow. Handlebar's definition of empty is any of:
-      <ul>
-        <li>
-          Array with length 0
-        </li>
-        <li>
-          falsy values other than 0
-        </li>
-      </ul>
-      Which is intended to match the <a href="http://mustache.github.io/mustache.5.html#Sections">Mustache behavior</a>
-    </div>
-  </div>
-</div>
-<h3 id="utils-extend">
-  <code>Handlebars.Utils.extend(obj, value)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Simple utility method to augment <code>obj</code> with all keys defined on <code>value</code>
-    </div>
-    <pre class="sunburst">Handlebars.Utils.extend(foo, {bar: <span class="Constant">true</span>})&#x000A;</pre>
-    <div class="notes">
-      Will set the key <code>bar</code> on object <code>foo</code> with the value <code>true</code>
-    </div>
-  </div>
-</div>
-<h3 id="utils-toString">
-  <code>Handlebars.Utils.toString(obj)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Generic <code>toString</code> method.
-    </div>
-  </div>
-</div>
-<h3 id="utils-isArray">
-  <code>Handlebars.Utils.isArray(obj)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Determines if an obj is an array.
-    </div>
-  </div>
-</div>
-<h3 id="utils-isFunction">
-  <code>Handlebars.Utils.isFunction(obj)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Determines if an obj is a function.
-    </div>
-  </div>
-</div>
-<h3 id="utils-appendContextPath">
-  <code>Handlebars.Utils.appendContextPath(contextPath, id)</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Takes a given <code>contextPath</code> value and generates the path to the child, <code>id</code>.
-    </div>
-    <pre class="sunburst">Handlebars.Utils.appendContextPath(<span class="String"><span class="String">&#39;</span>foo.bar<span class="String">&#39;</span></span>, <span class="String"><span class="String">&#39;</span>baz<span class="String">&#39;</span></span>)&#x000A;</pre>
-    <div class="notes">
-      Will return <code>foo.bar.baz</code>.
-    </div>
-  </div>
-</div>
-<h2 id="data">
-  @data Variables
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      The following <code>@data</code> variables are implemented by Handlebars and its builtin
-      helpers.
-    </div>
-  </div>
-</div>
-<h3 id="data-root">
-  <code>@root</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Initial context that the template was executed with.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@root.foo}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
-    <div class="notes">
-      Unless explicitly modified this value is consistent across all portions of the page rendering,
-      meaning it's be be used within partials where depthed parameters are unable to reference their
-      parent template.
-    </div>
-  </div>
-</div>
-<h3 id="data-first">
-  <code>@first</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Set to true by the <code>each</code> helper for the first step of iteration.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#if @first}}</span>&#x000A;    First!&#x000A;  <span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
-  </div>
-</div>
-<h3 id="data-index">
-  <code>@index</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Zero-based index for the current iteration step. Set by the <code>each</code> helper.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@index}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
-  </div>
-</div>
-<h3 id="data-key">
-  <code>@key</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Key name for the current iteration step. Set by the <code>each</code> helper when iterating over objects.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@key}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
-  </div>
-</div>
-<h3 id="data-last">
-  <code>@last</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Set to true by the <code>each</code> helper for the last step of iteration.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#if @last}}</span>&#x000A;    Last :(&#x000A;  <span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
-  </div>
-</div>
-<h3 id="data-contextPath">
-  <code>@contextPath</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Value set in <code>trackIds</code> mode that records the lookup path for the current
-      context.
-    </div>
-    <div class="notes">
-      Any custom helpers that apply a custom context should set this value as appropriate.
-      If the new context is the child of an existing one, it may use the
-      <code>Handlebars.Utils.appendContextPath</code> helper to perform this operation.
-    </div>
-    <pre class="sunburst"><span class="Keyword">if</span> (options.<span class="SupportConstant">data</span> <span class="Keyword">&amp;</span><span class="Keyword">&amp;</span> options.<span class="SupportConstant">ids</span>) {&#x000A;  <span class="Storage">var</span> data <span class="Keyword">=</span> Handlebars.createFrame(options.<span class="SupportConstant">data</span>);&#x000A;  data.contextPath <span class="Keyword">=</span> Handlebars.Utils.appendContextPath(data.contextPath, <span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>);&#x000A;  options.<span class="SupportConstant">data</span> <span class="Keyword">=</span> data;&#x000A;}&#x000A;</pre>
-  </div>
-</div>
-<h3 id="data-level">
-  <code>@level</code>
-</h3>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Assigned log level.
-    </div>
-    <pre class="sunburst">template({}, {data: {level: Handlebars.logger.WARN}})&#x000A;</pre>
-    <div class="notes">
-      May be set to one of
-      <code>Handlebars.logger.DEBUG</code>
-      ,
-      <code>Handlebars.logger.INFO</code>
-      ,
-      <code>Handlebars.logger.WARN</code>
-      , or
-      <code>Handlebars.logger.ERROR</code>
-    </div>
-    <div class="notes">
-      When set the logger will only output when the <code>Handlebars.logger.level</code> value is
-      set to that value or more verbose. This value defaults to logging only error mode.
-    </div>
-  </div>
-</div>
+          Reference
+        </h1>
+        <h2 id="base">
+          Base
+        </h2>
+        <h3 id="base-compile">
+          <code>Handlebars.compile(template, options)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Compiles a template so it can be executed immediately.
+            </div>
+            <pre class="sunburst"><span class="Storage">var</span> template <span class="Keyword">=</span> Handlebars.<span class="SupportFunction">compile</span>(<span class="String"><span class="String">&#39;</span>{{foo}}<span class="String">&#39;</span></span>);&#x000A;template({});&#x000A;</pre>
+            <div class="notes">
+              Supports a variety of options that alter how the template executes
+              <UL>
+                <li>
+                  <code>data</code>: Set to false to disable <code>@data</code> tracking.
+                </li>
+                <li>
+                  <code>compat</code>: Set to true to enable recursive field lookup.
+                </li>
+                <li>
+                  <code>knownHelpers</code>: Hash containing list of helpers that are known to
+                  exist (truthy) at template execution time. Passing this allows
+                  the compiler to optimize a number of cases.
+                  Builtin helpers are automatically included in this list and may be omitted by setting
+                  that value to <code>false</code>.
+                </li>
+                <li>
+                  <code>knownHelpersOnly</code>: Set to true to allow further optimzations
+                  based on the known helpers list.
+                </li>
+                <li>
+                  <code>trackIds</code>: Set to true to include the id names used to resolve
+                  parameters for helpers.
+                </li>
+                <li>
+                  <code>noEscape</code>: Set to true to not HTML escape any content.
+                </li>
+                <li>
+                  <code>strict</code>: Run in strict mode. In this mode, templates will throw rather than silently ignore missing fields. This has the side effect of disabling inverse operatins such as <code>{{^foo}}{{/foo}}</code> unless fields are explicitly included in the source object.
+                </li>
+                <li>
+                  <code>assumeObjects</code>: Removes object existence checks when traversing paths. This is a subset of <code>strict</code> mode that generates optimized templates when the data inputs are known to be safe.
+                </li>
+                <li>
+                  <code>preventIndent</code>: By default an indented partial-call causes the output of the
+                  whole partial being indented by the same amount. This can lead to unexpected behavior when the
+                  partial writes <code>pre</code>-tags.
+                  Setting this option to <code>true</code> will disable the auto-indent feature.
+                </li>
+                <li>
+                  <code>ignoreStandalone</code>: Disables standalone tag removal when set to <code>true</code>. When set, blocks and partials that are on their own line will not remove the whitespace on that line.
+                </li>
+                <li>
+                  <code>explicitPartialContext</code>: Disables implicit context for partials. When enabled, partials that are not passed a context value will execute against an empty object.
+                </li>
+              </UL>
+            </div>
+          </div>
+        </div>
+        <h3 id="base-precompile">
+          <code>Handlebars.precompile(template, options)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Precompiles a given template so it can be sent to the client and executed without
+              compilation.
+            </div>
+            <pre class="sunburst"><span class="Storage">var</span> templateSpec <span class="Keyword">=</span> Handlebars.precompile(<span class="String"><span class="String">&#39;</span>{{foo}}<span class="String">&#39;</span></span>);&#x000A;</pre>
+            <div class="notes">
+              Supports all of the same options parameters as the <code>Handlebars.compile</code> method. Additionally may pass:
+              <ul>
+                <li>
+                  <code>srcName</code>: Passed to generate the source map for the input file. When run in this manner, the return structure is <code>{code, map}</code> with <code>code</code> containing the template definition and <code>map</code> containing the source map.
+                </li>
+                <li>
+                  <code>destName</code>: Optional parameter used in conjunction with <code>srcName</code> to provide a destination file name when generating source maps.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <h3 id="base-template">
+          <code>Handlebars.template(templateSpec)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Sets up a template that was precompiled with <code>Handlebars.precompile</code>
+            </div>
+            <pre class="sunburst"><span class="Storage">var</span> template <span class="Keyword">=</span> Handlebars.template(templateSpec);&#x000A;template({});&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="base-registerPartial">
+          <code>Handlebars.registerPartial(name, partial)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Registers partials accessible by any template in the environment.
+            </div>
+            <pre class="sunburst">Handlebars.registerPartial(<span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>, partial);&#x000A;</pre>
+            <div class="notes">
+              Also supports registering multiple partials at once.
+            </div>
+            <pre class="sunburst">Handlebars.registerPartial({&#x000A;  foo: partial,&#x000A;  bar: partial&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              If loading the whole library, then the partials may be string values which will be
+              compiled on demand. If only loading the runtime, then the partials must be a precompiled
+              template that has been properly setup using the <code>Handlebars.template</code> method.
+            </div>
+          </div>
+        </div>
+        <h3 id="base-unregisterPartial">
+          <code>Handlebars.unregisterPartial(name)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Unregisters a previously registered partial.
+            </div>
+            <pre class="sunburst">Handlebars.unregisterPartial(<span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>);&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="base-registerHelper">
+          <code>Handlebars.registerHelper(name, helper)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Registers helpers accessible by any template in the environment.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>, <span class="Storage">function</span>() {&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              Also supports registering multiple helpers at once.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper({&#x000A;  <span class="Entity">foo</span>: <span class="Storage">function</span>() {&#x000A;  },&#x000A;  <span class="Entity">bar</span>: <span class="Storage">function</span>() {&#x000A;  }&#x000A;});&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="base-unregisterHelper">
+          <code>Handlebars.unregisterHelper(name)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Unregisters a previously registered helper.
+            </div>
+            <pre class="sunburst">Handlebars.unregisterHelper(<span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>);&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="base-registerDecorator">
+          <code>Handlebars.registerDecorator(name, helper)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Registers a decorator accessible by any template in the environment.
+            </div>
+            <pre class="sunburst">Handlebars.registerDecorator(<span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>, <span class="Storage">function</span>() {&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              Also supports registering multiple decorators at once.
+            </div>
+            <pre class="sunburst">Handlebars.registerDecorator({&#x000A;  <span class="Entity">foo</span>: <span class="Storage">function</span>() {&#x000A;  },&#x000A;  <span class="Entity">bar</span>: <span class="Storage">function</span>() {&#x000A;  }&#x000A;});&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="base-unregisterDecorator">
+          <code>Handlebars.unregisterDecorator(name)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Unregisters a previously registered decorator.
+            </div>
+            <pre class="sunburst">Handlebars.unregisterDecorator(<span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>);&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="base-SafeString">
+          <code>Handlebars.SafeString(string)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="descrption">
+              Prevents <code>string</code> from being escaped when the template is rendered.
+            </div>
+            <pre class="sunburst"><span class="Keyword">new</span> <span class="JEntityNameType">Handlebars.SafeString</span>(<span class="String"><span class="String">&#39;</span>&lt;div&gt;HTML Content!&lt;/div&gt;<span class="String">&#39;</span></span>)&#x000A;</pre>
+            <div class="notes">
+              When constructing the string that will be marked as safe, any external content should be
+              properly escaped using the <code>Handlebars.escapeExpression</code> method to avoid potential
+              security concerns.
+            </div>
+          </div>
+        </div>
+        <h3 id="base-escapeExpression">
+          <code>Handlebars.escapeExpression(string)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              HTML escapes the passed string, making it safe for rendering as text within HTML content.
+            </div>
+            <pre class="sunburst">Handlebars.Utils.escapeExpression(string)&#x000A;</pre>
+            <div class="notes">
+              Replaces <code>&</code>, <code><</code>, <code>></code>, <code>"</code>, <code>'</code>,
+              <code>`</code> with the HTML entity equivalent value for string values. <code>SafeString</code>
+              values are left untouched.
+            </div>
+            <div class="notes">
+              The output of all expressions except for triple braced expressions are passed through this
+              method. Additionally helpers should use this method when returning HTML content via a
+              <code>SafeString</code> instance to prevent possible code injection.
+            </div>
+            <div class="notes">
+              This method is aliased at <code>Handlebars.Utils.escapeExpression</code>.
+            </div>
+          </div>
+        </div>
+        <h3 id="base-createFrame">
+          <code>Handlebars.createFrame(data)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Used by block helpers to create a child data object.
+            </div>
+            <pre class="sunburst"><span class="Keyword">if</span> (options.<span class="SupportConstant">data</span>) {&#x000A;  <span class="Storage">var</span> data <span class="Keyword">=</span> Handlebars.createFrame(options.<span class="SupportConstant">data</span>);&#x000A;  data.foo <span class="Keyword">=</span> <span class="String"><span class="String">&#39;</span>bar<span class="String">&#39;</span></span>;&#x000A;  options.<span class="SupportConstant">data</span> <span class="Keyword">=</span> data;&#x000A;}&#x000A;</pre>
+            <div class="notes">
+              Helpers that modify the data state should create a new frame when doing so to isolates
+              themselves and avoid corrupting the state of any parents. Generally only one frame needs
+              to be created per helper execution, i.e. the <code>each</code> iterator only creates one frame
+              which is reused for all child execution.
+            </div>
+          </div>
+        </div>
+        <h3 id="base-create">
+          <code>Handlebars.create()</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Creates an isolated Handlebars environment.
+            </div>
+            <pre class="sunburst"><span class="Storage">var</span> OtherHandlebars <span class="Keyword">=</span> Handlebars.create();&#x000A;</pre>
+            <div class="notes">
+              Each environment has it's own helpers and partials. This is only necessary for use cases
+              that demand distinct helpers or partials. Most use cases can use the root
+              <code>Handlebars</code> environment directly.
+            </div>
+            <div class="notes">
+              Templates created for a given environment are bound to that environment. This means that
+              templates that need to run in multiple environments will need to be recompiled or
+              reconstructed via <code>Handlebars.template</code> for each environment. This applies to
+              partials as well.
+            </div>
+          </div>
+        </div>
+        <h3 id="base-noConflict">
+          <code>Handlebars.noConflict()</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Removes this Handlebars instance from the global space, restoring any libraries that may have
+              been previously registered.
+            </div>
+            <pre class="sunburst"><span class="Storage">var</span> myHandlebars <span class="Keyword">=</span> Handlebars.noConflict();&#x000A;</pre>
+            <div class="notes">
+              This allows for distinct versions of the library to be loaded into one global space without
+              concern for potential version conflicts.
+            </div>
+          </div>
+        </div>
+        <h3 id="base-log">
+          <code>Handlebars.log(level, message)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Logger utilized by the <code>log</code> helper.
+            </div>
+            <div class="notes">
+              May be overriden if desired.
+            </div>
+          </div>
+        </div>
+        <h2 id="hutils">
+          Utilities
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Handlebars offers a variety of utility methods that are exposed through
+              the <code>Handlebars.Utils</code> object.
+            </div>
+          </div>
+        </div>
+        <h3 id="utils-isEmpty">
+          <code>Handlebars.Utils.isEmpty(value)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Determines if a given value is empty.
+            </div>
+            <pre class="sunburst">Handlebars.Utils.isEmpty(value)&#x000A;</pre>
+            <div class="notes">
+              This is used by the native <code>if</code> and <code>with</code> helpers control their
+              execution flow. Handlebar's definition of empty is any of:
+              <ul>
+                <li>
+                  Array with length 0
+                </li>
+                <li>
+                  falsy values other than 0
+                </li>
+              </ul>
+              Which is intended to match the <a href="http://mustache.github.io/mustache.5.html#Sections">Mustache behavior</a>
+            </div>
+          </div>
+        </div>
+        <h3 id="utils-extend">
+          <code>Handlebars.Utils.extend(obj, value)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Simple utility method to augment <code>obj</code> with all keys defined on <code>value</code>
+            </div>
+            <pre class="sunburst">Handlebars.Utils.extend(foo, {bar: <span class="Constant">true</span>})&#x000A;</pre>
+            <div class="notes">
+              Will set the key <code>bar</code> on object <code>foo</code> with the value <code>true</code>
+            </div>
+          </div>
+        </div>
+        <h3 id="utils-toString">
+          <code>Handlebars.Utils.toString(obj)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Generic <code>toString</code> method.
+            </div>
+          </div>
+        </div>
+        <h3 id="utils-isArray">
+          <code>Handlebars.Utils.isArray(obj)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Determines if an obj is an array.
+            </div>
+          </div>
+        </div>
+        <h3 id="utils-isFunction">
+          <code>Handlebars.Utils.isFunction(obj)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Determines if an obj is a function.
+            </div>
+          </div>
+        </div>
+        <h3 id="utils-appendContextPath">
+          <code>Handlebars.Utils.appendContextPath(contextPath, id)</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Takes a given <code>contextPath</code> value and generates the path to the child, <code>id</code>.
+            </div>
+            <pre class="sunburst">Handlebars.Utils.appendContextPath(<span class="String"><span class="String">&#39;</span>foo.bar<span class="String">&#39;</span></span>, <span class="String"><span class="String">&#39;</span>baz<span class="String">&#39;</span></span>)&#x000A;</pre>
+            <div class="notes">
+              Will return <code>foo.bar.baz</code>.
+            </div>
+          </div>
+        </div>
+        <h2 id="data">
+          @data Variables
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              The following <code>@data</code> variables are implemented by Handlebars and its builtin
+              helpers.
+            </div>
+          </div>
+        </div>
+        <h3 id="data-root">
+          <code>@root</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Initial context that the template was executed with.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@root.foo}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+            <div class="notes">
+              Unless explicitly modified this value is consistent across all portions of the page rendering,
+              meaning it's be be used within partials where depthed parameters are unable to reference their
+              parent template.
+            </div>
+          </div>
+        </div>
+        <h3 id="data-first">
+          <code>@first</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Set to true by the <code>each</code> helper for the first step of iteration.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#if @first}}</span>&#x000A;    First!&#x000A;  <span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="data-index">
+          <code>@index</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Zero-based index for the current iteration step. Set by the <code>each</code> helper.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@index}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="data-key">
+          <code>@key</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Key name for the current iteration step. Set by the <code>each</code> helper when iterating over objects.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@key}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="data-last">
+          <code>@last</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Set to true by the <code>each</code> helper for the last step of iteration.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#if @last}}</span>&#x000A;    Last :(&#x000A;  <span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="data-contextPath">
+          <code>@contextPath</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Value set in <code>trackIds</code> mode that records the lookup path for the current
+              context.
+            </div>
+            <div class="notes">
+              Any custom helpers that apply a custom context should set this value as appropriate.
+              If the new context is the child of an existing one, it may use the
+              <code>Handlebars.Utils.appendContextPath</code> helper to perform this operation.
+            </div>
+            <pre class="sunburst"><span class="Keyword">if</span> (options.<span class="SupportConstant">data</span> <span class="Keyword">&amp;</span><span class="Keyword">&amp;</span> options.<span class="SupportConstant">ids</span>) {&#x000A;  <span class="Storage">var</span> data <span class="Keyword">=</span> Handlebars.createFrame(options.<span class="SupportConstant">data</span>);&#x000A;  data.contextPath <span class="Keyword">=</span> Handlebars.Utils.appendContextPath(data.contextPath, <span class="String"><span class="String">&#39;</span>foo<span class="String">&#39;</span></span>);&#x000A;  options.<span class="SupportConstant">data</span> <span class="Keyword">=</span> data;&#x000A;}&#x000A;</pre>
+          </div>
+        </div>
+        <h3 id="data-level">
+          <code>@level</code>
+        </h3>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Assigned log level.
+            </div>
+            <pre class="sunburst">template({}, {data: {level: Handlebars.logger.WARN}})&#x000A;</pre>
+            <div class="notes">
+              May be set to one of
+              <code>Handlebars.logger.DEBUG</code>
+              ,
+              <code>Handlebars.logger.INFO</code>
+              ,
+              <code>Handlebars.logger.WARN</code>
+              , or
+              <code>Handlebars.logger.ERROR</code>
+            </div>
+            <div class="notes">
+              When set the logger will only output when the <code>Handlebars.logger.level</code> value is
+              set to that value or more verbose. This value defaults to logging only error mode.
+            </div>
+          </div>
+        </div>
         <a class="issue-tracker" href="https://github.com/wycats/handlebars-site/issues">
           Found a documentation issue? Tell us!
         </a>
@@ -487,7 +519,7 @@
     </div>
     <div id="credits"></div>
     <a href="http://github.com/wycats/handlebars.js/" id="github">
-      <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" />
+      <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
     </a>
     <script>
       var _gaq = _gaq || [];

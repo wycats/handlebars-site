@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <title>Handlebars.js: Minimal Templating on Steroids</title>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/><link href="/stylesheets/sunburst.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="/images/favicon.png" rel="shortcut icon" type="image/png" />
+    <link href="/images/favicon.png" rel="shortcut icon" type="image/png">
   </head>
   <body>
     <div id="body">
@@ -18,321 +18,321 @@
           <img alt="Buy Handlebars swag on DevSwag!" src="images/handlebars-devswag.png"/>
         </a>
         <div id="intro">
-  <p>
-    Handlebars provides the power necessary to let you build
-    <strong>semantic templates</strong> effectively with no frustration.
-  </p>
-  <p>
-    Handlebars is largely compatible with Mustache templates.
-    In most cases it is possible to swap out Mustache with
-    Handlebars and continue using your current templates.
-    Complete details can be found
-    <a href="https://github.com/wycats/handlebars.js#differences-between-handlebarsjs-and-mustache">here</a>.
-  </p>
-</div>
-<a class="download" href="installation.html">Installation</a>
-<h2 id="getting-started">
-  Getting Started
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Handlebars templates look like regular HTML, with embedded
-      handlebars expressions.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{body}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      A handlebars expression is a <code>{{</code>, some contents,
-      followed by a <code>}}</code>
-    </div>
-    <a class="more-info" href="expressions.html">Learn More: Expressions</a>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      You can deliver a template to the browser by including it
-      in a <code>&lt;script&gt;</code> tag.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright"><span class="EmbeddedSourceBright">&lt;</span><span class="MetaTagInline">script</span> <span class="EmbeddedSourceBright"><span class="MetaTagInline">id</span><span class="EmbeddedSourceBright">=</span><span class="String"><span class="String">&quot;</span><span class="String">entry-template</span><span class="String">&quot;</span></span></span> <span class="MetaTagInline">type</span>=<span class="String"><span class="String">&quot;</span>text/x-handlebars-template<span class="String">&quot;</span></span><span class="EmbeddedSourceBright">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">  <span class="Keyword">&lt;</span>div <span class="Storage">class</span><span class="Keyword">=</span><span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">    <span class="Keyword">&lt;</span>h1<span class="Keyword">&gt;</span><span class="EmbeddedSourceBright">{</span><span class="EmbeddedSourceBright">{</span>title<span class="EmbeddedSourceBright">}</span><span class="EmbeddedSourceBright">}</span><span class="Keyword">&lt;</span>/h1<span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">    <span class="Keyword">&lt;</span>div <span class="Storage">class</span><span class="Keyword">=</span><span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">      <span class="EmbeddedSourceBright">{</span><span class="EmbeddedSourceBright">{</span>body<span class="EmbeddedSourceBright">}</span><span class="EmbeddedSourceBright">}</span></span>&#x000A;<span class="EmbeddedSourceBright">    <span class="Keyword">&lt;</span>/div<span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">  <span class="Keyword">&lt;</span>/div<span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright"><span class="EmbeddedSourceBright">&lt;/</span><span class="MetaTagInline">script</span><span class="EmbeddedSourceBright">&gt;</span></span>&#x000A;</pre>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      Compile a template in JavaScript by using
-      <code>Handlebars.compile</code>
-    </div>
-    <pre class="sunburst"><span class="Storage">var</span> source   <span class="Keyword">=</span> <span class="Keyword">$</span>(<span class="String"><span class="String">&quot;</span>#entry-template<span class="String">&quot;</span></span>).html();&#x000A;<span class="Storage">var</span> template <span class="Keyword">=</span> Handlebars.<span class="SupportFunction">compile</span>(source);&#x000A;</pre>
-    <div class="notes">
-      It is also possible to precompile your templates. This will
-      result in a smaller required runtime library and significant
-      savings from not having to compile the template in the
-      browser. This can be especially important when working with
-      mobile devices.
-    </div>
-    <a class="more-info" href="precompilation.html">Learn More: Precompilation</a>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      Get the HTML result of evaluating a Handlebars template by
-      executing the template with a context.
-    </div>
-    <pre class="sunburst"><span class="Storage">var</span> context <span class="Keyword">=</span> {title: <span class="String"><span class="String">&quot;</span>My New Post<span class="String">&quot;</span></span>, body: <span class="String"><span class="String">&quot;</span>This is my first post!<span class="String">&quot;</span></span>};&#x000A;<span class="Storage">var</span> html    <span class="Keyword">=</span> template(context);&#x000A;</pre>
-    <div class="notes">
-      results in
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>My New Post<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    This is my first post!&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <a class="more-info" href="execution.html">Learn More: Execution</a>
-  </div>
-</div>
-<h2 id="html-escaping">
-  HTML Escaping
-</h2>
-<div class="context">
-  <div class="bullet">
-    <div class="description">
-      Handlebars HTML-escapes values returned by a <code>{{expression}}</code>.
-      If you don't want Handlebars to escape a value, use the "triple-stash", <code>{{{</code>.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{{body}}</span>}&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      with this context:
-    </div>
-    <pre class="sunburst">{&#x000A;  title: <span class="String"><span class="String">&quot;</span>All about &lt;p&gt; Tags<span class="String">&quot;</span></span>,&#x000A;  body: <span class="String"><span class="String">&quot;</span>&lt;p&gt;This is a post about &amp;lt;p&amp;gt; tags&lt;/p&gt;<span class="String">&quot;</span></span>&#x000A;}&#x000A;</pre>
-    <div class="notes">
-      results in:
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>All About <span class="Constant"><span class="Constant">&amp;</span>lt<span class="Constant">;</span></span>p<span class="Constant"><span class="Constant">&amp;</span>gt<span class="Constant">;</span></span> Tags<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span>This is a post about <span class="Constant"><span class="Constant">&amp;</span>lt<span class="Constant">;</span></span>p<span class="Constant"><span class="Constant">&amp;</span>gt<span class="Constant">;</span></span> tags<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      Handlebars will not escape a <code>Handlebars.SafeString</code>.
-      If you write a helper that generates its own HTML, you will usually
-      want to return a <code>new Handlebars.SafeString(result)</code>.
-      In such a circumstance, you will want to manually escape parameters.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>link<span class="String">&#39;</span></span>, <span class="Storage">function</span>(text, url) {&#x000A;  text <span class="Keyword">=</span> Handlebars.Utils.escapeExpression(text);&#x000A;  url  <span class="Keyword">=</span> Handlebars.Utils.escapeExpression(url);&#x000A;&#x000A;  <span class="Storage">var</span> result <span class="Keyword">=</span> <span class="String"><span class="String">&#39;</span>&lt;a href=&quot;<span class="String">&#39;</span></span> <span class="Keyword">+</span> url <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>&quot;&gt;<span class="String">&#39;</span></span> <span class="Keyword">+</span> text <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>&lt;/a&gt;<span class="String">&#39;</span></span>;&#x000A;&#x000A;  <span class="Keyword">return</span> <span class="Keyword">new</span> <span class="JEntityNameType">Handlebars.SafeString</span>(result);&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      This will escape the passed in parameters, but mark the response as
-      safe, so Handlebars will not try to escape it even if the "triple-stash"
-      is not used.
-    </div>
-  </div>
-</div>
-<h2 id="block-expressions">
-  Block Expressions
-</h2>
-<div class="context">
-  <div class="bullet">
-    <div class="description">
-      Block expressions allow you to define helpers that will invoke
-      a section of your template with a different context than the
-      current. These block helpers are identified by a <code>#</code> preceeding
-      the helper name and require a matching closing mustache, <code>/</code>, of the
-      same name.
-    </div>
-    <div class="notes">
-      Let's consider a helper that will generate an HTML list:
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#list people}}</span><span class="EmbeddedSourceBright">{{firstName}}</span> <span class="EmbeddedSourceBright">{{lastName}}</span><span class="EmbeddedSourceBright">{{/list}}</span>&#x000A;</pre>
-    <div class="notes">
-      If we have the following context:
-    </div>
-    <pre class="sunburst">{&#x000A;  people: [&#x000A;    {firstName: <span class="String"><span class="String">&quot;</span>Yehuda<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Katz<span class="String">&quot;</span></span>},&#x000A;    {firstName: <span class="String"><span class="String">&quot;</span>Carl<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Lerche<span class="String">&quot;</span></span>},&#x000A;    {firstName: <span class="String"><span class="String">&quot;</span>Alan<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Johnson<span class="String">&quot;</span></span>}&#x000A;  ]&#x000A;}&#x000A;</pre>
-    <div class="notes">
-      we would create a helper named <code>list</code> to generate our
-      HTML list. The helper receives the <code>people</code> as its
-      first parameter, and an options hash as its second parameter.
-      The options hash contains a property named <code>fn</code>,
-      which you can invoke with a context just as you would invoke a
-      normal Handlebars template.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>list<span class="String">&#39;</span></span>, <span class="Storage">function</span>(items, options) {&#x000A;  <span class="Storage">var</span> out <span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span>&lt;ul&gt;<span class="String">&quot;</span></span>;&#x000A;&#x000A;  <span class="Keyword">for</span>(<span class="Storage">var</span> i<span class="Keyword">=</span><span class="Constant">0</span>, l<span class="Keyword">=</span>items.<span class="SupportConstant">length</span>; i<span class="Keyword">&lt;</span>l; i<span class="Keyword">++</span>) {&#x000A;    out <span class="Keyword">=</span> out <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;li&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> options.fn(items[i]) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/li&gt;<span class="String">&quot;</span></span>;&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">return</span> out <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/ul&gt;<span class="String">&quot;</span></span>;&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      When executed, the template will render:
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>Yehuda Katz<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>Carl Lerche<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>Alan Johnson<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      Block helpers have more features, such as the ability to create an
-      <code>else</code> section (used, for instance, by the built-in <code>if</code>
-      helper).
-    </div>
-    <div class="notes">
-      Since the contents of a block helper are escaped when you call
-      <code>options.fn(context)</code>, Handlebars does not escape
-      the results of a block helper. If it did, inner content would
-      be double-escaped!
-    </div>
-    <a class="more-info" href="block_helpers.html">Learn More: Block Helpers</a>
-  </div>
-</div>
-<h2 id="paths">
-  Handlebars Paths
-</h2>
-<div class="content">
-  <div class="bullet">
-    <div class="description">
-      Handlebars supports simple paths, just like Mustache.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{name}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      Handlebars also supports nested paths, making it possible
-      to look up properties nested below the current context.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>By <span class="EmbeddedSourceBright">{{author.name}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{body}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      That template works with this context
-    </div>
-    <pre class="sunburst"><span class="Storage">var</span> context <span class="Keyword">=</span> {&#x000A;  title: <span class="String"><span class="String">&quot;</span>My First Blog Post!<span class="String">&quot;</span></span>,&#x000A;  author: {&#x000A;    id: <span class="Constant">47</span>,&#x000A;    name: <span class="String"><span class="String">&quot;</span>Yehuda Katz<span class="String">&quot;</span></span>&#x000A;  },&#x000A;  body: <span class="String"><span class="String">&quot;</span>My first post. Wheeeee!<span class="String">&quot;</span></span>&#x000A;};&#x000A;</pre>
-    <div class="notes">
-      This makes it possible to use Handlebars templates with
-      more raw JSON objects.
-    </div>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      Nested handlebars paths can also include <code>../</code> segments,
-      which evaluate their paths against a parent context.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>Comments<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll"><span class="MetaTagAll">id</span><span class="MetaTagAll">=</span><span class="String"><span class="String">&quot;</span><span class="String">comments</span><span class="String">&quot;</span></span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#each comments}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">a</span> <span class="MetaTagInline">href</span>=<span class="String"><span class="String">&quot;</span>/posts/<span class="StringEmbeddedSource">{{../permalink}}</span>#<span class="StringEmbeddedSource">{{id}}</span><span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">a</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{body}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      Even though the link is printed while in the context of a comment,
-      it can still go back to the main context (the post) to retrieve
-      its permalink.
-    </div>
-    <div class="notes">
-      The <code>../</code> path segment references the parent template
-      scope, not one level up in the context. This is because block
-      helpers can invoke a block with any context, so the notion of
-      "one level up" isn't particularly meaningful except as a reference
-      to the parent template scope.
-    </div>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      Handlebars also allows for name conflict resolution between helpers and
-      data fields via a <code>this</code> reference:
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{./name}}</span> or <span class="EmbeddedSourceBright">{{this/name}}</span> or <span class="EmbeddedSourceBright">{{this.name}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      Any of the above would cause the <code>name</code> field on the
-      current context to be used rather than a helper of the same name.
-    </div>
-  </div>
-</div>
-<h2 id="comments">
-  Template comments with <code>{{!-- --}}</code> or <code>{{! }}</code>.
-</h2>
-<div class="content">
-  <div class="bullet">
-    <div class="description">
-      You can use comments in your handlebars code just as you would in your
-      code. Since there is generally some level of logic, this is a good
-      practice.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{!-- only output this author names if an author exists --}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#if author}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{firstName}}</span> <span class="EmbeddedSourceBright">{{lastName}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      The comments will not be in the resulting output. If you'd like the
-      comments to show up. Just use html comments, and they will be output.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{! This comment will not be in the output }}</span>&#x000A;  <span class="Comment"><span class="Comment">&lt;!--</span> This comment will be in the output <span class="Comment">--&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      Any comments that must contain <code>}}</code> or other handlebars
-      tokens should use the <code>{{!-- --}}</code> syntax.
-    </div>
-  </div>
-</div>
-<h2 id="helpers">
-  Helpers
-</h2>
-<div class="content">
-  <div class="bullet">
-    <div class="description">
-      Handlebars helpers can be accessed from any context in a template.
-      You can register a helper with the <code>Handlebars.registerHelper</code> method.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>post<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>By <span class="EmbeddedSourceBright">{{fullName author}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{body}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>Comments<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="EmbeddedSourceBright">{{#each comments}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>By <span class="EmbeddedSourceBright">{{fullName author}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{body}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      when using this context and helpers:
-    </div>
-    <pre class="sunburst"><span class="Storage">var</span> context <span class="Keyword">=</span> {&#x000A;  author: {firstName: <span class="String"><span class="String">&quot;</span>Alan<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Johnson<span class="String">&quot;</span></span>},&#x000A;  body: <span class="String"><span class="String">&quot;</span>I Love Handlebars<span class="String">&quot;</span></span>,&#x000A;  comments: [{&#x000A;    author: {firstName: <span class="String"><span class="String">&quot;</span>Yehuda<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Katz<span class="String">&quot;</span></span>},&#x000A;    body: <span class="String"><span class="String">&quot;</span>Me too!<span class="String">&quot;</span></span>&#x000A;  }]&#x000A;};&#x000A;&#x000A;Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>fullName<span class="String">&#39;</span></span>, <span class="Storage">function</span>(person) {&#x000A;  <span class="Keyword">return</span> person.firstName <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span> <span class="String">&quot;</span></span> <span class="Keyword">+</span> person.lastName;&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      results in:
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>post<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>By Alan Johnson<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>I Love Handlebars<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>Comments<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>By Yehuda Katz<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>Me Too!<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      Helpers receive the current context as the <code>this</code> context
-      of the function.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#each items}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span><span class="EmbeddedSourceBright">{{agree_button}}</span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      when using this context and helpers:
-    </div>
-    <pre class="sunburst"><span class="Storage">var</span> context <span class="Keyword">=</span> {&#x000A;  items: [&#x000A;    {name: <span class="String"><span class="String">&quot;</span>Handlebars<span class="String">&quot;</span></span>, emotion: <span class="String"><span class="String">&quot;</span>love<span class="String">&quot;</span></span>},&#x000A;    {name: <span class="String"><span class="String">&quot;</span>Mustache<span class="String">&quot;</span></span>, emotion: <span class="String"><span class="String">&quot;</span>enjoy<span class="String">&quot;</span></span>},&#x000A;    {name: <span class="String"><span class="String">&quot;</span>Ember<span class="String">&quot;</span></span>, emotion: <span class="String"><span class="String">&quot;</span>want to learn<span class="String">&quot;</span></span>}&#x000A;  ]&#x000A;};&#x000A;&#x000A;Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>agree_button<span class="String">&#39;</span></span>, <span class="Storage">function</span>() {&#x000A;  <span class="Storage">var</span> emotion <span class="Keyword">=</span> Handlebars.escapeExpression(<span class="Variable">this</span>.emotion),&#x000A;      name <span class="Keyword">=</span> Handlebars.escapeExpression(<span class="Variable">this</span>.<span class="SupportConstant">name</span>);&#x000A;&#x000A;  <span class="Keyword">return</span> <span class="Keyword">new</span> <span class="JEntityNameType">Handlebars.SafeString</span>(&#x000A;    <span class="String"><span class="String">&quot;</span>&lt;button&gt;I agree. I <span class="String">&quot;</span></span> <span class="Keyword">+</span> emotion <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span> <span class="String">&quot;</span></span> <span class="Keyword">+</span> name <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/button&gt;<span class="String">&quot;</span></span>&#x000A;  );&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      results in:
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span>I agree. I love Handlebars<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span>I agree. I enjoy Mustache<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span>I agree. I want to learn Ember<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      If your helper returns HTML that you do not want escaped, make sure
-      to return a new <code>Handlebars.SafeString</code>.
-    </div>
-  </div>
-</div>
-<h2 id="literals">
-  Literals
-</h2>
-<div class="content">
-  <div class="bullent">
-    <div class="description">
-      Helper calls may also have literal values passed to them either as paramter arguments or hash arguments. Supported literals include numbers, strings, <code>true</code>, <code>false</code>, <code>null</code>, and <code>undefined</code>.
-    </div>
-    <pre class="sunburst">{{agree_button <span class="String"><span class="String">&quot;</span>My Text<span class="String">&quot;</span></span> <span class="Storage">class</span><span class="Keyword">=</span><span class="String"><span class="String">&quot;</span>my-class<span class="String">&quot;</span></span> visible<span class="Keyword">=</span><span class="Constant">true</span> counter<span class="Keyword">=</span><span class="Constant">4</span>}}&#x000A;</pre>
-  </div>
-</div>
-<h2 id="partials">
-  Partials
-</h2>
-<div class="content">
-  <div class="bullet">
-    <div class="description">
-      Handlebars partials allow for code reuse by creating shared templates. Rendering this template
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>post<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{&gt; userMessage tagName=&quot;h1&quot; }}</span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>Comments<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="EmbeddedSourceBright">{{#each comments}}</span>&#x000A;    <span class="EmbeddedSourceBright">{{&gt; userMessage tagName=&quot;h2&quot; }}</span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      when using this partial and context:
-    </div>
-    <pre class="sunburst">Handlebars.registerPartial(<span class="String"><span class="String">&#39;</span>userMessage<span class="String">&#39;</span></span>,&#x000A;    <span class="String"><span class="String">&#39;</span>&lt;{{tagName}}&gt;By {{author.firstName}} {{author.lastName}}&lt;/{{tagName}}&gt;<span class="String">&#39;</span></span>&#x000A;    <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>&lt;div class=&quot;body&quot;&gt;{{body}}&lt;/div&gt;<span class="String">&#39;</span></span>);&#x000A;</pre>
-    <pre class="sunburst"><span class="Storage">var</span> context <span class="Keyword">=</span> {&#x000A;  author: {firstName: <span class="String"><span class="String">&quot;</span>Alan<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Johnson<span class="String">&quot;</span></span>},&#x000A;  body: <span class="String"><span class="String">&quot;</span>I Love Handlebars<span class="String">&quot;</span></span>,&#x000A;  comments: [{&#x000A;    author: {firstName: <span class="String"><span class="String">&quot;</span>Yehuda<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Katz<span class="String">&quot;</span></span>},&#x000A;    body: <span class="String"><span class="String">&quot;</span>Me too!<span class="String">&quot;</span></span>&#x000A;  }]&#x000A;};&#x000A;</pre>
-    <div class="notes">
-      results in:
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>post<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>By Alan Johnson<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>I Love Handlebars<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>Comments<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>By Yehuda Katz<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>Me Too!<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <a class="more-info" href="partials.html">Learn More: Partials</a>
-  </div>
-</div>
-<h2 id="builtins">
-  Built-In Helpers
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Handlebars offers a variety of built-in helpers such as the <code>if</code> conditional
-      and <code>each</code> iterator.
-    </div>
-    <a class="more-info" href="builtin_helpers.html">Learn More: Built-In Helpers</a>
-  </div>
-</div>
-<h2 id="Utilities">
-  API Reference
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Handlebars offers a variety of APIs and utility methods for applications and helpers.
-    </div>
-    <a class="more-info" href="reference.html">Learn More: API Reference</a>
-  </div>
-</div>
+          <p>
+            Handlebars provides the power necessary to let you build
+            <strong>semantic templates</strong> effectively with no frustration.
+          </p>
+          <p>
+            Handlebars is largely compatible with Mustache templates.
+            In most cases it is possible to swap out Mustache with
+            Handlebars and continue using your current templates.
+            Complete details can be found
+            <a href="https://github.com/wycats/handlebars.js#differences-between-handlebarsjs-and-mustache">here</a>.
+          </p>
+        </div>
+        <a class="download" href="installation.html">Installation</a>
+        <h2 id="getting-started">
+          Getting Started
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Handlebars templates look like regular HTML, with embedded
+              handlebars expressions.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{body}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              A handlebars expression is a <code>{{</code>, some contents,
+              followed by a <code>}}</code>
+            </div>
+            <a class="more-info" href="expressions.html">Learn More: Expressions</a>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              You can deliver a template to the browser by including it
+              in a <code>&lt;script&gt;</code> tag.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright"><span class="EmbeddedSourceBright">&lt;</span><span class="MetaTagInline">script</span> <span class="EmbeddedSourceBright"><span class="MetaTagInline">id</span><span class="EmbeddedSourceBright">=</span><span class="String"><span class="String">&quot;</span><span class="String">entry-template</span><span class="String">&quot;</span></span></span> <span class="MetaTagInline">type</span>=<span class="String"><span class="String">&quot;</span>text/x-handlebars-template<span class="String">&quot;</span></span><span class="EmbeddedSourceBright">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">  <span class="Keyword">&lt;</span>div <span class="Storage">class</span><span class="Keyword">=</span><span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">    <span class="Keyword">&lt;</span>h1<span class="Keyword">&gt;</span><span class="EmbeddedSourceBright">{</span><span class="EmbeddedSourceBright">{</span>title<span class="EmbeddedSourceBright">}</span><span class="EmbeddedSourceBright">}</span><span class="Keyword">&lt;</span>/h1<span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">    <span class="Keyword">&lt;</span>div <span class="Storage">class</span><span class="Keyword">=</span><span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">      <span class="EmbeddedSourceBright">{</span><span class="EmbeddedSourceBright">{</span>body<span class="EmbeddedSourceBright">}</span><span class="EmbeddedSourceBright">}</span></span>&#x000A;<span class="EmbeddedSourceBright">    <span class="Keyword">&lt;</span>/div<span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">  <span class="Keyword">&lt;</span>/div<span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright"><span class="EmbeddedSourceBright">&lt;/</span><span class="MetaTagInline">script</span><span class="EmbeddedSourceBright">&gt;</span></span>&#x000A;</pre>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              Compile a template in JavaScript by using
+              <code>Handlebars.compile</code>
+            </div>
+            <pre class="sunburst"><span class="Storage">var</span> source   <span class="Keyword">=</span> <span class="Keyword">$</span>(<span class="String"><span class="String">&quot;</span>#entry-template<span class="String">&quot;</span></span>).html();&#x000A;<span class="Storage">var</span> template <span class="Keyword">=</span> Handlebars.<span class="SupportFunction">compile</span>(source);&#x000A;</pre>
+            <div class="notes">
+              It is also possible to precompile your templates. This will
+              result in a smaller required runtime library and significant
+              savings from not having to compile the template in the
+              browser. This can be especially important when working with
+              mobile devices.
+            </div>
+            <a class="more-info" href="precompilation.html">Learn More: Precompilation</a>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              Get the HTML result of evaluating a Handlebars template by
+              executing the template with a context.
+            </div>
+            <pre class="sunburst"><span class="Storage">var</span> context <span class="Keyword">=</span> {title: <span class="String"><span class="String">&quot;</span>My New Post<span class="String">&quot;</span></span>, body: <span class="String"><span class="String">&quot;</span>This is my first post!<span class="String">&quot;</span></span>};&#x000A;<span class="Storage">var</span> html    <span class="Keyword">=</span> template(context);&#x000A;</pre>
+            <div class="notes">
+              results in
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>My New Post<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    This is my first post!&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <a class="more-info" href="execution.html">Learn More: Execution</a>
+          </div>
+        </div>
+        <h2 id="html-escaping">
+          HTML Escaping
+        </h2>
+        <div class="context">
+          <div class="bullet">
+            <div class="description">
+              Handlebars HTML-escapes values returned by a <code>{{expression}}</code>.
+              If you don't want Handlebars to escape a value, use the "triple-stash", <code>{{{</code>.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{{body}}</span>}&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              with this context:
+            </div>
+            <pre class="sunburst">{&#x000A;  title: <span class="String"><span class="String">&quot;</span>All about &lt;p&gt; Tags<span class="String">&quot;</span></span>,&#x000A;  body: <span class="String"><span class="String">&quot;</span>&lt;p&gt;This is a post about &amp;lt;p&amp;gt; tags&lt;/p&gt;<span class="String">&quot;</span></span>&#x000A;}&#x000A;</pre>
+            <div class="notes">
+              results in:
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>All About <span class="Constant"><span class="Constant">&amp;</span>lt<span class="Constant">;</span></span>p<span class="Constant"><span class="Constant">&amp;</span>gt<span class="Constant">;</span></span> Tags<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span>This is a post about <span class="Constant"><span class="Constant">&amp;</span>lt<span class="Constant">;</span></span>p<span class="Constant"><span class="Constant">&amp;</span>gt<span class="Constant">;</span></span> tags<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              Handlebars will not escape a <code>Handlebars.SafeString</code>.
+              If you write a helper that generates its own HTML, you will usually
+              want to return a <code>new Handlebars.SafeString(result)</code>.
+              In such a circumstance, you will want to manually escape parameters.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>link<span class="String">&#39;</span></span>, <span class="Storage">function</span>(text, url) {&#x000A;  text <span class="Keyword">=</span> Handlebars.Utils.escapeExpression(text);&#x000A;  url  <span class="Keyword">=</span> Handlebars.Utils.escapeExpression(url);&#x000A;&#x000A;  <span class="Storage">var</span> result <span class="Keyword">=</span> <span class="String"><span class="String">&#39;</span>&lt;a href=&quot;<span class="String">&#39;</span></span> <span class="Keyword">+</span> url <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>&quot;&gt;<span class="String">&#39;</span></span> <span class="Keyword">+</span> text <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>&lt;/a&gt;<span class="String">&#39;</span></span>;&#x000A;&#x000A;  <span class="Keyword">return</span> <span class="Keyword">new</span> <span class="JEntityNameType">Handlebars.SafeString</span>(result);&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              This will escape the passed in parameters, but mark the response as
+              safe, so Handlebars will not try to escape it even if the "triple-stash"
+              is not used.
+            </div>
+          </div>
+        </div>
+        <h2 id="block-expressions">
+          Block Expressions
+        </h2>
+        <div class="context">
+          <div class="bullet">
+            <div class="description">
+              Block expressions allow you to define helpers that will invoke
+              a section of your template with a different context than the
+              current. These block helpers are identified by a <code>#</code> preceeding
+              the helper name and require a matching closing mustache, <code>/</code>, of the
+              same name.
+            </div>
+            <div class="notes">
+              Let's consider a helper that will generate an HTML list:
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#list people}}</span><span class="EmbeddedSourceBright">{{firstName}}</span> <span class="EmbeddedSourceBright">{{lastName}}</span><span class="EmbeddedSourceBright">{{/list}}</span>&#x000A;</pre>
+            <div class="notes">
+              If we have the following context:
+            </div>
+            <pre class="sunburst">{&#x000A;  people: [&#x000A;    {firstName: <span class="String"><span class="String">&quot;</span>Yehuda<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Katz<span class="String">&quot;</span></span>},&#x000A;    {firstName: <span class="String"><span class="String">&quot;</span>Carl<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Lerche<span class="String">&quot;</span></span>},&#x000A;    {firstName: <span class="String"><span class="String">&quot;</span>Alan<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Johnson<span class="String">&quot;</span></span>}&#x000A;  ]&#x000A;}&#x000A;</pre>
+            <div class="notes">
+              we would create a helper named <code>list</code> to generate our
+              HTML list. The helper receives the <code>people</code> as its
+              first parameter, and an options hash as its second parameter.
+              The options hash contains a property named <code>fn</code>,
+              which you can invoke with a context just as you would invoke a
+              normal Handlebars template.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>list<span class="String">&#39;</span></span>, <span class="Storage">function</span>(items, options) {&#x000A;  <span class="Storage">var</span> out <span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span>&lt;ul&gt;<span class="String">&quot;</span></span>;&#x000A;&#x000A;  <span class="Keyword">for</span>(<span class="Storage">var</span> i<span class="Keyword">=</span><span class="Constant">0</span>, l<span class="Keyword">=</span>items.<span class="SupportConstant">length</span>; i<span class="Keyword">&lt;</span>l; i<span class="Keyword">++</span>) {&#x000A;    out <span class="Keyword">=</span> out <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;li&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> options.fn(items[i]) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/li&gt;<span class="String">&quot;</span></span>;&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">return</span> out <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/ul&gt;<span class="String">&quot;</span></span>;&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              When executed, the template will render:
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>Yehuda Katz<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>Carl Lerche<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>Alan Johnson<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              Block helpers have more features, such as the ability to create an
+              <code>else</code> section (used, for instance, by the built-in <code>if</code>
+              helper).
+            </div>
+            <div class="notes">
+              Since the contents of a block helper are escaped when you call
+              <code>options.fn(context)</code>, Handlebars does not escape
+              the results of a block helper. If it did, inner content would
+              be double-escaped!
+            </div>
+            <a class="more-info" href="block_helpers.html">Learn More: Block Helpers</a>
+          </div>
+        </div>
+        <h2 id="paths">
+          Handlebars Paths
+        </h2>
+        <div class="content">
+          <div class="bullet">
+            <div class="description">
+              Handlebars supports simple paths, just like Mustache.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{name}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              Handlebars also supports nested paths, making it possible
+              to look up properties nested below the current context.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>By <span class="EmbeddedSourceBright">{{author.name}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{body}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              That template works with this context
+            </div>
+            <pre class="sunburst"><span class="Storage">var</span> context <span class="Keyword">=</span> {&#x000A;  title: <span class="String"><span class="String">&quot;</span>My First Blog Post!<span class="String">&quot;</span></span>,&#x000A;  author: {&#x000A;    id: <span class="Constant">47</span>,&#x000A;    name: <span class="String"><span class="String">&quot;</span>Yehuda Katz<span class="String">&quot;</span></span>&#x000A;  },&#x000A;  body: <span class="String"><span class="String">&quot;</span>My first post. Wheeeee!<span class="String">&quot;</span></span>&#x000A;};&#x000A;</pre>
+            <div class="notes">
+              This makes it possible to use Handlebars templates with
+              more raw JSON objects.
+            </div>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              Nested handlebars paths can also include <code>../</code> segments,
+              which evaluate their paths against a parent context.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>Comments<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll"><span class="MetaTagAll">id</span><span class="MetaTagAll">=</span><span class="String"><span class="String">&quot;</span><span class="String">comments</span><span class="String">&quot;</span></span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#each comments}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">a</span> <span class="MetaTagInline">href</span>=<span class="String"><span class="String">&quot;</span>/posts/<span class="StringEmbeddedSource">{{../permalink}}</span>#<span class="StringEmbeddedSource">{{id}}</span><span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">a</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{body}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              Even though the link is printed while in the context of a comment,
+              it can still go back to the main context (the post) to retrieve
+              its permalink.
+            </div>
+            <div class="notes">
+              The exact value that <code>../</code> will resolve to varies based on the helper that is calling the block. Using <code>../</code> is only necessary when context changes, so children of helpers such as <code>each</code> would require the use of <code>../</code> while children of helpers such as <code>if</code> do not.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{permalink}}</span>&#x000A;<span class="EmbeddedSourceBright">{{#each comments}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{../permalink}}</span>&#x000A;&#x000A;  <span class="EmbeddedSourceBright">{{#if title}}</span>&#x000A;    <span class="EmbeddedSourceBright">{{../permalink}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+            <div class="notes">
+              In this example all of the above reference the same <code>permalink</code> value even though they are located within different blocks. This behavior is new as of Handlebars 4, the <a href="https://github.com/wycats/handlebars.js/blob/master/release-notes.md">release notes</a> discuss the prior behavior as well as the migration plan.
+            </div>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              Handlebars also allows for name conflict resolution between helpers and
+              data fields via a <code>this</code> reference:
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{./name}}</span> or <span class="EmbeddedSourceBright">{{this/name}}</span> or <span class="EmbeddedSourceBright">{{this.name}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">p</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              Any of the above would cause the <code>name</code> field on the
+              current context to be used rather than a helper of the same name.
+            </div>
+          </div>
+        </div>
+        <h2 id="comments">
+          Template comments with <code>{{!-- --}}</code> or <code>{{! }}</code>.
+        </h2>
+        <div class="content">
+          <div class="bullet">
+            <div class="description">
+              You can use comments in your handlebars code just as you would in your
+              code. Since there is generally some level of logic, this is a good
+              practice.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{!-- only output this author names if an author exists --}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#if author}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{firstName}}</span> <span class="EmbeddedSourceBright">{{lastName}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              The comments will not be in the resulting output. If you'd like the
+              comments to show up. Just use html comments, and they will be output.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{! This comment will not be in the output }}</span>&#x000A;  <span class="Comment"><span class="Comment">&lt;!--</span> This comment will be in the output <span class="Comment">--&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              Any comments that must contain <code>}}</code> or other handlebars
+              tokens should use the <code>{{!-- --}}</code> syntax.
+            </div>
+          </div>
+        </div>
+        <h2 id="helpers">
+          Helpers
+        </h2>
+        <div class="content">
+          <div class="bullet">
+            <div class="description">
+              Handlebars helpers can be accessed from any context in a template.
+              You can register a helper with the <code>Handlebars.registerHelper</code> method.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>post<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>By <span class="EmbeddedSourceBright">{{fullName author}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{body}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>Comments<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="EmbeddedSourceBright">{{#each comments}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>By <span class="EmbeddedSourceBright">{{fullName author}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{body}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              when using this context and helpers:
+            </div>
+            <pre class="sunburst"><span class="Storage">var</span> context <span class="Keyword">=</span> {&#x000A;  author: {firstName: <span class="String"><span class="String">&quot;</span>Alan<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Johnson<span class="String">&quot;</span></span>},&#x000A;  body: <span class="String"><span class="String">&quot;</span>I Love Handlebars<span class="String">&quot;</span></span>,&#x000A;  comments: [{&#x000A;    author: {firstName: <span class="String"><span class="String">&quot;</span>Yehuda<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Katz<span class="String">&quot;</span></span>},&#x000A;    body: <span class="String"><span class="String">&quot;</span>Me too!<span class="String">&quot;</span></span>&#x000A;  }]&#x000A;};&#x000A;&#x000A;Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>fullName<span class="String">&#39;</span></span>, <span class="Storage">function</span>(person) {&#x000A;  <span class="Keyword">return</span> person.firstName <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span> <span class="String">&quot;</span></span> <span class="Keyword">+</span> person.lastName;&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              results in:
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>post<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>By Alan Johnson<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>I Love Handlebars<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>Comments<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>By Yehuda Katz<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>Me Too!<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              Helpers receive the current context as the <code>this</code> context
+              of the function.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#each items}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span><span class="EmbeddedSourceBright">{{agree_button}}</span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              when using this context and helpers:
+            </div>
+            <pre class="sunburst"><span class="Storage">var</span> context <span class="Keyword">=</span> {&#x000A;  items: [&#x000A;    {name: <span class="String"><span class="String">&quot;</span>Handlebars<span class="String">&quot;</span></span>, emotion: <span class="String"><span class="String">&quot;</span>love<span class="String">&quot;</span></span>},&#x000A;    {name: <span class="String"><span class="String">&quot;</span>Mustache<span class="String">&quot;</span></span>, emotion: <span class="String"><span class="String">&quot;</span>enjoy<span class="String">&quot;</span></span>},&#x000A;    {name: <span class="String"><span class="String">&quot;</span>Ember<span class="String">&quot;</span></span>, emotion: <span class="String"><span class="String">&quot;</span>want to learn<span class="String">&quot;</span></span>}&#x000A;  ]&#x000A;};&#x000A;&#x000A;Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>agree_button<span class="String">&#39;</span></span>, <span class="Storage">function</span>() {&#x000A;  <span class="Storage">var</span> emotion <span class="Keyword">=</span> Handlebars.escapeExpression(<span class="Variable">this</span>.emotion),&#x000A;      name <span class="Keyword">=</span> Handlebars.escapeExpression(<span class="Variable">this</span>.<span class="SupportConstant">name</span>);&#x000A;&#x000A;  <span class="Keyword">return</span> <span class="Keyword">new</span> <span class="JEntityNameType">Handlebars.SafeString</span>(&#x000A;    <span class="String"><span class="String">&quot;</span>&lt;button&gt;I agree. I <span class="String">&quot;</span></span> <span class="Keyword">+</span> emotion <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span> <span class="String">&quot;</span></span> <span class="Keyword">+</span> name <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/button&gt;<span class="String">&quot;</span></span>&#x000A;  );&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              results in:
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span>I agree. I love Handlebars<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span>I agree. I enjoy Mustache<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span>I agree. I want to learn Ember<span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">button</span><span class="MetaTagInline">&gt;</span></span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">li</span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">ul</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              If your helper returns HTML that you do not want escaped, make sure
+              to return a new <code>Handlebars.SafeString</code>.
+            </div>
+          </div>
+        </div>
+        <h2 id="literals">
+          Literals
+        </h2>
+        <div class="content">
+          <div class="bullent">
+            <div class="description">
+              Helper calls may also have literal values passed to them either as paramter arguments or hash arguments. Supported literals include numbers, strings, <code>true</code>, <code>false</code>, <code>null</code>, and <code>undefined</code>.
+            </div>
+            <pre class="sunburst">{{agree_button <span class="String"><span class="String">&quot;</span>My Text<span class="String">&quot;</span></span> <span class="Storage">class</span><span class="Keyword">=</span><span class="String"><span class="String">&quot;</span>my-class<span class="String">&quot;</span></span> visible<span class="Keyword">=</span><span class="Constant">true</span> counter<span class="Keyword">=</span><span class="Constant">4</span>}}&#x000A;</pre>
+          </div>
+        </div>
+        <h2 id="partials">
+          Partials
+        </h2>
+        <div class="content">
+          <div class="bullet">
+            <div class="description">
+              Handlebars partials allow for code reuse by creating shared templates. Rendering this template
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>post<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{&gt; userMessage tagName=&quot;h1&quot; }}</span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>Comments<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="EmbeddedSourceBright">{{#each comments}}</span>&#x000A;    <span class="EmbeddedSourceBright">{{&gt; userMessage tagName=&quot;h2&quot; }}</span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              when using this partial and context:
+            </div>
+            <pre class="sunburst">Handlebars.registerPartial(<span class="String"><span class="String">&#39;</span>userMessage<span class="String">&#39;</span></span>,&#x000A;    <span class="String"><span class="String">&#39;</span>&lt;{{tagName}}&gt;By {{author.firstName}} {{author.lastName}}&lt;/{{tagName}}&gt;<span class="String">&#39;</span></span>&#x000A;    <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>&lt;div class=&quot;body&quot;&gt;{{body}}&lt;/div&gt;<span class="String">&#39;</span></span>);&#x000A;</pre>
+            <pre class="sunburst"><span class="Storage">var</span> context <span class="Keyword">=</span> {&#x000A;  author: {firstName: <span class="String"><span class="String">&quot;</span>Alan<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Johnson<span class="String">&quot;</span></span>},&#x000A;  body: <span class="String"><span class="String">&quot;</span>I Love Handlebars<span class="String">&quot;</span></span>,&#x000A;  comments: [{&#x000A;    author: {firstName: <span class="String"><span class="String">&quot;</span>Yehuda<span class="String">&quot;</span></span>, lastName: <span class="String"><span class="String">&quot;</span>Katz<span class="String">&quot;</span></span>},&#x000A;    body: <span class="String"><span class="String">&quot;</span>Me too!<span class="String">&quot;</span></span>&#x000A;  }]&#x000A;};&#x000A;</pre>
+            <div class="notes">
+              results in:
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>post<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>By Alan Johnson<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>I Love Handlebars<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>Comments<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>By Yehuda Katz<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>Me Too!<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <a class="more-info" href="partials.html">Learn More: Partials</a>
+          </div>
+        </div>
+        <h2 id="builtins">
+          Built-In Helpers
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Handlebars offers a variety of built-in helpers such as the <code>if</code> conditional
+              and <code>each</code> iterator.
+            </div>
+            <a class="more-info" href="builtin_helpers.html">Learn More: Built-In Helpers</a>
+          </div>
+        </div>
+        <h2 id="Utilities">
+          API Reference
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Handlebars offers a variety of APIs and utility methods for applications and helpers.
+            </div>
+            <a class="more-info" href="reference.html">Learn More: API Reference</a>
+          </div>
+        </div>
         <a class="issue-tracker" href="https://github.com/wycats/handlebars-site/issues">
           Found a documentation issue? Tell us!
         </a>
@@ -340,7 +340,7 @@
     </div>
     <div id="credits"></div>
     <a href="http://github.com/wycats/handlebars.js/" id="github">
-      <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" />
+      <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
     </a>
     <script>
       var _gaq = _gaq || [];

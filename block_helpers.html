@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <title>Handlebars.js: Minimal Templating on Steroids</title>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/><link href="/stylesheets/sunburst.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="/images/favicon.png" rel="shortcut icon" type="image/png" />
+    <link href="/images/favicon.png" rel="shortcut icon" type="image/png">
   </head>
   <body>
     <div id="body">
@@ -18,303 +18,303 @@
           <img alt="Buy Handlebars swag on DevSwag!" src="images/handlebars-devswag.png"/>
         </a>
         <div id="intro">
-  <p>
-    Block helpers make it possible to define custom iterators and
-    other functionality that can invoke the passed block with a new
-    context.
-  </p>
-</div>
-<h2 id="basic-blocks">
-  Basic Blocks
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      For demonstration purposes, let's define a block helper that invokes the
-      block as though no helper existed.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{#noop}}</span><span class="EmbeddedSourceBright">{{body}}</span><span class="EmbeddedSourceBright">{{/noop}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      The <code>noop</code> helper (short for "no operation") will receive an options hash.
-      This options hash contains a function (<code>options.fn</code>)
-      that behaves like a normal compiled Handlebars template.
-      Specifically, the function will take a context and return a
-      String.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>noop<span class="String">&#39;</span></span>, <span class="Storage">function</span>(options) {&#x000A;  <span class="Keyword">return</span> options.fn(<span class="Variable">this</span>);&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      Handlebars always invokes helpers with the current context as
-      <code>this</code>, so you can invoke the block with
-      <code>this</code> to evaluate the block in the current context.
-    </div>
-    <div class="notes">
-      Any helpers defined in this manner will take precedence over fields defined in the context. To access a field that is masked by a helper, a path reference may be used. In the example above a field named <code>noop</code> on the context object would be referenced using:
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{./noop}}</span>&#x000A;</pre>
-  </div>
-</div>
-<h2 id="basic-blocks">
-  Basic Block Variation
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      To better illustrate the syntax, let's define another block helper that adds some markup to the wrapped text.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{#bold}}</span><span class="EmbeddedSourceBright">{{body}}</span><span class="EmbeddedSourceBright">{{/bold}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      The <code>bold</code> helper will add markup to make its text bold.
-      As before, the function will take a context as input and return a String.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>bold<span class="String">&#39;</span></span>, <span class="Storage">function</span>(options) {&#x000A;  <span class="Keyword">return</span> <span class="Keyword">new</span> <span class="JEntityNameType">Handlebars.SafeString</span>(&#x000A;      <span class="String"><span class="String">&#39;</span>&lt;div class=&quot;mybold&quot;&gt;<span class="String">&#39;</span></span>&#x000A;      <span class="Keyword">+</span> options.fn(<span class="Variable">this</span>)&#x000A;      <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>&lt;/div&gt;<span class="String">&#39;</span></span>);&#x000A;});&#x000A;</pre>
-  </div>
-</div>
-<h2 id="with-helper">
-  The <code>with</code> helper
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      The <code>with</code> helper demonstrates how to pass a parameter to your helper.
-      When a helper is called with a parameter, it is invoked
-      with whatever context the template passed in.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#with story}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>intro<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{{intro}}</span>}<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{{body}}</span>}<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/with}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      You might find a helper like this useful if a section of your
-      JSON object contains deeply nested properties, and you
-      want to avoid repeating the parent name. The
-      above template could be useful with a JSON like:
-    </div>
-    <pre class="sunburst">{&#x000A;  title: <span class="String"><span class="String">&quot;</span>First Post<span class="String">&quot;</span></span>,&#x000A;  story: {&#x000A;    intro: <span class="String"><span class="String">&quot;</span>Before the jump<span class="String">&quot;</span></span>,&#x000A;    body: <span class="String"><span class="String">&quot;</span>After the jump<span class="String">&quot;</span></span>&#x000A;  }&#x000A;}&#x000A;</pre>
-    <div class="notes">
-      Implementing a helper like this is a lot like implementing
-      the <code>noop</code> helper. Helpers can take
-      parameters, and parameters are evaluated just like expressions
-      used directly inside <code>{{mustache}}</code> blocks.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>with<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Keyword">return</span> options.fn(context);&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      Parameters are passed to helpers in the order that they
-      are passed, followed by the options hash.
-    </div>
-  </div>
-</div>
-<h2 id="iterators">
-  Simple Iterators
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      A common use-case for block helpers is using them to define
-      custom iterators. In fact, all Handlebars built-in helpers are
-      defined as regular Handlebars block helpers. Let's take a look
-      at how the built-in <code>each</code> helper works.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#with story}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>intro<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{{intro}}</span>}<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{{body}}</span>}<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/with}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>comments<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#each comments}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>comment<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;      <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{subject}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;      <span class="EmbeddedSourceBright">{{{body}}</span>}&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      In this case, we want to invoke the block passed to <code>each</code>
-      once for each element in the comments Array.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>each<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Storage">var</span> ret <span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span><span class="String">&quot;</span></span>;&#x000A;&#x000A;  <span class="Keyword">for</span>(<span class="Storage">var</span> i<span class="Keyword">=</span><span class="Constant">0</span>, j<span class="Keyword">=</span>context.<span class="SupportConstant">length</span>; i<span class="Keyword">&lt;</span>j; i<span class="Keyword">++</span>) {&#x000A;    ret <span class="Keyword">=</span> ret <span class="Keyword">+</span> options.fn(context[i]);&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">return</span> ret;&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      In this case, we iterate over the items in the passed parameter,
-      invoking the block once with each item. As we iterate, we build
-      up a String result, and then return it.
-    </div>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      This pattern can be used to implement more advanced iterators.
-      For instance, let's create an iterator that creates a
-      <code>&lt;ul&gt;</code> wrapper, and wraps each resulting element
-      in an <code>&lt;li&gt;</code>.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#list nav}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">a</span> <span class="MetaTagInline">href</span>=<span class="String"><span class="String">&quot;</span><span class="StringEmbeddedSource">{{url}}</span><span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">a</span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/list}}</span>&#x000A;</pre>
-    <div class="notes">
-      You would evaluate this template using something like this as
-      the context:
-    </div>
-    <pre class="sunburst">{&#x000A;  nav: [&#x000A;    { url: <span class="String"><span class="String">&quot;</span>http://www.yehudakatz.com<span class="String">&quot;</span></span>, title: <span class="String"><span class="String">&quot;</span>Katz Got Your Tongue<span class="String">&quot;</span></span> },&#x000A;    { url: <span class="String"><span class="String">&quot;</span>http://www.sproutcore.com/block<span class="String">&quot;</span></span>, title: <span class="String"><span class="String">&quot;</span>SproutCore Blog<span class="String">&quot;</span></span> },&#x000A;  ]&#x000A;}&#x000A;</pre>
-    <div class="notes">
-      The helper is similar to the original <code>each</code> helper.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>list<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Storage">var</span> ret <span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span>&lt;ul&gt;<span class="String">&quot;</span></span>;&#x000A;&#x000A;  <span class="Keyword">for</span>(<span class="Storage">var</span> i<span class="Keyword">=</span><span class="Constant">0</span>, j<span class="Keyword">=</span>context.<span class="SupportConstant">length</span>; i<span class="Keyword">&lt;</span>j; i<span class="Keyword">++</span>) {&#x000A;    ret <span class="Keyword">=</span> ret <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;li&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> options.fn(context[i]) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/li&gt;<span class="String">&quot;</span></span>;&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">return</span> ret <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/ul&gt;<span class="String">&quot;</span></span>;&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      Using a library like underscore.js or SproutCore's runtime library
-      could make this a bit prettier. For example, here's what it might
-      look like using SproutCore's runtime library:
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>list<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Keyword">return</span> <span class="String"><span class="String">&quot;</span>&lt;ul&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> context.map(<span class="Storage">function</span>(item) {&#x000A;    <span class="Keyword">return</span> <span class="String"><span class="String">&quot;</span>&lt;li&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> options.fn(item) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/li&gt;<span class="String">&quot;</span></span>;&#x000A;  }).<span class="SupportFunction">join</span>(<span class="String"><span class="String">&quot;</span><span class="StringConstant">\n</span><span class="String">&quot;</span></span>) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/ul&gt;<span class="String">&quot;</span></span>;&#x000A;});&#x000A;</pre>
-  </div>
-</div>
-<h2 id="conditionals">
-  Conditionals
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Another common use-case for block helpers is to evaluate conditional statements.
-      As with the iterators, Handlebars' built-in <code>if</code> and
-      <code>unless</code> control structures are implemented as regular
-      Handlebars helpers.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#if isActive}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>star.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Active<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;</pre>
-    <div class="notes">
-      Control structures typically do not change the current context, instead
-      they decide whether or not to invoke the block based upon some variable.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>if<span class="String">&#39;</span></span>, <span class="Storage">function</span>(conditional, options) {&#x000A;  <span class="Keyword">if</span>(conditional) {&#x000A;    <span class="Keyword">return</span> options.fn(<span class="Variable">this</span>);&#x000A;  }&#x000A;});&#x000A;</pre>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      When writing a conditional, you will often want to make it possible
-      for templates to provide a block of HTML that your helper should
-      insert if the conditional evaluates to false. Handlebars handles
-      this problem by providing generic <code>else</code> functionality
-      to block helpers.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#if isActive}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>star.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Active<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{else}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>cry.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Inactive<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;</pre>
-    <div class="notes">
-      Handlebars provides the block for the <code>else</code> fragment
-      as <code>options.inverse</code>. You do not need to check for the
-      existence of the <code>else</code> fragment: Handlebars will detect
-      it automatically and register a "noop" function.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>if<span class="String">&#39;</span></span>, <span class="Storage">function</span>(conditional, options) {&#x000A;  <span class="Keyword">if</span>(conditional) {&#x000A;    <span class="Keyword">return</span> options.fn(<span class="Variable">this</span>);&#x000A;  } <span class="Keyword">else</span> {&#x000A;    <span class="Keyword">return</span> options.inverse(<span class="Variable">this</span>);&#x000A;  }&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      Handlebars provides additional metadata to block helpers by attaching
-      them as properties of the options hash. Keep reading for more
-      examples.
-    </div>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      Conditionals may also be chained by including the subsequent helper call
-      within the else mustache.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#if isActive}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>star.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Active<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{else if isInactive}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>cry.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Inactive<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;</pre>
-    <div class="notes">
-      It is not necessary to use the same helper in subsequent calls, the
-      <code>unless</code> helper could be used in the else portion as with any
-      other helper. When the helper values are different, the closing mustache
-      should match the opening helper name.
-    </div>
-  </div>
-</div>
-<h2 id="hash-arguments">
-  Hash Arguments
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Like regular helpers, block helpers can accept an optional Hash
-      as its final argument. Let's revisit the <code>list</code> helper
-      and make it possible for us to add any number of optional attributes
-      to the <code>&lt;ul&gt;</code> element we will create.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#list nav id=&quot;nav-bar&quot; class=&quot;top&quot;}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">a</span> <span class="MetaTagInline">href</span>=<span class="String"><span class="String">&quot;</span><span class="StringEmbeddedSource">{{url}}</span><span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">a</span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/list}}</span>&#x000A;</pre>
-    <div class="notes">
-      Handlebars provides the final hash as <code>options.hash</code>. This
-      makes it easier to accept a variable number of parameters, while
-      also accepting an optional Hash. If the template provides no hash
-      arguments, Handlebars will automatically pass an empty object
-      (<code>{}</code>), so you don't need to check for the existence of
-      hash arguments.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>list<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Storage">var</span> attrs <span class="Keyword">=</span> Em.keys(options.<span class="SupportConstant">hash</span>).map(<span class="Storage">function</span>(key) {&#x000A;    <span class="Keyword">return</span> key <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>=&quot;<span class="String">&#39;</span></span> <span class="Keyword">+</span> options.<span class="SupportConstant">hash</span>[key] <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>&quot;<span class="String">&#39;</span></span>;&#x000A;  }).<span class="SupportFunction">join</span>(<span class="String"><span class="String">&quot;</span> <span class="String">&quot;</span></span>);&#x000A;&#x000A;  <span class="Keyword">return</span> <span class="String"><span class="String">&quot;</span>&lt;ul <span class="String">&quot;</span></span> <span class="Keyword">+</span> attrs <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> context.map(<span class="Storage">function</span>(item) {&#x000A;    <span class="Keyword">return</span> <span class="String"><span class="String">&quot;</span>&lt;li&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> options.fn(item) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/li&gt;<span class="String">&quot;</span></span>;&#x000A;  }).<span class="SupportFunction">join</span>(<span class="String"><span class="String">&quot;</span><span class="StringConstant">\n</span><span class="String">&quot;</span></span>) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/ul&gt;<span class="String">&quot;</span></span>;&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      Hash arguments provide a powerful way to offer a number of optional
-      parameters to a block helper without the complexity caused by
-      positional arguments.
-    </div>
-  </div>
-</div>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      <p>
-        Block helpers can also inject private variables into their child
-        templates. This can be useful to add extra information that is
-        not in the original context data.
-      </p>
-      <p>
-        For example, when iterating over a list, you may provide the
-        current index as a private variable.
-      </p>
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#list array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@index}}</span>. <span class="EmbeddedSourceBright">{{title}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/list}}</span>&#x000A;</pre>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>list<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Storage">var</span> out <span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span>&lt;ul&gt;<span class="String">&quot;</span></span>, data;&#x000A;&#x000A;  <span class="Keyword">if</span> (options.<span class="SupportConstant">data</span>) {&#x000A;    data <span class="Keyword">=</span> Handlebars.createFrame(options.<span class="SupportConstant">data</span>);&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">for</span> (<span class="Storage">var</span> i<span class="Keyword">=</span><span class="Constant">0</span>; i<span class="Keyword">&lt;</span>context.<span class="SupportConstant">length</span>; i<span class="Keyword">++</span>) {&#x000A;    <span class="Keyword">if</span> (data) {&#x000A;      data.<span class="SupportConstant">index</span> <span class="Keyword">=</span> i;&#x000A;    }&#x000A;&#x000A;    out <span class="Keyword">+</span><span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span>&lt;li&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> options.fn(context[i], { data: data }) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/li&gt;<span class="String">&quot;</span></span>;&#x000A;  }&#x000A;&#x000A;  out <span class="Keyword">+</span><span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span>&lt;/ul&gt;<span class="String">&quot;</span></span>;&#x000A;  <span class="Keyword">return</span> out;&#x000A;});&#x000A;</pre>
-    <div class="notes">
-      Private variables provided via the <code>data</code> option are
-      available in all descendent scopes.
-    </div>
-    <div class="notes">
-      Private variables defined in parent scopes may be accessed via pathed queries.
-      To access the <code>index</code> field of the parent iterator, <code>@../index</code>
-      may be used.
-    </div>
-    <div class="notes">
-      Make sure you create a new data frame in each helper that assigns its own data.
-      Otherwise, downstream helpers might unexpectedly mutate upstream variables.
-    </div>
-    <div class="notes">
-      Also ensure that the <code>data</code> field is defined prior to attempting to
-      interact with an existing data object. The private variable behavior is condtionally
-      compiled and some templates might not create this field.
-    </div>
-  </div>
-</div>
-<h2 id="block-params">
-  Block Parameters
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      New in Handlebars 3.0, it's possible to receive named parameters from supporting helpers.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each users as |user userId|}}</span>&#x000A;  Id: <span class="EmbeddedSourceBright">{{userId}}</span> Name: <span class="EmbeddedSourceBright">{{user.name}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
-    <div class="notes">
-      In this particular example, <code>user</code> will have the same value as the current context and <code>userId</code> will have the index value for the iteration.
-    </div>
-    <div class="notes">
-      This allows for nested helpers to avoid name conflicts that can occur with private variables.
-    </div>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each users as |user userId|}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#each user.book as |book bookId|}}</span>&#x000A;    User Id: <span class="EmbeddedSourceBright">{{userId}}</span> Book Id: <span class="EmbeddedSourceBright">{{bookId}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      A number of <a href="builtin_helpers.html">builtin helpers</a> support block parameters and any custom helper may provide them through the <code>blockParams</code> options field.
-    </div>
-    <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>block-params<span class="String">&#39;</span></span>, <span class="Storage">function</span>() {&#x000A;  <span class="Storage">var</span> args <span class="Keyword">=</span> [],&#x000A;      options <span class="Keyword">=</span> arguments[arguments.<span class="SupportConstant">length</span> <span class="Keyword">-</span> <span class="Constant">1</span>];&#x000A;  <span class="Keyword">for</span> (<span class="Storage">var</span> i <span class="Keyword">=</span> <span class="Constant">0</span>; i <span class="Keyword">&lt;</span> arguments.<span class="SupportConstant">length</span> <span class="Keyword">-</span> <span class="Constant">1</span>; i<span class="Keyword">++</span>) {&#x000A;    args.<span class="SupportFunction">push</span>(arguments[i]);&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">return</span> options.fn(<span class="Variable">this</span>, {data: options.<span class="SupportConstant">data</span>, blockParams: args});&#x000A;});&#x000A;</pre>
-    <pre class="sunburst"><span class="EmbeddedSourceBright">{{#block-params 1 2 3 as |foo bar baz|}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{foo}}</span> <span class="EmbeddedSourceBright">{{bar}}</span> <span class="EmbeddedSourceBright">{{baz}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/block-params}}</span>&#x000A;</pre>
-    <div class="notes">
-      Implements a helper that allows for named variable declarations within a given block. This example would output <code>1 2 3</code> on render.
-    </div>
-    <div class="notes">
-      Helpers can determine the number of block paramemters referenced by the template via the <code>options.fn.blockParams</code> field, which is an integer count. This value represents the number of block parameters that could be referenced by the child template. Parameters beyond this cound will never be referenced and can safely be omitted by the helper if desired. This is optional and any additional parameters passed to the template will be silently ignored.
-    </div>
-  </div>
-</div>
-<h2 id="raw-blocks">
-  Raw Blocks
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Raw blocks are available for templates needing to handle unprocessed mustache blocks.
-      <pre class="sunburst"><span class="EmbeddedSourceBright">{{{{raw-helper}}</span>}}&#x000A;  <span class="EmbeddedSourceBright">{{bar}}</span>&#x000A;<span class="EmbeddedSourceBright">{{{{/raw-helper}}</span>}}&#x000A;</pre>
-      <div class="notes">
-        will execute the helper <code>raw-helper</code> without interpretting the content.
-      </div>
-      <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>raw-helper<span class="String">&#39;</span></span>, <span class="Storage">function</span>(options) {&#x000A;  <span class="Keyword">return</span> options.fn();&#x000A;});&#x000A;</pre>
-      <div class="notes">
-        will render
-      </div>
-      <pre class="sunburst"><span class="EmbeddedSourceBright">{{bar}}</span>&#x000A;</pre>
-    </div>
-  </div>
-</div>
+          <p>
+            Block helpers make it possible to define custom iterators and
+            other functionality that can invoke the passed block with a new
+            context.
+          </p>
+        </div>
+        <h2 id="basic-blocks">
+          Basic Blocks
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              For demonstration purposes, let's define a block helper that invokes the
+              block as though no helper existed.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{#noop}}</span><span class="EmbeddedSourceBright">{{body}}</span><span class="EmbeddedSourceBright">{{/noop}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              The <code>noop</code> helper (short for "no operation") will receive an options hash.
+              This options hash contains a function (<code>options.fn</code>)
+              that behaves like a normal compiled Handlebars template.
+              Specifically, the function will take a context and return a
+              String.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>noop<span class="String">&#39;</span></span>, <span class="Storage">function</span>(options) {&#x000A;  <span class="Keyword">return</span> options.fn(<span class="Variable">this</span>);&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              Handlebars always invokes helpers with the current context as
+              <code>this</code>, so you can invoke the block with
+              <code>this</code> to evaluate the block in the current context.
+            </div>
+            <div class="notes">
+              Any helpers defined in this manner will take precedence over fields defined in the context. To access a field that is masked by a helper, a path reference may be used. In the example above a field named <code>noop</code> on the context object would be referenced using:
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{./noop}}</span>&#x000A;</pre>
+          </div>
+        </div>
+        <h2 id="basic-blocks">
+          Basic Block Variation
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              To better illustrate the syntax, let's define another block helper that adds some markup to the wrapped text.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="EmbeddedSourceBright">{{#bold}}</span><span class="EmbeddedSourceBright">{{body}}</span><span class="EmbeddedSourceBright">{{/bold}}</span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              The <code>bold</code> helper will add markup to make its text bold.
+              As before, the function will take a context as input and return a String.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>bold<span class="String">&#39;</span></span>, <span class="Storage">function</span>(options) {&#x000A;  <span class="Keyword">return</span> <span class="Keyword">new</span> <span class="JEntityNameType">Handlebars.SafeString</span>(&#x000A;      <span class="String"><span class="String">&#39;</span>&lt;div class=&quot;mybold&quot;&gt;<span class="String">&#39;</span></span>&#x000A;      <span class="Keyword">+</span> options.fn(<span class="Variable">this</span>)&#x000A;      <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>&lt;/div&gt;<span class="String">&#39;</span></span>);&#x000A;});&#x000A;</pre>
+          </div>
+        </div>
+        <h2 id="with-helper">
+          The <code>with</code> helper
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              The <code>with</code> helper demonstrates how to pass a parameter to your helper.
+              When a helper is called with a parameter, it is invoked
+              with whatever context the template passed in.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#with story}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>intro<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{{intro}}</span>}<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{{body}}</span>}<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/with}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              You might find a helper like this useful if a section of your
+              JSON object contains deeply nested properties, and you
+              want to avoid repeating the parent name. The
+              above template could be useful with a JSON like:
+            </div>
+            <pre class="sunburst">{&#x000A;  title: <span class="String"><span class="String">&quot;</span>First Post<span class="String">&quot;</span></span>,&#x000A;  story: {&#x000A;    intro: <span class="String"><span class="String">&quot;</span>Before the jump<span class="String">&quot;</span></span>,&#x000A;    body: <span class="String"><span class="String">&quot;</span>After the jump<span class="String">&quot;</span></span>&#x000A;  }&#x000A;}&#x000A;</pre>
+            <div class="notes">
+              Implementing a helper like this is a lot like implementing
+              the <code>noop</code> helper. Helpers can take
+              parameters, and parameters are evaluated just like expressions
+              used directly inside <code>{{mustache}}</code> blocks.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>with<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Keyword">return</span> options.fn(context);&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              Parameters are passed to helpers in the order that they
+              are passed, followed by the options hash.
+            </div>
+          </div>
+        </div>
+        <h2 id="iterators">
+          Simple Iterators
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              A common use-case for block helpers is using them to define
+              custom iterators. In fact, all Handlebars built-in helpers are
+              defined as regular Handlebars block helpers. Let's take a look
+              at how the built-in <code>each</code> helper works.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#with story}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>intro<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{{intro}}</span>}<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{{body}}</span>}<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/with}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>comments<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{#each comments}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>comment<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;      <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{subject}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h2</span><span class="MetaTagAll">&gt;</span></span>&#x000A;      <span class="EmbeddedSourceBright">{{{body}}</span>}&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              In this case, we want to invoke the block passed to <code>each</code>
+              once for each element in the comments Array.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>each<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Storage">var</span> ret <span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span><span class="String">&quot;</span></span>;&#x000A;&#x000A;  <span class="Keyword">for</span>(<span class="Storage">var</span> i<span class="Keyword">=</span><span class="Constant">0</span>, j<span class="Keyword">=</span>context.<span class="SupportConstant">length</span>; i<span class="Keyword">&lt;</span>j; i<span class="Keyword">++</span>) {&#x000A;    ret <span class="Keyword">=</span> ret <span class="Keyword">+</span> options.fn(context[i]);&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">return</span> ret;&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              In this case, we iterate over the items in the passed parameter,
+              invoking the block once with each item. As we iterate, we build
+              up a String result, and then return it.
+            </div>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              This pattern can be used to implement more advanced iterators.
+              For instance, let's create an iterator that creates a
+              <code>&lt;ul&gt;</code> wrapper, and wraps each resulting element
+              in an <code>&lt;li&gt;</code>.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#list nav}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">a</span> <span class="MetaTagInline">href</span>=<span class="String"><span class="String">&quot;</span><span class="StringEmbeddedSource">{{url}}</span><span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">a</span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/list}}</span>&#x000A;</pre>
+            <div class="notes">
+              You would evaluate this template using something like this as
+              the context:
+            </div>
+            <pre class="sunburst">{&#x000A;  nav: [&#x000A;    { url: <span class="String"><span class="String">&quot;</span>http://www.yehudakatz.com<span class="String">&quot;</span></span>, title: <span class="String"><span class="String">&quot;</span>Katz Got Your Tongue<span class="String">&quot;</span></span> },&#x000A;    { url: <span class="String"><span class="String">&quot;</span>http://www.sproutcore.com/block<span class="String">&quot;</span></span>, title: <span class="String"><span class="String">&quot;</span>SproutCore Blog<span class="String">&quot;</span></span> },&#x000A;  ]&#x000A;}&#x000A;</pre>
+            <div class="notes">
+              The helper is similar to the original <code>each</code> helper.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>list<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Storage">var</span> ret <span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span>&lt;ul&gt;<span class="String">&quot;</span></span>;&#x000A;&#x000A;  <span class="Keyword">for</span>(<span class="Storage">var</span> i<span class="Keyword">=</span><span class="Constant">0</span>, j<span class="Keyword">=</span>context.<span class="SupportConstant">length</span>; i<span class="Keyword">&lt;</span>j; i<span class="Keyword">++</span>) {&#x000A;    ret <span class="Keyword">=</span> ret <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;li&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> options.fn(context[i]) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/li&gt;<span class="String">&quot;</span></span>;&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">return</span> ret <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/ul&gt;<span class="String">&quot;</span></span>;&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              Using a library like underscore.js or SproutCore's runtime library
+              could make this a bit prettier. For example, here's what it might
+              look like using SproutCore's runtime library:
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>list<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Keyword">return</span> <span class="String"><span class="String">&quot;</span>&lt;ul&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> context.map(<span class="Storage">function</span>(item) {&#x000A;    <span class="Keyword">return</span> <span class="String"><span class="String">&quot;</span>&lt;li&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> options.fn(item) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/li&gt;<span class="String">&quot;</span></span>;&#x000A;  }).<span class="SupportFunction">join</span>(<span class="String"><span class="String">&quot;</span><span class="StringConstant">\n</span><span class="String">&quot;</span></span>) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/ul&gt;<span class="String">&quot;</span></span>;&#x000A;});&#x000A;</pre>
+          </div>
+        </div>
+        <h2 id="conditionals">
+          Conditionals
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Another common use-case for block helpers is to evaluate conditional statements.
+              As with the iterators, Handlebars' built-in <code>if</code> and
+              <code>unless</code> control structures are implemented as regular
+              Handlebars helpers.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#if isActive}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>star.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Active<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;</pre>
+            <div class="notes">
+              Control structures typically do not change the current context, instead
+              they decide whether or not to invoke the block based upon some variable.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>if<span class="String">&#39;</span></span>, <span class="Storage">function</span>(conditional, options) {&#x000A;  <span class="Keyword">if</span>(conditional) {&#x000A;    <span class="Keyword">return</span> options.fn(<span class="Variable">this</span>);&#x000A;  }&#x000A;});&#x000A;</pre>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              When writing a conditional, you will often want to make it possible
+              for templates to provide a block of HTML that your helper should
+              insert if the conditional evaluates to false. Handlebars handles
+              this problem by providing generic <code>else</code> functionality
+              to block helpers.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#if isActive}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>star.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Active<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{else}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>cry.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Inactive<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;</pre>
+            <div class="notes">
+              Handlebars provides the block for the <code>else</code> fragment
+              as <code>options.inverse</code>. You do not need to check for the
+              existence of the <code>else</code> fragment: Handlebars will detect
+              it automatically and register a "noop" function.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>if<span class="String">&#39;</span></span>, <span class="Storage">function</span>(conditional, options) {&#x000A;  <span class="Keyword">if</span>(conditional) {&#x000A;    <span class="Keyword">return</span> options.fn(<span class="Variable">this</span>);&#x000A;  } <span class="Keyword">else</span> {&#x000A;    <span class="Keyword">return</span> options.inverse(<span class="Variable">this</span>);&#x000A;  }&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              Handlebars provides additional metadata to block helpers by attaching
+              them as properties of the options hash. Keep reading for more
+              examples.
+            </div>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              Conditionals may also be chained by including the subsequent helper call
+              within the else mustache.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#if isActive}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>star.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Active<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{else if isInactive}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">img</span> <span class="MetaTagInline">src</span>=<span class="String"><span class="String">&quot;</span>cry.gif<span class="String">&quot;</span></span> <span class="MetaTagInline">alt</span>=<span class="String"><span class="String">&quot;</span>Inactive<span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;</pre>
+            <div class="notes">
+              It is not necessary to use the same helper in subsequent calls, the
+              <code>unless</code> helper could be used in the else portion as with any
+              other helper. When the helper values are different, the closing mustache
+              should match the opening helper name.
+            </div>
+          </div>
+        </div>
+        <h2 id="hash-arguments">
+          Hash Arguments
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Like regular helpers, block helpers can accept an optional Hash
+              as its final argument. Let's revisit the <code>list</code> helper
+              and make it possible for us to add any number of optional attributes
+              to the <code>&lt;ul&gt;</code> element we will create.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#list nav id=&quot;nav-bar&quot; class=&quot;top&quot;}}</span>&#x000A;  <span class="MetaTagInline"><span class="MetaTagInline">&lt;</span><span class="MetaTagInline">a</span> <span class="MetaTagInline">href</span>=<span class="String"><span class="String">&quot;</span><span class="StringEmbeddedSource">{{url}}</span><span class="String">&quot;</span></span><span class="MetaTagInline">&gt;</span></span><span class="EmbeddedSourceBright">{{title}}</span><span class="MetaTagInline"><span class="MetaTagInline">&lt;/</span><span class="MetaTagInline">a</span><span class="MetaTagInline">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">{{/list}}</span>&#x000A;</pre>
+            <div class="notes">
+              Handlebars provides the final hash as <code>options.hash</code>. This
+              makes it easier to accept a variable number of parameters, while
+              also accepting an optional Hash. If the template provides no hash
+              arguments, Handlebars will automatically pass an empty object
+              (<code>{}</code>), so you don't need to check for the existence of
+              hash arguments.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>list<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Storage">var</span> attrs <span class="Keyword">=</span> Em.keys(options.<span class="SupportConstant">hash</span>).map(<span class="Storage">function</span>(key) {&#x000A;    <span class="Keyword">return</span> key <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>=&quot;<span class="String">&#39;</span></span> <span class="Keyword">+</span> options.<span class="SupportConstant">hash</span>[key] <span class="Keyword">+</span> <span class="String"><span class="String">&#39;</span>&quot;<span class="String">&#39;</span></span>;&#x000A;  }).<span class="SupportFunction">join</span>(<span class="String"><span class="String">&quot;</span> <span class="String">&quot;</span></span>);&#x000A;&#x000A;  <span class="Keyword">return</span> <span class="String"><span class="String">&quot;</span>&lt;ul <span class="String">&quot;</span></span> <span class="Keyword">+</span> attrs <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> context.map(<span class="Storage">function</span>(item) {&#x000A;    <span class="Keyword">return</span> <span class="String"><span class="String">&quot;</span>&lt;li&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> options.fn(item) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/li&gt;<span class="String">&quot;</span></span>;&#x000A;  }).<span class="SupportFunction">join</span>(<span class="String"><span class="String">&quot;</span><span class="StringConstant">\n</span><span class="String">&quot;</span></span>) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/ul&gt;<span class="String">&quot;</span></span>;&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              Hash arguments provide a powerful way to offer a number of optional
+              parameters to a block helper without the complexity caused by
+              positional arguments.
+            </div>
+          </div>
+        </div>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              <p>
+                Block helpers can also inject private variables into their child
+                templates. This can be useful to add extra information that is
+                not in the original context data.
+              </p>
+              <p>
+                For example, when iterating over a list, you may provide the
+                current index as a private variable.
+              </p>
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#list array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@index}}</span>. <span class="EmbeddedSourceBright">{{title}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/list}}</span>&#x000A;</pre>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>list<span class="String">&#39;</span></span>, <span class="Storage">function</span>(context, options) {&#x000A;  <span class="Storage">var</span> out <span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span>&lt;ul&gt;<span class="String">&quot;</span></span>, data;&#x000A;&#x000A;  <span class="Keyword">if</span> (options.<span class="SupportConstant">data</span>) {&#x000A;    data <span class="Keyword">=</span> Handlebars.createFrame(options.<span class="SupportConstant">data</span>);&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">for</span> (<span class="Storage">var</span> i<span class="Keyword">=</span><span class="Constant">0</span>; i<span class="Keyword">&lt;</span>context.<span class="SupportConstant">length</span>; i<span class="Keyword">++</span>) {&#x000A;    <span class="Keyword">if</span> (data) {&#x000A;      data.<span class="SupportConstant">index</span> <span class="Keyword">=</span> i;&#x000A;    }&#x000A;&#x000A;    out <span class="Keyword">+</span><span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span>&lt;li&gt;<span class="String">&quot;</span></span> <span class="Keyword">+</span> options.fn(context[i], { data: data }) <span class="Keyword">+</span> <span class="String"><span class="String">&quot;</span>&lt;/li&gt;<span class="String">&quot;</span></span>;&#x000A;  }&#x000A;&#x000A;  out <span class="Keyword">+</span><span class="Keyword">=</span> <span class="String"><span class="String">&quot;</span>&lt;/ul&gt;<span class="String">&quot;</span></span>;&#x000A;  <span class="Keyword">return</span> out;&#x000A;});&#x000A;</pre>
+            <div class="notes">
+              Private variables provided via the <code>data</code> option are
+              available in all descendent scopes.
+            </div>
+            <div class="notes">
+              Private variables defined in parent scopes may be accessed via pathed queries.
+              To access the <code>index</code> field of the parent iterator, <code>@../index</code>
+              may be used.
+            </div>
+            <div class="notes">
+              Make sure you create a new data frame in each helper that assigns its own data.
+              Otherwise, downstream helpers might unexpectedly mutate upstream variables.
+            </div>
+            <div class="notes">
+              Also ensure that the <code>data</code> field is defined prior to attempting to
+              interact with an existing data object. The private variable behavior is condtionally
+              compiled and some templates might not create this field.
+            </div>
+          </div>
+        </div>
+        <h2 id="block-params">
+          Block Parameters
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              New in Handlebars 3.0, it's possible to receive named parameters from supporting helpers.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each users as |user userId|}}</span>&#x000A;  Id: <span class="EmbeddedSourceBright">{{userId}}</span> Name: <span class="EmbeddedSourceBright">{{user.name}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+            <div class="notes">
+              In this particular example, <code>user</code> will have the same value as the current context and <code>userId</code> will have the index value for the iteration.
+            </div>
+            <div class="notes">
+              This allows for nested helpers to avoid name conflicts that can occur with private variables.
+            </div>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each users as |user userId|}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#each user.book as |book bookId|}}</span>&#x000A;    User Id: <span class="EmbeddedSourceBright">{{userId}}</span> Book Id: <span class="EmbeddedSourceBright">{{bookId}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              A number of <a href="builtin_helpers.html">builtin helpers</a> support block parameters and any custom helper may provide them through the <code>blockParams</code> options field.
+            </div>
+            <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>block-params<span class="String">&#39;</span></span>, <span class="Storage">function</span>() {&#x000A;  <span class="Storage">var</span> args <span class="Keyword">=</span> [],&#x000A;      options <span class="Keyword">=</span> arguments[arguments.<span class="SupportConstant">length</span> <span class="Keyword">-</span> <span class="Constant">1</span>];&#x000A;  <span class="Keyword">for</span> (<span class="Storage">var</span> i <span class="Keyword">=</span> <span class="Constant">0</span>; i <span class="Keyword">&lt;</span> arguments.<span class="SupportConstant">length</span> <span class="Keyword">-</span> <span class="Constant">1</span>; i<span class="Keyword">++</span>) {&#x000A;    args.<span class="SupportFunction">push</span>(arguments[i]);&#x000A;  }&#x000A;&#x000A;  <span class="Keyword">return</span> options.fn(<span class="Variable">this</span>, {data: options.<span class="SupportConstant">data</span>, blockParams: args});&#x000A;});&#x000A;</pre>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#block-params 1 2 3 as |foo bar baz|}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{foo}}</span> <span class="EmbeddedSourceBright">{{bar}}</span> <span class="EmbeddedSourceBright">{{baz}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/block-params}}</span>&#x000A;</pre>
+            <div class="notes">
+              Implements a helper that allows for named variable declarations within a given block. This example would output <code>1 2 3</code> on render.
+            </div>
+            <div class="notes">
+              Helpers can determine the number of block paramemters referenced by the template via the <code>options.fn.blockParams</code> field, which is an integer count. This value represents the number of block parameters that could be referenced by the child template. Parameters beyond this cound will never be referenced and can safely be omitted by the helper if desired. This is optional and any additional parameters passed to the template will be silently ignored.
+            </div>
+          </div>
+        </div>
+        <h2 id="raw-blocks">
+          Raw Blocks
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Raw blocks are available for templates needing to handle unprocessed mustache blocks.
+              <pre class="sunburst"><span class="EmbeddedSourceBright">{{{{raw-helper}}</span>}}&#x000A;  <span class="EmbeddedSourceBright">{{bar}}</span>&#x000A;<span class="EmbeddedSourceBright">{{{{/raw-helper}}</span>}}&#x000A;</pre>
+              <div class="notes">
+                will execute the helper <code>raw-helper</code> without interpretting the content.
+              </div>
+              <pre class="sunburst">Handlebars.registerHelper(<span class="String"><span class="String">&#39;</span>raw-helper<span class="String">&#39;</span></span>, <span class="Storage">function</span>(options) {&#x000A;  <span class="Keyword">return</span> options.fn();&#x000A;});&#x000A;</pre>
+              <div class="notes">
+                will render
+              </div>
+              <pre class="sunburst"><span class="EmbeddedSourceBright">{{bar}}</span>&#x000A;</pre>
+            </div>
+          </div>
+        </div>
         <a class="issue-tracker" href="https://github.com/wycats/handlebars-site/issues">
           Found a documentation issue? Tell us!
         </a>
@@ -322,7 +322,7 @@
     </div>
     <div id="credits"></div>
     <a href="http://github.com/wycats/handlebars.js/" id="github">
-      <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" />
+      <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
     </a>
     <script>
       var _gaq = _gaq || [];

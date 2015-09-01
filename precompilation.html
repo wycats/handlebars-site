@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <title>Handlebars.js: Minimal Templating on Steroids</title>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/><link href="/stylesheets/sunburst.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="/images/favicon.png" rel="shortcut icon" type="image/png" />
+    <link href="/images/favicon.png" rel="shortcut icon" type="image/png">
   </head>
   <body>
     <div id="body">
@@ -18,96 +18,96 @@
           <img alt="Buy Handlebars swag on DevSwag!" src="images/handlebars-devswag.png"/>
         </a>
         <div id="intro">
-  Using the Handlebars precompiler, you can precompile your
-  Handlebars templates to save time on the client and reduce
-  the required runtime size of the handlebars library.
-</div>
-<h2 id="getting-started">
-  Getting Started
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      First, you will need to install node and npm. On OS X:
-    </div>
-    <pre class='sunburst'>$ brew install node</pre>
-    <div class="notes">
-      This assumes you already have Homebrew installed. If not,
-      <a href="http://brew.sh/">install it</a> first.
-    </div>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      Next, install the Handlebars npm package.
-    </div>
-    <pre class='sunburst'>$ npm install handlebars -g</pre>
-    <div class="notes">
-      Using the <code>-g</code> flag installs the package globally,
-      so it can be used in any project.
-    </div>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      Now, you're ready to use the precompiler:
-    </div>
-    <pre class='sunburst'>$ handlebars &lt;input&gt; -f &lt;output&gt;&#x000A;</pre>
-    <div class="notes">
-      The compiler will insert templates in <code>Handlebars.templates</code>.
-      If your input file is <code>person.handlebars</code>, the compiler will
-      insert it at <code>Handlebars.templates.person</code>. This template will
-      be a function that may be directly executed in the same manner as templates
-      compiled locally. I.e.
-    </div>
-    <pre class="sunburst">Handlebars.templates.person(context, options);&#x000A;</pre>
-  </div>
-  <div class="bullet">
-    <div class="description">
-      If you're working with precompiled templates, you don't need to ship
-      the compiler with your deployed application. Instead, you can use the
-      smaller "runtime" build.
-    </div>
-    <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">script</span> <span class="MetaTagAll">src</span>=<span class="String"><span class="String">&quot;</span>/libs/handlebars.runtime.js<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;<span class="MetaTagAll">&lt;</span>/</span><span class="MetaTagAll">script</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
-    <div class="notes">
-      In addition to reducing the download size, eliminating client-side
-      compilation will significantly speed up boot time, as compilation
-      is the most expensive part of Handlebars.
-    </div>
-  </div>
-</div>
-<h2 id="optimizations">
-  Optimizations
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <div class="description">
-      Because you are precompiling templates, you can also apply several
-      optimization to the compiler. The first allows you to specify a
-      list of the known helpers to the compiler
-    </div>
-    <pre class='sunburst'>handlebars &lt;input&gt; -f &lt;output&gt; -k each -k if -k unless</pre>
-    <div class="notes">
-      The Handlebars compiler will optimize accesses to those helpers for
-      performance.
-    </div>
-    <div class="notes">
-      When all helpers are known at compile time, the <code>--knownOnly</code> option provides the smallest generated code that also provides the fastest execution.
-    </div>
-  </div>
-</div>
-<h2 id="usage">
-  Usage
-</h2>
-<div class="contents">
-  <div class="bullet">
-    <pre class="sunburst" style="overflow:auto">Usage: node ./bin/handlebars [template|directory]...&#x000A;&#x000A;Options:&#x000A;  -f, --output         Output File&#x000A;  --map                Source Map File                                                         [string]  [default: undefined]&#x000A;  -a, --amd            Exports amd style (require.js)&#x000A;  -c, --commonjs       Exports CommonJS style, path to Handlebars module                       [default: null]&#x000A;  -h, --handlebarPath  Path to handlebar.js (only valid for amd-style)                         [default: &quot;&quot;]&#x000A;  -k, --known          Known helpers&#x000A;  -o, --knownOnly      Known helpers only&#x000A;  -m, --min            Minimize output&#x000A;  -n, --namespace      Template namespace                                                      [default: &quot;Handlebars.templates&quot;]&#x000A;  -s, --simple         Output template function only.&#x000A;  -r, --root           Template root. Base value that will be stripped from template names.&#x000A;  -p, --partial        Compiling a partial template&#x000A;  -d, --data           Include data when compiling&#x000A;  -e, --extension      Template extension.                                                     [default: &quot;handlebars&quot;]&#x000A;  -b, --bom            Removes the BOM (Byte Order Mark) from the beginning of the templates.&#x000A;  -v, --version        Prints the current compiler version&#x000A;  --help               Outputs this message</pre>
-    <div class="notes">
-      If using the precompiler's normal mode, the resulting templates will be stored to the <code>Handlebars.templates</code> object using the relative template name sans the extension. These templates may be executed in the same manner as templates.
-    </div>
-    <div class="notes">
-      If using the simple mode the precompiler will generate a single javascript method. To execute this method it must be passed to the <code>Handlebars.template</code> method and the resulting object may be used as normal.
-    </div>
-  </div>
-</div>
+          Using the Handlebars precompiler, you can precompile your
+          Handlebars templates to save time on the client and reduce
+          the required runtime size of the handlebars library.
+        </div>
+        <h2 id="getting-started">
+          Getting Started
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              First, you will need to install node and npm. On OS X:
+            </div>
+            <pre class='sunburst'>$ brew install node</pre>
+            <div class="notes">
+              This assumes you already have Homebrew installed. If not,
+              <a href="http://brew.sh/">install it</a> first.
+            </div>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              Next, install the Handlebars npm package.
+            </div>
+            <pre class='sunburst'>$ npm install handlebars -g</pre>
+            <div class="notes">
+              Using the <code>-g</code> flag installs the package globally,
+              so it can be used in any project.
+            </div>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              Now, you're ready to use the precompiler:
+            </div>
+            <pre class='sunburst'>$ handlebars &lt;input&gt; -f &lt;output&gt;&#x000A;</pre>
+            <div class="notes">
+              The compiler will insert templates in <code>Handlebars.templates</code>.
+              If your input file is <code>person.handlebars</code>, the compiler will
+              insert it at <code>Handlebars.templates.person</code>. This template will
+              be a function that may be directly executed in the same manner as templates
+              compiled locally. I.e.
+            </div>
+            <pre class="sunburst">Handlebars.templates.person(context, options);&#x000A;</pre>
+          </div>
+          <div class="bullet">
+            <div class="description">
+              If you're working with precompiled templates, you don't need to ship
+              the compiler with your deployed application. Instead, you can use the
+              smaller "runtime" build.
+            </div>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">script</span> <span class="MetaTagAll">src</span>=<span class="String"><span class="String">&quot;</span>/libs/handlebars.runtime.js<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;<span class="MetaTagAll">&lt;</span>/</span><span class="MetaTagAll">script</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <div class="notes">
+              In addition to reducing the download size, eliminating client-side
+              compilation will significantly speed up boot time, as compilation
+              is the most expensive part of Handlebars.
+            </div>
+          </div>
+        </div>
+        <h2 id="optimizations">
+          Optimizations
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <div class="description">
+              Because you are precompiling templates, you can also apply several
+              optimization to the compiler. The first allows you to specify a
+              list of the known helpers to the compiler
+            </div>
+            <pre class='sunburst'>handlebars &lt;input&gt; -f &lt;output&gt; -k each -k if -k unless</pre>
+            <div class="notes">
+              The Handlebars compiler will optimize accesses to those helpers for
+              performance.
+            </div>
+            <div class="notes">
+              When all helpers are known at compile time, the <code>--knownOnly</code> option provides the smallest generated code that also provides the fastest execution.
+            </div>
+          </div>
+        </div>
+        <h2 id="usage">
+          Usage
+        </h2>
+        <div class="contents">
+          <div class="bullet">
+            <pre class="sunburst" style="overflow:auto">Usage: node ./bin/handlebars [template|directory]...&#x000A;&#x000A;Options:&#x000A;  -f, --output         Output File&#x000A;  --map                Source Map File                                                    [string]  [default: undefined]&#x000A;  -a, --amd            Exports amd style (require.js)&#x000A;  -c, --commonjs       Exports CommonJS style, path to Handlebars module                                 [default: null]&#x000A;  -h, --handlebarPath  Path to handlebar.js (only valid for amd-style)                                     [default: &quot;&quot;]&#x000A;  -k, --known          Known helpers&#x000A;  -o, --knownOnly      Known helpers only&#x000A;  -m, --min            Minimize output&#x000A;  -n, --namespace      Template namespace                                              [default: &quot;Handlebars.templates&quot;]&#x000A;  -s, --simple         Output template function only.&#x000A;  -N, --name           Name of passed string templates. Optional if running in a simple mode. Required when operating&#x000A;                       on multiple templates.&#x000A;  -i, --string         Generates a template from the passed CLI argument.&#x000A;                       &quot;-&quot; is treated as a special value and causes stdin to be read for the template value.&#x000A;  -r, --root           Template root. Base value that will be stripped from template names.&#x000A;  -p, --partial        Compiling a partial template&#x000A;  -d, --data           Include data when compiling&#x000A;  -e, --extension      Template extension.                                                       [default: &quot;handlebars&quot;]&#x000A;  -b, --bom            Removes the BOM (Byte Order Mark) from the beginning of the templates.&#x000A;  -v, --version        Prints the current compiler version&#x000A;  --help               Outputs this message</pre>
+            <div class="notes">
+              If using the precompiler's normal mode, the resulting templates will be stored to the <code>Handlebars.templates</code> object using the relative template name sans the extension. These templates may be executed in the same manner as templates.
+            </div>
+            <div class="notes">
+              If using the simple mode the precompiler will generate a single javascript method. To execute this method it must be passed to the <code>Handlebars.template</code> method and the resulting object may be used as normal.
+            </div>
+          </div>
+        </div>
         <a class="issue-tracker" href="https://github.com/wycats/handlebars-site/issues">
           Found a documentation issue? Tell us!
         </a>
@@ -115,7 +115,7 @@
     </div>
     <div id="credits"></div>
     <a href="http://github.com/wycats/handlebars.js/" id="github">
-      <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" />
+      <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
     </a>
     <script>
       var _gaq = _gaq || [];
