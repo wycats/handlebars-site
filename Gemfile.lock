@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/staticmatic/staticmatic.git
-  revision: 489d81927b8f1dfa2e8610840a3bec4c78916061
+  revision: 694198c07ee2854302fabf9e4a81f00cb47e14a9
   specs:
-    staticmatic (0.11.0.alpha.8)
+    staticmatic (0.11.0)
       compass (>= 0.10.0)
       haml (>= 2.0.0)
       rack (>= 1.0)
@@ -23,11 +23,12 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     fssm (0.2.9)
-    haml (3.1.6)
+    haml (4.0.7)
+      tilt
     highline (1.6.8)
     hpricot (0.8.3)
     mustache (0.11.2)
-    rack (1.4.1)
+    rack (1.6.4)
     rake (10.4.2)
     rdiscount (1.6.5)
     ronn (0.7.3)
@@ -38,6 +39,7 @@ GEM
     spox-plist (3.0.1)
     spox-textpow (0.10.3)
       spox-plist
+    tilt (2.0.1)
 
 PLATFORMS
   ruby
@@ -50,3 +52,6 @@ DEPENDENCIES
   sass
   staticmatic (~> 0.11.0.alpha)!
   ultraviolet!
+
+BUNDLED WITH
+   1.10.6
