@@ -33,9 +33,6 @@
           <code>knownHelpersOnly</code>: Set to true to allow further optimzations
           based on the known helpers list.
         %li
-          <code>trackIds</code>: Set to true to include the id names used to resolve
-          parameters for helpers. 
-        %li
           <code>noEscape</code>: Set to true to not HTML escape any content.
         %li
           <code>strict</code>: Run in strict mode. In this mode, templates will throw rather than silently ignore missing fields. This has the side effect of disabling inverse operatins such as <code>{{^foo}}{{/foo}}</code> unless fields are explicitly included in the source object.
@@ -374,19 +371,6 @@
     .description
       Determines if an obj is a function.
 
-%h3#utils-appendContextPath
-  %code Handlebars.Utils.appendContextPath(contextPath, id)
-
-.contents
-  .bullet
-    .description
-      Takes a given <code>contextPath</code> value and generates the path to the child, <code>id</code>.
-
-    :javascript
-      Handlebars.Utils.appendContextPath('foo.bar', 'baz')
-    .notes
-      Will return <code>foo.bar.baz</code>.
-
 %h2#data
   @data Variables
 
@@ -474,27 +458,6 @@
           Last :(
         {{/if}}
       {{/each}}
-
-%h3#data-contextPath
-  %code
-    @contextPath
-
-.contents
-  .bullet
-    .description
-      Value set in <code>trackIds</code> mode that records the lookup path for the current
-      context.
-    .notes
-      Any custom helpers that apply a custom context should set this value as appropriate.
-      If the new context is the child of an existing one, it may use the
-      <code>Handlebars.Utils.appendContextPath</code> helper to perform this operation.
-
-    :javascript
-      if (options.data && options.ids) {
-        var data = Handlebars.createFrame(options.data);
-        data.contextPath = Handlebars.Utils.appendContextPath(data.contextPath, 'foo');
-        options.data = data;
-      }
 
 %h3#data-level
   %code
