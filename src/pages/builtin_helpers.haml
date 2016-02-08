@@ -138,8 +138,8 @@
       The <code>each</code> helper also supports <a href="block_helpers.html#block-params">block parameters</a>, allowing for named references anywhere in the block.
 
     :html
-      {{#each array as |value, key|}}
-        {{#each child as |childValue, childKey|}}
+      {{#each array as |value key|}}
+        {{#each child as |childValue childKey|}}
           {{key}} - {{childKey}}. {{childValue}}
         {{/each}}
       {{/each}}
