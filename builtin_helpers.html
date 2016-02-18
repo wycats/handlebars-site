@@ -118,7 +118,7 @@
             <div class="description">
               The <code>each</code> helper also supports <a href="block_helpers.html#block-params">block parameters</a>, allowing for named references anywhere in the block.
             </div>
-            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array as |value, key|}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#each child as |childValue, childKey|}}</span>&#x000A;    <span class="EmbeddedSourceBright">{{key}}</span> - <span class="EmbeddedSourceBright">{{childKey}}</span>. <span class="EmbeddedSourceBright">{{childValue}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
+            <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array as |value key|}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#each child as |childValue childKey|}}</span>&#x000A;    <span class="EmbeddedSourceBright">{{key}}</span> - <span class="EmbeddedSourceBright">{{childKey}}</span>. <span class="EmbeddedSourceBright">{{childValue}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
             <div class="notes">
               Will create a <code>key</code> and <code>value</code> variable that children may access without the need for depthed variable references. In the example above, <code>{{key}}</code> is identical to <code>{{@../key}}</code> but in many cases is more readable.
             </div>
