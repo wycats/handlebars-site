@@ -54,7 +54,7 @@
       Compile a template in JavaScript by using
       <code>Handlebars.compile</code>
     :javascript
-      var source   = $("#entry-template").html();
+      var source   = document.getElementById("entry-template").innerHTML;
       var template = Handlebars.compile(source);
     .notes
       Please note that this approach is not recommended for production applications.
