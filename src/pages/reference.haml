@@ -17,14 +17,14 @@
       template({});
 
     .notes
-      Supports a variety of options that alter how the template executes
+      Supports a variety of options that alter how the template executes.
       %UL
         %li
           <code>data</code>: Set to false to disable <code>@data</code> tracking.
         %li
           <code>compat</code>: Set to true to enable recursive field lookup.
         %li
-          <code>knownHelpers</code>: Hash containing list of helpers that are known to 
+          <code>knownHelpers</code>: Hash containing list of helpers that are known to
           exist (truthy) at template execution time. Passing this allows
           the compiler to optimize a number of cases.
           Builtin helpers are automatically included in this list and may be omitted by setting
@@ -35,13 +35,13 @@
         %li
           <code>noEscape</code>: Set to true to not HTML escape any content.
         %li
-          <code>strict</code>: Run in strict mode. In this mode, templates will throw rather than silently ignore missing fields. This has the side effect of disabling inverse operatins such as <code>{{^foo}}{{/foo}}</code> unless fields are explicitly included in the source object.
+          <code>strict</code>: Run in strict mode. In this mode, templates will throw rather than silently ignore missing fields. This has the side effect of disabling inverse operations such as <code>{{^foo}}{{/foo}}</code> unless fields are explicitly included in the source object.
         %li
           <code>assumeObjects</code>: Removes object existence checks when traversing paths. This is a subset of <code>strict</code> mode that generates optimized templates when the data inputs are known to be safe.
         %li
-          <code>preventIndent</code>: By default an indented partial-call causes the output of the 
+          <code>preventIndent</code>: By default, an indented partial-call causes the output of the
           whole partial being indented by the same amount. This can lead to unexpected behavior when the
-          partial writes <code>pre</code>-tags. 
+          partial writes <code>pre</code>-tags.
           Setting this option to <code>true</code> will disable the auto-indent feature.
         %li
           <code>ignoreStandalone</code>: Disables standalone tag removal when set to <code>true</code>. When set, blocks and partials that are on their own line will not remove the whitespace on that line.
@@ -74,7 +74,7 @@
 .contents
   .bullet
     .description
-      Sets up a template that was precompiled with <code>Handlebars.precompile</code>
+      Sets up a template that was precompiled with <code>Handlebars.precompile</code>.
 
     :javascript
       var template = Handlebars.template(templateSpec);
@@ -102,9 +102,9 @@
       });
 
     .notes
-      If loading the whole library, then the partials may be string values which will be
-      compiled on demand. If only loading the runtime, then the partials must be a precompiled
-      template that has been properly setup using the <code>Handlebars.template</code> method.
+      If loading the whole library, the partials may be string values which will be
+      compiled on demand. If only loading the runtime, the partials must be a precompiled
+      template that has been set up properly using the <code>Handlebars.template</code> method.
 
 
 %h3#base-unregisterPartial
@@ -196,7 +196,7 @@
 
 .contents
   .bullet
-    .descrption
+    .description
       Prevents <code>string</code> from being escaped when the template is rendered.
 
     :javascript
@@ -224,9 +224,9 @@
       <code>`</code>, <code>=</code> with the HTML entity equivalent value for string values. <code>SafeString</code>
       values are left untouched.
     .notes
-      The output of all expressions except for triple braced expressions are passed through this
-      method. Additionally helpers should use this method when returning HTML content via a
-      <code>SafeString</code> instance to prevent possible code injection.
+      The output of all expressions except for triple-braced expressions are passed through this
+      method. Helpers should also use this method when returning HTML content via a
+      <code>SafeString</code> instance, to prevent possible code injection.
     .notes
       This method is aliased at <code>Handlebars.Utils.escapeExpression</code>.
 
@@ -237,7 +237,7 @@
 .contents
   .bullet
     .description
-      Used by block helpers to create a child data object.
+      Used by block helpers to create child data objects.
 
     :javascript
       if (options.data) {
@@ -247,9 +247,9 @@
       }
 
     .notes
-      Helpers that modify the data state should create a new frame when doing so to isolates
-      themselves and avoid corrupting the state of any parents. Generally only one frame needs
-      to be created per helper execution, i.e. the <code>each</code> iterator only creates one frame
+      Helpers that modify the data state should create a new frame when doing so, to isolate
+      themselves and avoid corrupting the state of any parents. Generally, only one frame needs
+      to be created per helper execution. For example, the <code>each</code> iterator creates a single frame
       which is reused for all child execution.
 
 
@@ -281,15 +281,15 @@
 .contents
   .bullet
     .description
-      Removes this Handlebars instance from the global space, restoring any libraries that may have
-      been previously registered.
+      Removes this Handlebars instance from the global namespace, restoring the global `Handlebars` variable to its
+      previous value.
 
     :javascript
       var myHandlebars = Handlebars.noConflict();
 
     .notes
-      This allows for distinct versions of the library to be loaded into one global space without
-      concern for potential version conflicts.
+      This allows for distinct versions of the library to be used simultaneously without
+      concern for version conflicts.
 
 
 %h3#base-log
@@ -298,7 +298,7 @@
 .contents
   .bullet
     .description
-      Logger utilized by the <code>log</code> helper.
+      Logger used by the <code>log</code> helper.
     .notes
       May be overriden if desired.
 
@@ -323,7 +323,7 @@
       Handlebars.Utils.isEmpty(value)
 
     .notes
-      This is used by the native <code>if</code> and <code>with</code> helpers control their
+      This is used by the built-in <code>if</code> and <code>with</code> helpers to control their
       execution flow. Handlebar's definition of empty is any of:
 
       %ul
@@ -332,7 +332,7 @@
         %li
           falsy values other than 0
 
-      Which is intended to match the <a href="http://mustache.github.io/mustache.5.html#Sections">Mustache behavior</a>
+      This is intended to match the <a href="http://mustache.github.io/mustache.5.html#Sections">Mustache behavior</a>.
 
 %h3#utils-extend
   %code Handlebars.Utils.extend(obj, value)
@@ -340,12 +340,12 @@
 .contents
   .bullet
     .description
-      Simple utility method to augment <code>obj</code> with all keys defined on <code>value</code>
+      Simple utility method to augment <code>obj</code> with all keys defined on <code>value</code>.
 
     :javascript
       Handlebars.Utils.extend(foo, {bar: true})
     .notes
-      Will set the key <code>bar</code> on object <code>foo</code> with the value <code>true</code>
+      Will set the key <code>bar</code> on object <code>foo</code> with the value <code>true</code>.
 
 %h3#utils-toString
   %code Handlebars.Utils.toString(obj)
@@ -361,7 +361,7 @@
 .contents
   .bullet
     .description
-      Determines if an obj is an array.
+      Determines if an object is an array.
 
 %h3#utils-isFunction
   %code Handlebars.Utils.isFunction(obj)
@@ -369,7 +369,7 @@
 .contents
   .bullet
     .description
-      Determines if an obj is a function.
+      Determines if an object is a function.
 
 %h2#data
   @data Variables
@@ -387,7 +387,7 @@
 .contents
   .bullet
     .description
-      Initial context that the template was executed with.
+      Initial context with which the template was executed.
 
     :html
       {{#each array}}
@@ -395,9 +395,9 @@
       {{/each}}
 
     .notes
-      Unless explicitly modified this value is consistent across all portions of the page rendering,
+      Unless explicitly modified, this value is consistent across all portions of the page rendering,
       meaning it can be used within partials where depthed parameters are unable to reference their
-      parent template.
+      parent templates.
 
 %h3#data-first
   %code
@@ -481,5 +481,5 @@
       %code Handlebars.logger.ERROR
 
     .notes
-      When set the logger will only output when the <code>Handlebars.logger.level</code> value is
-      set to that value or more verbose. This value defaults to logging only error mode.
+      When set, the logger will include in its output only messages with a log level of
+      <code>Handlebars.logger.level</code> or higher. The default value is <code>Handlebars.logger.ERROR</code>.
