@@ -3,7 +3,7 @@
   <head>
     <title>Handlebars.js: Minimal Templating on Steroids</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/><link href="/stylesheets/sunburst.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="/images/favicon.png" rel="shortcut icon" type="image/png">
   </head>
   <body>
@@ -227,7 +227,7 @@
               code. Since there is generally some level of logic, this is a good
               practice.
             </div>
-            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{!-- only output author name if an author exists --}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#if author}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{firstName}}</span> <span class="EmbeddedSourceBright">{{lastName}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
+            <pre class="sunburst"><span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">div</span> <span class="MetaTagAll">class</span>=<span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{!-- only output author name if an author exists --}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{#if author}}</span>&#x000A;    <span class="MetaTagAll"><span class="MetaTagAll">&lt;</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span><span class="EmbeddedSourceBright">{{author.firstName}}</span> <span class="EmbeddedSourceBright">{{author.lastName}}</span><span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">h1</span><span class="MetaTagAll">&gt;</span></span>&#x000A;  <span class="EmbeddedSourceBright">{{/if}}</span>&#x000A;<span class="MetaTagAll"><span class="MetaTagAll">&lt;/</span><span class="MetaTagAll">div</span><span class="MetaTagAll">&gt;</span></span>&#x000A;</pre>
             <div class="notes">
               The comments will not be in the resulting output. If you'd like the
               comments to show up. Just use html comments, and they will be output.

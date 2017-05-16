@@ -3,7 +3,7 @@
   <head>
     <title>Handlebars.js: Minimal Templating on Steroids</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/><link href="/stylesheets/sunburst.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="/images/favicon.png" rel="shortcut icon" type="image/png">
   </head>
   <body>
@@ -261,7 +261,7 @@
             </div>
             <pre class="sunburst"><span class="Storage">var</span> OtherHandlebars <span class="Keyword">=</span> Handlebars.create();&#x000A;</pre>
             <div class="notes">
-              Each environment has it's own helpers and partials. This is only necessary for use cases
+              Each environment has its own helpers and partials. This is only necessary for use cases
               that demand distinct helpers or partials. Most use cases can use the root
               <code>Handlebars</code> environment directly.
             </div>
@@ -403,7 +403,7 @@
             <pre class="sunburst"><span class="EmbeddedSourceBright">{{#each array}}</span>&#x000A;  <span class="EmbeddedSourceBright">{{@root.foo}}</span>&#x000A;<span class="EmbeddedSourceBright">{{/each}}</span>&#x000A;</pre>
             <div class="notes">
               Unless explicitly modified this value is consistent across all portions of the page rendering,
-              meaning it's be be used within partials where depthed parameters are unable to reference their
+              meaning it can be used within partials where depthed parameters are unable to reference their
               parent template.
             </div>
           </div>
