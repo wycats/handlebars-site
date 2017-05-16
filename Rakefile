@@ -3,7 +3,7 @@ require "bundler/setup"
 def git_initialize()
   unless File.exist?(".git")
     system "git init"
-    system "git remote add github https://github.com/wycats/handlebars-site.git"
+    system "git remote add github git@github.com:wycats/handlebars-site.git"
     system "git fetch github"
     system "git checkout -b gh-pages --track github/gh-pages"
   end
