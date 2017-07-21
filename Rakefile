@@ -21,6 +21,7 @@ def build
   system "staticmatic build ."
   cp_r "src/images", "site/"
   Dir["src/stylesheets/*.css"].each{|f| cp f, "site/stylesheets/" }
+  system "staticmatic build ."
 end
 
 desc "Build the website"
