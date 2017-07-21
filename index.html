@@ -53,6 +53,11 @@
               in a <code>&lt;script&gt;</code> tag.
             </div>
             <pre class="sunburst"><span class="EmbeddedSourceBright"><span class="EmbeddedSourceBright">&lt;</span><span class="MetaTagInline">script</span> <span class="EmbeddedSourceBright"><span class="MetaTagInline">id</span><span class="EmbeddedSourceBright">=</span><span class="String"><span class="String">&quot;</span><span class="String">entry-template</span><span class="String">&quot;</span></span></span> <span class="MetaTagInline">type</span>=<span class="String"><span class="String">&quot;</span>text/x-handlebars-template<span class="String">&quot;</span></span><span class="EmbeddedSourceBright">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">  <span class="Keyword">&lt;</span>div <span class="Storage">class</span><span class="Keyword">=</span><span class="String"><span class="String">&quot;</span>entry<span class="String">&quot;</span></span><span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">    <span class="Keyword">&lt;</span>h1<span class="Keyword">&gt;</span><span class="EmbeddedSourceBright">{</span><span class="EmbeddedSourceBright">{</span>title<span class="EmbeddedSourceBright">}</span><span class="EmbeddedSourceBright">}</span><span class="Keyword">&lt;</span>/h1<span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">    <span class="Keyword">&lt;</span>div <span class="Storage">class</span><span class="Keyword">=</span><span class="String"><span class="String">&quot;</span>body<span class="String">&quot;</span></span><span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">      <span class="EmbeddedSourceBright">{</span><span class="EmbeddedSourceBright">{</span>body<span class="EmbeddedSourceBright">}</span><span class="EmbeddedSourceBright">}</span></span>&#x000A;<span class="EmbeddedSourceBright">    <span class="Keyword">&lt;</span>/div<span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright">  <span class="Keyword">&lt;</span>/div<span class="Keyword">&gt;</span></span>&#x000A;<span class="EmbeddedSourceBright"><span class="EmbeddedSourceBright">&lt;/</span><span class="MetaTagInline">script</span><span class="EmbeddedSourceBright">&gt;</span></span>&#x000A;</pre>
+            <div class="notes warning">
+              It is important that you put the template inside a <code>&lt;script&gt;</code>-tag. Do
+              not put it into the HTML directly or the HTML-parser might modify it (for example, if
+              it <a href="https://html.spec.whatwg.org/multipage/parsing.html#unexpected-markup-in-tables">contains a table</a>)
+            </div>
           </div>
           <div class="bullet">
             <div class="description">
@@ -61,11 +66,10 @@
             </div>
             <pre class="sunburst"><span class="Storage">var</span> source   <span class="Keyword">=</span> <span class="Keyword">$</span>(<span class="String"><span class="String">&quot;</span>#entry-template<span class="String">&quot;</span></span>).html();&#x000A;<span class="Storage">var</span> template <span class="Keyword">=</span> Handlebars.<span class="SupportFunction">compile</span>(source);&#x000A;</pre>
             <div class="notes">
-              It is also possible to precompile your templates. This will
-              result in a smaller required runtime library and significant
-              savings from not having to compile the template in the
-              browser. This can be especially important when working with
-              mobile devices.
+              Please note that this approach is not recommended for production applications.
+              A better way is to precompile your templates. This will result in a smaller required
+              runtime library and significant savings from not having to compile the template in the
+              browser. This can be especially important when working with mobile devices.
             </div>
             <a class="more-info" href="precompilation.html">Learn More: Precompilation</a>
           </div>

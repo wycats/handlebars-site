@@ -429,18 +429,26 @@ ul.bullet a:last-child {
 .bullet .notes + .description {
   margin-top: 20px;
 }
-/* line 273 */
+/* line 272 */
+.bullet .notes.warning {
+  padding-left: 40px;
+  background-image: url("../images/warning.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 30px 30px;
+}
+/* line 279 */
 .bullet pre {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   margin: 0;
 }
-/* line 277 */
+/* line 283 */
 .bullet code {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* line 280 */
+/* line 286 */
 pre {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -450,35 +458,35 @@ pre {
   border-radius: 5px;
 }
 
-/* line 283 */
+/* line 289 */
 .bullet:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.1);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* line 288 */
+/* line 294 */
 .bullet:not(:nth-of-type(1)) {
   padding-top: 15px;
 }
 
-/* line 291 */
+/* line 297 */
 .bullet {
   padding-bottom: 25px;
 }
 
-/* line 296 */
+/* line 302 */
 #credits p {
   text-align: center;
   font-size: 8pt;
   color: #668493;
 }
-/* line 300 */
+/* line 306 */
 #credits p a {
   color: #2c596b;
 }
 
-/* line 304 */
+/* line 310 */
 #github img {
   position: absolute;
   top: 0;
@@ -486,14 +494,14 @@ pre {
   border: 0;
 }
 
-/* line 310 */
+/* line 316 */
 #header-segment {
   display: inline;
   padding-left: auto;
   padding-right: auto;
 }
 
-/* line 315 */
+/* line 321 */
 #versions {
   position: absolute;
   top: 0;
@@ -507,22 +515,22 @@ pre {
   -khtml-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-/* line 322 */
+/* line 328 */
 #versions a {
   text-decoration: none;
   color: #0e3f54;
   padding: 0.1em 0.25em;
 }
-/* line 325 */
+/* line 331 */
 #versions a.current {
   font-weight: bold;
 }
 
-/* line 328 */
+/* line 334 */
 .try-handlebars {
   margin-top: 1em;
 }
-/* line 331 */
+/* line 337 */
 .try-handlebars textarea, .try-handlebars pre.output {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -538,7 +546,7 @@ pre {
   resize: vertical;
   width: 95%;
 }
-/* line 341 */
+/* line 347 */
 .try-handlebars pre.output {
   background: #eeeeee;
 }
