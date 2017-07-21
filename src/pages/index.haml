@@ -45,7 +45,10 @@
           </div>
         </div>
       </script>
-
+    .notes.warning
+      It is important that you put the template inside a <code>&lt;script&gt;</code>-tag. Do
+      not put it into the HTML directly or the HTML-parser might modify it (for example, if
+      it <a href="https://html.spec.whatwg.org/multipage/parsing.html#unexpected-markup-in-tables">contains a table</a>)
   .bullet
     .description
       Compile a template in JavaScript by using
@@ -54,11 +57,10 @@
       var source   = $("#entry-template").html();
       var template = Handlebars.compile(source);
     .notes
-      It is also possible to precompile your templates. This will
-      result in a smaller required runtime library and significant
-      savings from not having to compile the template in the
-      browser. This can be especially important when working with
-      mobile devices.
+      Please note that this approach is not recommended for production applications.
+      A better way is to precompile your templates. This will result in a smaller required
+      runtime library and significant savings from not having to compile the template in the
+      browser. This can be especially important when working with mobile devices.
     = link("Learn More: Precompilation", "precompilation.html", :class => "more-info")
 
   .bullet
