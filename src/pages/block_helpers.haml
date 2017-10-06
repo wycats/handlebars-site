@@ -405,7 +405,7 @@
       Implements a helper that allows for named variable declarations within a given block. This example would output <code>1 2 3</code> on render.
 
     .notes
-      Helpers can determine the number of block paramemters referenced by the template via the <code>options.fn.blockParams</code> field, which is an integer count. This value represents the number of block parameters that could be referenced by the child template. Parameters beyond this cound will never be referenced and can safely be omitted by the helper if desired. This is optional and any additional parameters passed to the template will be silently ignored.
+      Helpers can determine the number of block parameters referenced by the template via the <code>options.fn.blockParams</code> field, which is an integer count. This value represents the number of block parameters that could be referenced by the child template. Parameters beyond this count will never be referenced and can safely be omitted by the helper if desired. This is optional and any additional parameters passed to the template will be silently ignored.
 
 %h2#raw-blocks
   Raw Blocks
