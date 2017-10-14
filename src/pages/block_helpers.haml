@@ -294,7 +294,7 @@
       hash arguments.
     :javascript
       Handlebars.registerHelper('list', function(context, options) {
-        var attrs = Em.keys(options.hash).map(function(key) {
+        var attrs = Object.keys(options.hash).map(function(key) {
           return key + '="' + options.hash[key] + '"';
         }).join(" ");
 
