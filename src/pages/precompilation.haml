@@ -113,3 +113,20 @@
 
     .notes
       If using the simple mode the precompiler will generate a single javascript method. To execute this method it must be passed to the <code>Handlebars.template</code> method and the resulting object may be used as normal.
+
+%h2#precompiling_templates_inside_nodejs
+  Precompiling Templates Inside NodeJS
+  
+  
+.contents
+  .bullet
+    .description
+      If you wish to precompile templates from inside NodeJS--without
+      invoking "handlebars" from the command line--that can be done with
+      Handlebars.precompile.  Transmit the string result of this function
+      to your clients, and they can in turn parse that with Handlebars.template.
+    :highlight_plain
+     var template = "<div>whatever</div>";
+     var Handlebars = require("handlebars");
+     var compiled = Handlebars.precompiled(template);
+      
