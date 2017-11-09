@@ -11,3 +11,5 @@ lib/vendor
 bin
 bundler
 gh-pages
+*.iml
+.idea/
