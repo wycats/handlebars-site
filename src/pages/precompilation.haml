@@ -119,10 +119,10 @@
 
 .contents
   .bullet
-    .description 
+    .description
       If you wish to precompile templates from inside NodeJS--without invoking "handlebars" from the command line--that can be done with Handlebars.precompile.  Transmit the string result of this function to your clients, and they can in turn parse that with Handlebars.template.
 
-    :javascript
+    :javascript(style="overflow:auto")
       var template = "<div>whatever {{ name }}</div>";
       var Handlebars = require("handlebars");
       var compiled = Handlebars.precompile(template);
@@ -130,12 +130,12 @@
   .bullet
     .description
       On the client side you have Javascript along the lines of the following.
-    :javascript 
+    :javascript(style="overflow:auto")
       var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 
       Handlebars.partials["test1"] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
         var helper;
-    
+
         return "<div>whatever "
         + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"name","hash":{},"data":data}) : helper)))
         + "</div>";
