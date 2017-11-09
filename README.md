@@ -9,7 +9,7 @@ Source for handlebarsjs.com
 * Install bundler: `sudo gem install bundle`
 * Install dependencies: `bundle`
 * Update the site: `bundle exec rake build`
-* Look at the result in `site`
+* Preview the site: `bundle exec rake preview`, then open http://localhost:3000
 * Remove the site-directory
 * Deploy: `bundle exec rake deploy`
 * Commit and push

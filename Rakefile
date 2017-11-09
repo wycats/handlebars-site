@@ -24,9 +24,18 @@ def build
   system "staticmatic build ."
 end
 
+def preview
+  system "staticmatic preview ."
+end
+
 desc "Build the website"
 task :build do
   build
+end
+
+desc "Preview the website"
+task :preview do
+  preview
 end
 
 task :man do
