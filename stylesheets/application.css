@@ -456,37 +456,38 @@ pre {
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
+  overflow-x: auto;
 }
 
-/* line 289 */
+/* line 290 */
 .bullet:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.1);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* line 294 */
+/* line 295 */
 .bullet:not(:nth-of-type(1)) {
   padding-top: 15px;
 }
 
-/* line 297 */
+/* line 298 */
 .bullet {
   padding-bottom: 25px;
 }
 
-/* line 302 */
+/* line 303 */
 #credits p {
   text-align: center;
   font-size: 8pt;
   color: #668493;
 }
-/* line 306 */
+/* line 307 */
 #credits p a {
   color: #2c596b;
 }
 
-/* line 310 */
+/* line 311 */
 #github img {
   position: absolute;
   top: 0;
@@ -494,14 +495,14 @@ pre {
   border: 0;
 }
 
-/* line 316 */
+/* line 317 */
 #header-segment {
   display: inline;
   padding-left: auto;
   padding-right: auto;
 }
 
-/* line 321 */
+/* line 322 */
 #versions {
   position: absolute;
   top: 0;
@@ -515,22 +516,22 @@ pre {
   -khtml-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-/* line 328 */
+/* line 329 */
 #versions a {
   text-decoration: none;
   color: #0e3f54;
   padding: 0.1em 0.25em;
 }
-/* line 331 */
+/* line 332 */
 #versions a.current {
   font-weight: bold;
 }
 
-/* line 334 */
+/* line 335 */
 .try-handlebars {
   margin-top: 1em;
 }
-/* line 337 */
+/* line 338 */
 .try-handlebars textarea, .try-handlebars pre.output {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -546,7 +547,7 @@ pre {
   resize: vertical;
   width: 95%;
 }
-/* line 347 */
+/* line 348 */
 .try-handlebars pre.output {
   background: #eeeeee;
 }
