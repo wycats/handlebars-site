@@ -1,3 +1,25 @@
+.rework-notice {
+  border: 3px solid #d29c57;
+  padding: 1rem 1rem 1rem 4rem;
+  background-image: url("../images/warning.svg");
+  background-repeat: no-repeat;
+  background-position: 0.5rem center;
+  background-size: 3rem 3rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  color: #402000;
+  line-height: 1.5em;
+  background-color: rgba(245, 151, 0, 0.1);
+}
+
+.rework-notice header {
+  font-size: 150%;
+  color: #3f1e00;
+}
+
+
+
+
 /* line 43 */
 #standalone {
   line-height: 150%;
