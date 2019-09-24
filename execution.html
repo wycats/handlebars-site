@@ -52,13 +52,9 @@
                   Values defined in this object will replace any values defined in the global object
                   for the duration of the template execution.
                 </li>
-                <li>
-                  <code>partials</code>
-                  Pass in to provide custom partials in addition to the globally defined partials.
-                  <br>
-                  Values defined in this object will replace any values defined in the global object
-                  for the duration of the template execution.
-                </li>
+                <li><code>allowCallsToHelperMissing</code> (since 4.3.0, insecure): If set to <code>true</code>, calls like <code>{{helperMissing}}</code> and
+                  <code>{{blockHelperMissing}}</code> will be allowed. Please not that this allows template authors to fabricate templates for
+                  Remote Code Execution on the environment running Handlebars (see https://github.com/wycats/handlebars.js/issues/1558)</li>
               </ul>
             </div>
           </div>
